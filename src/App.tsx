@@ -1,17 +1,8 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
-import { Button } from 'antd'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Button>Learn React</Button>
-      </header>
-    </div>
-  )
+  return <div></div>
 }
 
 export default App
