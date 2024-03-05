@@ -6,11 +6,11 @@ import classNames from './styles.module.scss'
 export default function DateSelector({ caption }: { caption: string }) {
   return (
     <div className={classNames['date-selector']}>
-      <Typography.Text className={classNames['date-selector__caption']}>
+      <Typography.Text className={classNames['caption']}>
         {caption}
       </Typography.Text>
       <Space.Compact>
-        <div className={classNames['date-selector__icon-block']}>
+        <div className={classNames['icon-block']}>
           <CalendarOutlined />
         </div>
         <DatePicker
