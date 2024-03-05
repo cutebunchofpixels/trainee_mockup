@@ -1,0 +1,21 @@
+@use "../../../sass/common";
+
+.date-selector {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+
+    &__icon-block {
+        border: 1px solid #EBEFF1;
+        background-color: #EBEFF1;
+        display: grid;
+        place-items: center;
+        padding: 10px;
+    }
+
+    &__caption {
+        font-weight: 700;
+        white-space: nowrap;
+    }
+}
