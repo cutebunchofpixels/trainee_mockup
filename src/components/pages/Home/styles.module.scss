@@ -1,0 +1,33 @@
+@use "../../../sass/common";
+@use "../../../sass/abstracts";
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    background-color: abstracts.$variables-color-gray-light;
+    min-height: 100vh;
+}
+
+.section-payments {
+    padding-top: 120px;
+    padding-inline: 20px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    :global {
+        h1.ant-typography {
+            font-size: 25px; 
+        };
+
+        .ant-picker {
+            width: 100%;
+        }
+        
+        .ant-btn {
+            width: 100%;
+        }        
+    }
+}

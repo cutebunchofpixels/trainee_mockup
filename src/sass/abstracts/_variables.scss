@@ -1,0 +1,11 @@
+$color-primary: #01B466;
+$color-gray: #EBEFF1;
+$color-gray-light: #FAFAFC;
+
+$font-sm: 10px;
+$font-lg: 25px;
+
+:export {
+    colorPrimary: $color-primary;
+    colorGray: $color-gray;
+}

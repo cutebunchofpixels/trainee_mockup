@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import { ConfigProvider } from 'antd'
 import Home from './components/pages/Home'
+import variables from './sass/abstracts/_variables.scss'
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
       theme={{
         token: {
           borderRadius: 3,
-          colorBorder: '#EBEFF1',
-          colorPrimary: '#01B466',
+          colorBorder: variables.colorGray,
+          colorPrimary: variables.colorPrimary,
         },
       }}
     >

@@ -1,4 +1,6 @@
-.w-100 {
+@use "../abstracts";
+
+.w100 {
     width: 100%;
 }
 
@@ -7,5 +9,9 @@
 }
 
 .font-sm {
-    font-size: 10px;
+    font-size: abstracts.$variables-font-sm;
+}
+
+.font-lg {
+    font-size: abstracts.$variables-font-lg;
 }
