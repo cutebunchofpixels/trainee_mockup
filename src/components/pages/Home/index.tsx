@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Col, Row, Button, Card } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
-import DateSelector from '../../ui/DateSelector'
+import DateSelector from 'components/ui/DateSelector'
 import classNames from './styles.module.scss'
 
 export default function Home() {
