@@ -4,8 +4,13 @@ import { RightOutlined, ShoppingOutlined } from '@ant-design/icons'
 import DateSelector from 'components/ui/DateSelector'
 import PaymentStatCard from 'components/ui/PaymentStatCard'
 import classNames from './styles.module.scss'
+import { useAppSelector } from 'redux/app/hooks'
 
 export default function PaymentsSection() {
+  const { averagePayment, totalRevenue, repeatPurchaseRate } = useAppSelector(
+    state => state.paymentStats
+  )
+
   return (
     <div className={classNames['payments-section']}>
       <Typography.Title>Payment Statistics</Typography.Title>
@@ -30,19 +35,19 @@ export default function PaymentsSection() {
       </Card>
       <div className={classNames['stat-cards']}>
         <PaymentStatCard
-          value={75000}
+          value={totalRevenue}
           valuePrefix="$"
           caption="Total revenue"
           icon={<ShoppingOutlined />}
         />
         <PaymentStatCard
-          value={16}
+          value={averagePayment}
           valuePrefix="$"
           caption="Average payment"
           icon={<ShoppingOutlined />}
         />
         <PaymentStatCard
-          value={15}
+          value={repeatPurchaseRate}
           valueSuffix="%"
           caption="Repeat purchase rate"
           icon={<ShoppingOutlined />}
