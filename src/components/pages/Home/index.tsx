@@ -1,7 +1,8 @@
 import React from 'react'
 import { Typography, Col, Row, Button, Card } from 'antd'
-import { RightOutlined } from '@ant-design/icons'
+import { RightOutlined, ShoppingOutlined } from '@ant-design/icons'
 import DateSelector from 'components/ui/DateSelector'
+import PaymentStatCard from 'components/ui/PaymentStatCard'
 import classNames from './styles.module.scss'
 
 export default function Home() {
@@ -28,6 +29,26 @@ export default function Home() {
             </Col>
           </Row>
         </Card>
+        <div className={classNames['stat-cards']}>
+          <PaymentStatCard
+            value={75000}
+            valuePrefix="$"
+            caption="Total revenue"
+            icon={<ShoppingOutlined />}
+          />
+          <PaymentStatCard
+            value={16}
+            valuePrefix="$"
+            caption="Average payment"
+            icon={<ShoppingOutlined />}
+          />
+          <PaymentStatCard
+            value={15}
+            valueSuffix="%"
+            caption="Repeat purchase rate"
+            icon={<ShoppingOutlined />}
+          />
+        </div>
       </div>
     </div>
   )

@@ -11,11 +11,17 @@
 .section-payments {
     padding-top: 120px;
     padding-inline: 20px;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    .stat-cards {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
 
     :global {
         h1.ant-typography {

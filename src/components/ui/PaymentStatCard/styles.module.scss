@@ -1,0 +1,46 @@
+@use "src/sass/abstracts";
+
+.stat-card {
+    padding-block: 8px;
+    padding-inline: 10px;
+    font-weight: 500;
+
+    .icon {
+        font-size: 36px;
+    }
+
+    .text-block {
+        display: flex;
+        flex-direction: column; 
+    }
+
+    .card-value {
+        font-size: 24px;
+    }
+
+    .caption {
+        font-size: 18px;
+        color: abstracts.$variables-color-gray-dark;
+    }
+
+    :global {
+        .ant-card-body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 25px;
+
+            &::before {
+                content: none;
+            }
+
+            &::after {
+                content: none;
+            }
+        }
+
+        .ant-typography {
+            line-height: 1.3;
+        }   
+    }
+}
