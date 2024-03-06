@@ -7,9 +7,7 @@ import classNames from './styles.module.scss'
 import { useAppSelector } from 'redux/app/hooks'
 
 export default function PaymentsSection() {
-  const { averagePayment, totalRevenue, repeatPurchaseRate } = useAppSelector(
-    state => state.paymentStats
-  )
+  const cardsInfo = useAppSelector(state => state.paymentStats.value)
 
   return (
     <div className={classNames['payments-section']}>
@@ -34,24 +32,13 @@ export default function PaymentsSection() {
         </Row>
       </Card>
       <div className={classNames['stat-cards']}>
-        <PaymentStatCard
-          value={totalRevenue}
-          valuePrefix="$"
-          caption="Total revenue"
-          icon={<ShoppingOutlined />}
-        />
-        <PaymentStatCard
-          value={averagePayment}
-          valuePrefix="$"
-          caption="Average payment"
-          icon={<ShoppingOutlined />}
-        />
-        <PaymentStatCard
-          value={repeatPurchaseRate}
-          valueSuffix="%"
-          caption="Repeat purchase rate"
-          icon={<ShoppingOutlined />}
-        />
+        {cardsInfo.map(item => (
+          <PaymentStatCard
+            icon={<ShoppingOutlined />}
+            cardInfo={item}
+            key={item.caption}
+          />
+        ))}
       </div>
     </div>
   )

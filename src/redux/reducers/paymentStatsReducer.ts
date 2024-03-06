@@ -1,15 +1,16 @@
+import { PaymentStatsCardInfo } from 'components/ui/PaymentStatCard'
 import { PayloadAction } from 'types/PayloadAction'
 
 interface PaymentStatsState {
-  totalRevenue: number
-  averagePayment: number
-  repeatPurchaseRate: number
+  value: PaymentStatsCardInfo[]
 }
 
 const initialState: PaymentStatsState = {
-  totalRevenue: 75000,
-  averagePayment: 16,
-  repeatPurchaseRate: 15,
+  value: [
+    { value: 75000, type: 'currency', caption: 'Total revenue' },
+    { value: 16, type: 'currency', caption: 'Average payment' },
+    { value: 15, type: 'percentage', caption: 'Repeat purchase rate' },
+  ],
 }
 
 export function paymentStatsReducer(

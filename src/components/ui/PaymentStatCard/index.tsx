@@ -1,34 +1,51 @@
 import React, { ReactNode } from 'react'
-import { Card, Typography } from 'antd'
+import { Card, Statistic } from 'antd'
 import classNames from './styles.module.scss'
+
+type PaymentStatsCardType = 'currency' | 'percentage'
+
+export interface PaymentStatsCardInfo {
+  type: PaymentStatsCardType
+  caption: string
+  value: number
+}
+
+const valueAddons: Record<
+  PaymentStatsCardType,
+  { prefix?: string; suffix?: string }
+> = {
+  currency: {
+    prefix: '$',
+  },
+  percentage: {
+    suffix: '%',
+  },
+}
 
 interface PaymetStatCardProps {
   icon: ReactNode
-  value: number
-  valuePrefix?: string
-  valueSuffix?: string
-  caption: string
+  cardInfo: PaymentStatsCardInfo
 }
 
 export default function PaymentStatCard({
   icon,
-  value,
-  valuePrefix,
-  valueSuffix,
-  caption,
+  cardInfo,
 }: PaymetStatCardProps) {
   return (
     <Card className={classNames['stat-card']}>
       <div className={classNames['icon']}>{icon}</div>
       <div className={classNames['text-block']}>
-        <Typography.Text className={classNames['card-value']}>
-          {`${valuePrefix || ''}${value.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-          })} ${valueSuffix || ''}`}
-        </Typography.Text>
-        <Typography.Text className={classNames['caption']}>
-          {caption}
-        </Typography.Text>
+        <Statistic
+          title={cardInfo.caption}
+          value={cardInfo.value}
+          formatter={value =>
+            value.toLocaleString('en-US', {
+              minimumFractionDigits: 2,
+            })
+          }
+          prefix={valueAddons[cardInfo.type].prefix}
+          suffix={valueAddons[cardInfo.type].suffix}
+        />
       </div>
     </Card>
   )
