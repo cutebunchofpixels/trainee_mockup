@@ -1,8 +1,8 @@
 import React from 'react'
-import './App.css'
 import { ConfigProvider } from 'antd'
 import Home from './components/pages/Home'
 import variables from './sass/abstracts/_variables.scss'
+import classNames from './styles.module.scss'
 
 function App() {
   return (
@@ -15,7 +15,9 @@ function App() {
         },
       }}
     >
-      <Home />
+      <div className={classNames['app-container']}>
+        <Home />
+      </div>
     </ConfigProvider>
   )
 }
