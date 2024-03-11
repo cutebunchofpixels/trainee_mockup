@@ -4,15 +4,6 @@
     padding-block: 8px;
     padding-inline: 10px;
     font-weight: 600;
-
-    .icon {
-        font-size: abstracts.$variables-font-xl;
-    }
-
-    .text-block {
-        display: flex;
-        flex-direction: column; 
-    }
     
     :global {
         .ant-card-body {
@@ -37,11 +28,20 @@
         .ant-statistic {
             display: flex;
             flex-direction: column-reverse;
+        }
 
-            .ant-statistic-title {
-                color: abstracts.$variables-color-gray-dark;
-                text-transform: uppercase;
-            }
+        .ant-statistic-title {
+            color: abstracts.$variables-color-gray-dark;
+            text-transform: uppercase;
         }
     }
+}
+
+.icon {
+    font-size: abstracts.$variables-font-xl;
+}
+    
+.text-block {
+    display: flex;
+    flex-direction: column;
 }

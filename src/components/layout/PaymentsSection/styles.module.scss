@@ -10,12 +10,6 @@
     flex-direction: column;
     gap: 20px;
 
-    .stat-cards {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    }
-
     :global {
         h1.ant-typography {
             font-size: abstracts.$variables-font-lg;
@@ -32,6 +26,12 @@
             text-transform: uppercase;
         }
     }
+}
+
+.stat-cards {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
 .chart-card {

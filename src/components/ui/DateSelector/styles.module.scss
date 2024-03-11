@@ -7,17 +7,17 @@
     gap: 20px;
     align-items: center;
     width: 100%;
+}
 
-    .icon-block {
-        border: 1px solid abstracts.$variables-color-gray;
-        background-color: abstracts.$variables-color-gray;
-        display: grid;
-        place-items: center;
-        padding: 10px;
-    }
+.icon-block {
+    border: 1px solid abstracts.$variables-color-gray;
+    background-color: abstracts.$variables-color-gray;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+}
 
-    .caption {
-        font-weight: 700;
-        white-space: nowrap;
-    }
+.caption {
+    font-weight: 700;
+    white-space: nowrap;
 }
