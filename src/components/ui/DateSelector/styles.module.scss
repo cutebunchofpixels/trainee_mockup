@@ -1,4 +1,5 @@
 @use "src/sass/common";
+@use "src/sass/abstracts";
 
 .date-selector {
     display: grid;
@@ -8,8 +9,8 @@
     width: 100%;
 
     .icon-block {
-        border: 1px solid #EBEFF1;
-        background-color: #EBEFF1;
+        border: 1px solid abstracts.$variables-color-gray;
+        background-color: abstracts.$variables-color-gray;
         display: grid;
         place-items: center;
         padding: 10px;
