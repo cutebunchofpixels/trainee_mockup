@@ -1,8 +1,8 @@
 import React from 'react'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, Layout } from 'antd'
 import Home from './components/pages/Home'
 import variables from './sass/abstracts/_variables.scss'
-import classNames from './styles.module.scss'
+import './styles.module.scss'
 import { Provider } from 'react-redux'
 import { store } from 'redux/app/store'
 
@@ -12,15 +12,17 @@ function App() {
       theme={{
         token: {
           borderRadius: 3,
-          colorBorder: variables.colorGray,
           colorPrimary: variables.colorPrimary,
+          colorBorder: variables.colorGray,
         },
       }}
     >
       <Provider store={store}>
-        <div className={classNames['app-container']}>
-          <Home />
-        </div>
+        <Layout>
+          <Layout.Content>
+            <Home />
+          </Layout.Content>
+        </Layout>
       </Provider>
     </ConfigProvider>
   )
