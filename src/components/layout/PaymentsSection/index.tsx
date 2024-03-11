@@ -35,23 +35,29 @@ export default function PaymentsSection() {
   const cardsInfo = useAppSelector(state => state.paymentStats.value)
 
   return (
-    <div className={classNames['payments-section']}>
+    <section className={classNames['payments-section']}>
       <Typography.Title>Payment Statistics</Typography.Title>
       <Card>
-        <Row gutter={[16, 16]}>
-          <Col xs={24} md={9}>
-            <DateSelector caption="Start date" />
-          </Col>
-          <Col xs={24} md={9}>
-            <DateSelector caption="End date" />
-          </Col>
-          <Col xs={24} md={{ span: 5, offset: 1 }}>
-            <Button type="primary" className={classNames['report-button']}>
-              View report
-              <RightOutlined />
-            </Button>
-          </Col>
-        </Row>
+        <form>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} md={9}>
+              <DateSelector caption="Start date" />
+            </Col>
+            <Col xs={24} md={9}>
+              <DateSelector caption="End date" />
+            </Col>
+            <Col xs={24} md={{ span: 5, offset: 1 }}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className={classNames['report-button']}
+              >
+                View report
+                <RightOutlined />
+              </Button>
+            </Col>
+          </Row>
+        </form>
       </Card>
       <div className={classNames['stat-cards']}>
         {cardsInfo.map(item => (
@@ -80,6 +86,6 @@ export default function PaymentsSection() {
           <RevenueChart />
         </div>
       </Card>
-    </div>
+    </section>
   )
 }
