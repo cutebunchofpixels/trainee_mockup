@@ -39,7 +39,7 @@ export default function PaymentsSection() {
       <Typography.Title>Payment Statistics</Typography.Title>
       <Card>
         <form>
-          <Row gutter={[16, 16]}>
+          <Row gutter={[32, 16]}>
             <Col xs={24} md={9}>
               <DateSelector caption="Start date" />
             </Col>
