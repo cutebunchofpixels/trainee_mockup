@@ -2,8 +2,6 @@
 @use "src/sass/common";
 
 .payments-section {
-    padding-block: 120px;
-    padding-inline: 20px;
     max-width: 900px;
     width: 100%;
     display: flex;
@@ -36,10 +34,6 @@
 
 .chart-card {
     :global {
-        .ant-card-head {
-            background-color: rgba(abstracts.$variables-color-gray, 0.5);
-        }
-
         .ant-card-body {
             padding: 0;
 
