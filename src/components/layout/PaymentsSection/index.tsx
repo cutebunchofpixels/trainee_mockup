@@ -1,10 +1,35 @@
 import React from 'react'
-import { Typography, Col, Row, Button, Card } from 'antd'
-import { RightOutlined, ShoppingOutlined } from '@ant-design/icons'
+import {
+  Typography,
+  Col,
+  Row,
+  Button,
+  Card,
+  Dropdown,
+  Space,
+  MenuProps,
+} from 'antd'
+import {
+  RightOutlined,
+  ShoppingOutlined,
+  DownOutlined,
+} from '@ant-design/icons'
 import DateSelector from 'components/ui/DateSelector'
 import PaymentStatCard from 'components/ui/PaymentStatCard'
 import classNames from './styles.module.scss'
+import RevenueChart from 'components/layout/RevenueChart'
 import { useAppSelector } from 'redux/app/hooks'
+
+const dropdownItems: MenuProps['items'] = [
+  {
+    label: 'Current week',
+    key: '1',
+  },
+  {
+    label: 'Previous week',
+    key: '2',
+  },
+]
 
 export default function PaymentsSection() {
   const cardsInfo = useAppSelector(state => state.paymentStats.value)
@@ -14,17 +39,14 @@ export default function PaymentsSection() {
       <Typography.Title>Payment Statistics</Typography.Title>
       <Card>
         <Row gutter={[16, 16]}>
-          <Col xs={24} md={10}>
+          <Col xs={24} md={9}>
             <DateSelector caption="Start date" />
           </Col>
-          <Col xs={24} md={10}>
+          <Col xs={24} md={9}>
             <DateSelector caption="End date" />
           </Col>
-          <Col xs={24} md={4}>
-            <Button
-              type="primary"
-              className={`${classNames['text-uppercase']} ${classNames['w-100']} ${classNames['font-sm']}`}
-            >
+          <Col xs={24} md={{ span: 5, offset: 1 }}>
+            <Button type="primary" className={classNames['report-button']}>
               View report
               <RightOutlined />
             </Button>
@@ -40,6 +62,24 @@ export default function PaymentsSection() {
           />
         ))}
       </div>
+      <Card
+        title="Revenue"
+        className={classNames['chart-card']}
+        extra={
+          <Dropdown menu={{ items: dropdownItems }}>
+            <Button type="primary">
+              <Space>
+                Interval
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Dropdown>
+        }
+      >
+        <div className={classNames['revenue-chart-container']}>
+          <RevenueChart />
+        </div>
+      </Card>
     </div>
   )
 }

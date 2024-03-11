@@ -1,5 +1,8 @@
+@use "src/sass/abstracts";
+@use "src/sass/common";
+
 .payments-section {
-    padding-top: 120px;
+    padding-block: 120px;
     padding-inline: 20px;
     max-width: 900px;
     width: 100%;
@@ -24,6 +27,34 @@
 
         .ant-btn {
             width: 100%;
+            font-weight: 500;
+            font-size: 11px;
+            text-transform: uppercase;
         }
+    }
+}
+
+.chart-card {
+    :global {
+        .ant-card-head {
+            background-color: rgba(abstracts.$variables-color-gray, 0.5);
+        }
+
+        .ant-card-body {
+            padding: 0;
+
+            @include abstracts.mixins-respond(md) {
+                padding: 15px;
+            }
+        }
+    }
+}
+
+.revenue-chart-container {
+    height: 250px;
+    width: 100%;
+
+    @include abstracts.mixins-respond(sm) {
+        width: 100%;
     }
 }
