@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ConfigProvider, Layout, theme } from 'antd'
 import Home from './components/pages/Home'
 import variables from './sass/abstracts/_variables.scss'
 import './styles.module.scss'
-import { Provider } from 'react-redux'
-import { store } from 'redux/app/store'
 import ThemeSwitch from 'components/layout/ThemeSwitch'
-import { ThemeContext } from 'utils/ThemeContext'
 import { Theme } from 'types/Theme'
+import { useAppDispatch, useAppSelector } from 'redux/app/hooks'
+import { toggleTheme } from 'redux/actions/theme'
 
 function App() {
-  const [currentTheme, setTheme] = useState<Theme>(Theme.Light)
+  const { value: currentTheme } = useAppSelector(state => state.theme)
+  const dispatch = useAppDispatch()
 
   return (
     <ConfigProvider
@@ -26,28 +26,20 @@ function App() {
         },
       }}
     >
-      <ThemeContext.Provider value={{ currentTheme, setTheme }}>
-        <Provider store={store}>
-          <Layout>
-            <Layout.Header>
-              <ThemeSwitch
-                currentTheme={currentTheme}
-                onChange={() => {
-                  if (currentTheme === Theme.Light) {
-                    setTheme(Theme.Dark)
-                  } else {
-                    setTheme(Theme.Light)
-                  }
-                }}
-              />
-            </Layout.Header>
-            <Layout.Content>
-              <Home />
-            </Layout.Content>
-            <Layout.Footer>Footer</Layout.Footer>
-          </Layout>
-        </Provider>
-      </ThemeContext.Provider>
+      <Layout>
+        <Layout.Header>
+          <ThemeSwitch
+            currentTheme={currentTheme}
+            onChange={() => {
+              dispatch(toggleTheme())
+            }}
+          />
+        </Layout.Header>
+        <Layout.Content>
+          <Home />
+        </Layout.Content>
+        <Layout.Footer>Footer</Layout.Footer>
+      </Layout>
     </ConfigProvider>
   )
 }
