@@ -3,11 +3,12 @@ import { ConfigProvider, Layout, Select, theme } from 'antd'
 import Home from './components/pages/Home'
 import variables from './sass/abstracts/_variables.scss'
 import './styles.module.scss'
-import { Provider } from 'react-redux'
-import { store } from 'redux/app/store'
 import ThemeSwitch from 'components/layout/ThemeSwitch'
-import { ThemeContext } from 'utils/ThemeContext'
 import { Theme } from 'types/Theme'
+import { useAppDispatch, useAppSelector } from 'redux/app/hooks'
+import { setTheme } from 'redux/actions/theme'
+import { ls } from 'utils/secureLS'
+import { PREFERED_THEME_KEY } from 'utils/constants'
 import heIL from 'antd/locale/he_IL'
 import enUS from 'antd/locale/en_US'
 import { Locale } from 'types/Locale'
@@ -23,8 +24,9 @@ const localeOptions = Object.values(Locale).map(locale => ({
 }))
 
 function App() {
-  const [currentTheme, setTheme] = useState<Theme>(Theme.Light)
+  const { value: currentTheme } = useAppSelector(state => state.theme)
   const [currentLocale, setLocale] = useState<Locale>(Locale.English)
+  const dispatch = useAppDispatch()
 
   return (
     <ConfigProvider
@@ -41,33 +43,28 @@ function App() {
       }}
       locale={locales[currentLocale]}
     >
-      <ThemeContext.Provider value={{ currentTheme, setTheme }}>
-        <Provider store={store}>
-          <Layout>
-            <Layout.Header>
-              <ThemeSwitch
-                currentTheme={currentTheme}
-                onChange={() => {
-                  if (currentTheme === Theme.Light) {
-                    setTheme(Theme.Dark)
-                  } else {
-                    setTheme(Theme.Light)
-                  }
-                }}
-              />
-              <Select
-                defaultValue={Locale.English}
-                options={localeOptions}
-                onChange={locale => setLocale(locale)}
-              />
-            </Layout.Header>
-            <Layout.Content>
-              <Home />
-            </Layout.Content>
-            <Layout.Footer>Footer</Layout.Footer>
-          </Layout>
-        </Provider>
-      </ThemeContext.Provider>
+      <Layout>
+        <Layout.Header>
+          <ThemeSwitch
+            currentTheme={currentTheme}
+            onChange={() => {
+              const newTheme =
+                currentTheme === Theme.Dark ? Theme.Light : Theme.Dark
+              dispatch(setTheme(newTheme))
+              ls.set(PREFERED_THEME_KEY, newTheme)
+            }}
+          />
+          <Select
+            defaultValue={Locale.English}
+            options={localeOptions}
+            onChange={locale => setLocale(locale)}
+          />
+        </Layout.Header>
+        <Layout.Content>
+          <Home />
+        </Layout.Content>
+        <Layout.Footer>Footer</Layout.Footer>
+      </Layout>
     </ConfigProvider>
   )
 }

@@ -19,7 +19,6 @@ import PaymentStatCard from 'components/ui/PaymentStatCard'
 import classNames from './styles.module.scss'
 import RevenueChart from 'components/layout/RevenueChart'
 import { useAppSelector } from 'redux/app/hooks'
-import useTheme from 'hooks/useTheme'
 import { Theme } from 'types/Theme'
 
 const dropdownItems: MenuProps['items'] = [
@@ -35,7 +34,7 @@ const dropdownItems: MenuProps['items'] = [
 
 export default function PaymentsSection() {
   const cardsInfo = useAppSelector(state => state.paymentStats.value)
-  const { currentTheme } = useTheme()
+  const { value: currentTheme } = useAppSelector(state => state.theme)
 
   return (
     <section className={classNames['payments-section']}>
