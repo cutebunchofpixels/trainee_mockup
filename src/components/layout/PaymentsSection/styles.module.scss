@@ -36,10 +36,6 @@
     :global {
         .ant-card-body {
             padding: 0;
-
-            @include abstracts.mixins-respond(md) {
-                padding: 15px;
-            }
         }
     }
 }
@@ -47,8 +43,4 @@
 .revenue-chart-container {
     height: 250px;
     width: 100%;
-
-    @include abstracts.mixins-respond(sm) {
-        width: 100%;
-    }
 }
