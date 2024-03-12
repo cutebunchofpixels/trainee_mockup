@@ -12,6 +12,7 @@ import { PREFERED_THEME_KEY } from 'utils/constants'
 import heIL from 'antd/locale/he_IL'
 import enUS from 'antd/locale/en_US'
 import { Locale } from 'types/Locale'
+import { useTranslation } from 'react-i18next'
 
 const locales = {
   [Locale.English]: enUS,
@@ -25,7 +26,7 @@ const localeOptions = Object.values(Locale).map(locale => ({
 
 function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
-  const [currentLocale, setLocale] = useState<Locale>(Locale.English)
+  const { i18n } = useTranslation()
   const dispatch = useAppDispatch()
 
   return (
@@ -41,7 +42,11 @@ function App() {
           colorBorder: variables.colorGray,
         },
       }}
-      locale={locales[currentLocale]}
+      locale={
+        i18n.resolvedLanguage
+          ? locales[i18n.resolvedLanguage as Locale]
+          : locales[Locale.English]
+      }
     >
       <Layout>
         <Layout.Header>
@@ -57,7 +62,7 @@ function App() {
           <Select
             defaultValue={Locale.English}
             options={localeOptions}
-            onChange={locale => setLocale(locale)}
+            onChange={locale => i18n.changeLanguage(locale)}
           />
         </Layout.Header>
         <Layout.Content>
