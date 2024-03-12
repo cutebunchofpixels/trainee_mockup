@@ -6,7 +6,9 @@ import './styles.module.scss'
 import ThemeSwitch from 'components/layout/ThemeSwitch'
 import { Theme } from 'types/Theme'
 import { useAppDispatch, useAppSelector } from 'redux/app/hooks'
-import { toggleTheme } from 'redux/actions/theme'
+import { setTheme } from 'redux/actions/theme'
+import { ls } from 'utils/secureLS'
+import { PREFERED_THEME_KEY } from 'utils/constants'
 
 function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
@@ -31,7 +33,10 @@ function App() {
           <ThemeSwitch
             currentTheme={currentTheme}
             onChange={() => {
-              dispatch(toggleTheme())
+              const newTheme =
+                currentTheme === Theme.Dark ? Theme.Light : Theme.Dark
+              dispatch(setTheme(newTheme))
+              ls.set(PREFERED_THEME_KEY, newTheme)
             }}
           />
         </Layout.Header>
