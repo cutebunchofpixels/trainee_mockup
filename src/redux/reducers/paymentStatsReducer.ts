@@ -1,5 +1,4 @@
 import { PaymentStatsCardInfo } from 'components/ui/PaymentStatCard'
-import { PayloadAction } from 'types/PayloadAction'
 
 interface PaymentStatsState {
   value: PaymentStatsCardInfo[]
@@ -13,12 +12,6 @@ const initialState: PaymentStatsState = {
   ],
 }
 
-export function paymentStatsReducer(
-  state = initialState,
-  action: PayloadAction<number>
-) {
-  switch (action.type) {
-    default:
-      return state
-  }
+export function paymentStatsReducer(state = initialState) {
+  return state
 }

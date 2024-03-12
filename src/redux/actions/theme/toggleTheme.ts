@@ -1,8 +1,9 @@
-import { PayloadAction } from 'types/PayloadAction'
+export type ToggleThemeAction = {
+  type: 'theme/toggle'
+}
 
-export function toggleTheme(): PayloadAction {
+export function toggleTheme(): ToggleThemeAction {
   return {
     type: 'theme/toggle',
-    payload: null,
   }
 }
