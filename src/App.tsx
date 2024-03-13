@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ConfigProvider, Layout, Select, theme } from 'antd'
 import Home from './components/pages/Home'
 import variables from './sass/abstracts/_variables.scss'
@@ -8,21 +8,10 @@ import { Theme } from 'types/Theme'
 import { useAppDispatch, useAppSelector } from 'redux/app/hooks'
 import { setTheme } from 'redux/actions/theme'
 import { ls } from 'utils/secureLS'
-import { PREFERED_THEME_KEY } from 'utils/constants'
-import heIL from 'antd/locale/he_IL'
-import enUS from 'antd/locale/en_US'
+import { PREFERED_THEME_KEY, locales } from 'utils/constants'
 import { Locale } from 'types/Locale'
 import { useTranslation } from 'react-i18next'
-
-const locales = {
-  [Locale.English]: enUS,
-  [Locale.Hebrew]: heIL,
-}
-
-const localeOptions = Object.values(Locale).map(locale => ({
-  label: locale.toUpperCase(),
-  value: locale,
-}))
+import LocaleSelect from 'components/layout/LocaleSelect'
 
 function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
@@ -31,6 +20,7 @@ function App() {
 
   return (
     <ConfigProvider
+      direction={i18n.dir()}
       theme={{
         algorithm:
           currentTheme === Theme.Dark
@@ -59,11 +49,7 @@ function App() {
               ls.set(PREFERED_THEME_KEY, newTheme)
             }}
           />
-          <Select
-            defaultValue={Locale.English}
-            options={localeOptions}
-            onChange={locale => i18n.changeLanguage(locale)}
-          />
+          <LocaleSelect />
         </Layout.Header>
         <Layout.Content>
           <Home />
