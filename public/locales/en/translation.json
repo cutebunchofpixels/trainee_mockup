@@ -1,3 +1,6 @@
 {
-    "greeting": "Hello"
+    "sectionPayments.heading": "Payment statistics",
+    "reportDateSelectForm.startDate": "Start date",
+    "reportDateSelectForm.endDate": "End date",
+    "reportDateSelectForm.viewReport": "View report"
 }

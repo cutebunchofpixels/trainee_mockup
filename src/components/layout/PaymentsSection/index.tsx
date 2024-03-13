@@ -11,6 +11,7 @@ import {
 } from 'antd'
 import {
   RightOutlined,
+  LeftOutlined,
   ShoppingOutlined,
   DownOutlined,
 } from '@ant-design/icons'
@@ -20,6 +21,7 @@ import classNames from './styles.module.scss'
 import RevenueChart from 'components/layout/RevenueChart'
 import { useAppSelector } from 'redux/app/hooks'
 import { Theme } from 'types/Theme'
+import { useTranslation } from 'react-i18next'
 
 const dropdownItems: MenuProps['items'] = [
   {
@@ -35,18 +37,19 @@ const dropdownItems: MenuProps['items'] = [
 export default function PaymentsSection() {
   const cardsInfo = useAppSelector(state => state.paymentStats.value)
   const { value: currentTheme } = useAppSelector(state => state.theme)
+  const { t, i18n } = useTranslation()
 
   return (
     <section className={classNames['payments-section']}>
-      <Typography.Title>Payment Statistics</Typography.Title>
+      <Typography.Title>{t('sectionPayments.heading')}</Typography.Title>
       <Card>
         <form>
           <Row gutter={[32, 16]}>
             <Col xs={24} md={9}>
-              <DateSelector caption="Start date" />
+              <DateSelector caption={t('reportDateSelectForm.startDate')} />
             </Col>
             <Col xs={24} md={9}>
-              <DateSelector caption="End date" />
+              <DateSelector caption={t('reportDateSelectForm.endDate')} />
             </Col>
             <Col xs={24} md={{ span: 5, offset: 1 }}>
               <Button
@@ -54,8 +57,8 @@ export default function PaymentsSection() {
                 htmlType="submit"
                 className={classNames['report-button']}
               >
-                View report
-                <RightOutlined />
+                {t('reportDateSelectForm.viewReport')}
+                {i18n.dir() === 'ltr' ? <RightOutlined /> : <LeftOutlined />}
               </Button>
             </Col>
           </Row>
