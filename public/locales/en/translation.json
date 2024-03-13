@@ -2,5 +2,8 @@
     "sectionPayments.heading": "Payment statistics",
     "reportDateSelectForm.startDate": "Start date",
     "reportDateSelectForm.endDate": "End date",
-    "reportDateSelectForm.viewReport": "View report"
+    "reportDateSelectForm.viewReport": "View report",
+    "revenueStats.repeatPurchaseRate": "Repeat purchase rate",
+    "revenueStats.averagePayment": "Average payment",
+    "revenueStats.totalRevenue": "Total revenue"
 }

@@ -1,12 +1,14 @@
 import React, { ReactNode } from 'react'
 import { Card, Statistic } from 'antd'
 import classNames from './styles.module.scss'
+import resources from 'types/resources'
+import { useTranslation } from 'react-i18next'
 
 type PaymentStatsCardType = 'currency' | 'percentage'
 
 export interface PaymentStatsCardInfo {
   type: PaymentStatsCardType
-  caption: string
+  captionKey: keyof (typeof resources)['translation']
   value: number
 }
 
@@ -31,12 +33,14 @@ export default function PaymentStatCard({
   icon,
   cardInfo,
 }: PaymetStatCardProps) {
+  const { t } = useTranslation()
+
   return (
     <Card className={classNames['stat-card']}>
       <div className={classNames['icon']}>{icon}</div>
       <div className={classNames['text-block']}>
         <Statistic
-          title={cardInfo.caption}
+          title={t(cardInfo.captionKey)}
           value={cardInfo.value}
           formatter={value =>
             value.toLocaleString('en-US', {

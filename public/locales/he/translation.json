@@ -2,5 +2,8 @@
     "sectionPayments.heading": "סטטיסטיקת תשלום",
     "reportDateSelectForm.startDate": "תאריך התחלה",
     "reportDateSelectForm.endDate": "תאריך סיום",
-    "reportDateSelectForm.viewReport": "צפה בדוח"
+    "reportDateSelectForm.viewReport": "צפה בדוח",
+    "revenueStats.repeatPurchaseRate": "שיעור רכישה חוזרת",
+    "revenueStats.averagePayment": "תשלום ממוצע",
+    "revenueStats.totalRevenue": "סך הרווחים"
 }

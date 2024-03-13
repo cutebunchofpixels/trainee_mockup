@@ -69,7 +69,7 @@ export default function PaymentsSection() {
           <PaymentStatCard
             icon={<ShoppingOutlined />}
             cardInfo={item}
-            key={item.caption}
+            key={item.captionKey}
           />
         ))}
       </div>
