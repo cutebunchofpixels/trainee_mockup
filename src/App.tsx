@@ -1,19 +1,17 @@
 import React from 'react'
-import { ConfigProvider, Layout, theme } from 'antd'
-import Home from './components/pages/Home'
+import { ConfigProvider, theme } from 'antd'
 import variables from './sass/abstracts/_variables.scss'
 import './styles.module.scss'
-import ThemeSwitch from 'components/layout/ThemeSwitch'
 import { Theme } from 'types/Theme'
 import { useAppSelector } from 'redux/app/hooks'
-import LocaleSelect from 'components/layout/LocaleSelect'
 import { locales } from 'utils/constants'
 import { Locale } from 'types/Locale'
 import { useTranslation } from 'react-i18next'
+import { Outlet } from 'react-router-dom'
 
-function App() {
+export function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
-  const { i18n, t } = useTranslation()
+  const { i18n } = useTranslation()
 
   return (
     <ConfigProvider
@@ -35,16 +33,7 @@ function App() {
           : locales[Locale.English]
       }
     >
-      <Layout>
-        <Layout.Header>
-          <ThemeSwitch />
-          <LocaleSelect />
-        </Layout.Header>
-        <Layout.Content>
-          <Home />
-        </Layout.Content>
-        <Layout.Footer>{t('footer.caption')}</Layout.Footer>
-      </Layout>
+      <Outlet />
     </ConfigProvider>
   )
 }

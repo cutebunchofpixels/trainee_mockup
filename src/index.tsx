@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App'
 import { Provider } from 'react-redux'
 import { store } from 'redux/app/store'
 import { setTheme } from 'redux/actions/theme'
@@ -9,6 +7,8 @@ import { ls } from 'utils/secureLS'
 import { inferePreferredTheme } from 'utils/inferPreferredTheme'
 import { PREFERED_THEME_KEY } from 'utils/constants'
 import './i18n'
+import { RouterProvider } from 'react-router-dom'
+import { router } from 'utils/router'
 
 const preferredTheme = inferePreferredTheme()
 store.dispatch(setTheme(preferredTheme))
@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 )
