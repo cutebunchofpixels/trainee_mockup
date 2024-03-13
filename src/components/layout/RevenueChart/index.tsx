@@ -1,5 +1,6 @@
-import React from 'react'
-import { DualAxes, DualAxesConfig } from '@ant-design/plots'
+import React, { useMemo } from 'react'
+import { DualAxes } from '@ant-design/plots'
+import { useTranslation } from 'react-i18next'
 
 interface ChartItem {
   year: number
@@ -18,54 +19,50 @@ for (let i = 0; i < 20; i++) {
   })
 }
 
-const chartConfig: DualAxesConfig = {
-  xField: 'year',
-  data: chartData,
-  tooltip: false,
-  legend: {
-    color: {
-      itemMarkerStroke: ({ label }: { label: string }) => {
-        if (label === 'revenue') {
-          return '#6CD0F8'
-        }
-
-        return '#F6CECB'
-      },
-    },
-  },
-
-  children: [
-    {
-      type: 'line',
-      yField: 'sales',
-      style: {
-        lineWidth: 2,
-        stroke: '#F6CECB',
-      },
-      axis: {
-        y: {
-          position: 'right',
-          title: 'Sales',
-        },
-      },
-    },
-    {
-      type: 'line',
-      yField: 'revenue',
-      style: {
-        lineWidth: 2,
-        stroke: '#6CD0F8',
-      },
-      axis: {
-        y: {
-          title: 'Revenue',
-          labelFormatter: (label: string) => `$${label}`,
-        },
-      },
-    },
-  ],
-}
-
 export default function RevenueChart() {
+  const { t, i18n } = useTranslation()
+
+  const chartConfig = useMemo(() => {
+    const config = {
+      xField: 'year',
+      data: chartData,
+      tooltip: false,
+      legend: false,
+
+      children: [
+        {
+          type: 'line',
+          yField: 'sales',
+          style: {
+            lineWidth: 2,
+            stroke: '#F6CECB',
+          },
+          axis: {
+            y: {
+              position: 'right',
+              title: t('revenueChart.salesAxis'),
+            },
+          },
+        },
+        {
+          type: 'line',
+          yField: 'revenue',
+          style: {
+            lineWidth: 2,
+            stroke: '#6CD0F8',
+          },
+          axis: {
+            y: {
+              title: t('revenueChart.revenueAxis'),
+              labelFormatter: (label: string) => `$${label}`,
+            },
+          },
+        },
+      ],
+    }
+
+    return config
+  }, [i18n.resolvedLanguage])
+
   return <DualAxes {...chartConfig} />
 }

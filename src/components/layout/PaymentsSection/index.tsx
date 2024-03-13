@@ -23,21 +23,21 @@ import { useAppSelector } from 'redux/app/hooks'
 import { Theme } from 'types/Theme'
 import { useTranslation } from 'react-i18next'
 
-const dropdownItems: MenuProps['items'] = [
-  {
-    label: 'Current week',
-    key: '1',
-  },
-  {
-    label: 'Previous week',
-    key: '2',
-  },
-]
-
 export default function PaymentsSection() {
   const cardsInfo = useAppSelector(state => state.paymentStats.value)
   const { value: currentTheme } = useAppSelector(state => state.theme)
   const { t, i18n } = useTranslation()
+
+  const dropdownItems: MenuProps['items'] = [
+    {
+      label: t('revenueChart.currentWeekOption'),
+      key: '1',
+    },
+    {
+      label: t('revenueChart.previousWeekOption'),
+      key: '2',
+    },
+  ]
 
   return (
     <section className={classNames['payments-section']}>
@@ -74,13 +74,13 @@ export default function PaymentsSection() {
         ))}
       </div>
       <Card
-        title="Revenue"
+        title={t('revenueChart.caption')}
         className={classNames['chart-card']}
         extra={
           <Dropdown menu={{ items: dropdownItems }}>
             <Button type="primary">
               <Space>
-                Interval
+                {t('revenueChart.selectInterval')}
                 <DownOutlined />
               </Space>
             </Button>
@@ -89,6 +89,7 @@ export default function PaymentsSection() {
       >
         <div
           className={classNames['revenue-chart-container']}
+          dir="ltr"
           style={{
             backgroundColor:
               currentTheme === Theme.Dark ? '#A9A9A9' : undefined,

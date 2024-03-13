@@ -5,5 +5,12 @@
     "reportDateSelectForm.viewReport": "צפה בדוח",
     "revenueStats.repeatPurchaseRate": "שיעור רכישה חוזרת",
     "revenueStats.averagePayment": "תשלום ממוצע",
-    "revenueStats.totalRevenue": "סך הרווחים"
+    "revenueStats.totalRevenue": "סך הרווחים",
+    "revenueChart.caption": "הַפסָקָה",
+    "revenueChart.selectInterval": "הַכנָסָה",
+    "revenueChart.currentWeekOption": "השבוע הנוכחי",
+    "revenueChart.previousWeekOption": "שבוע שעבר",
+    "revenueChart.revenueAxis": "הַכנָסָה",
+    "revenueChart.salesAxis": "מכירות",
+    "footer.caption": "כותרת תחתונה"
 }

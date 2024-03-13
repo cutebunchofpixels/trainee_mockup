@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 
 function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
 
   return (
     <ConfigProvider
@@ -43,7 +43,7 @@ function App() {
         <Layout.Content>
           <Home />
         </Layout.Content>
-        <Layout.Footer>Footer</Layout.Footer>
+        <Layout.Footer>{t('footer.caption')}</Layout.Footer>
       </Layout>
     </ConfigProvider>
   )

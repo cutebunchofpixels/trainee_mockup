@@ -5,5 +5,12 @@
     "reportDateSelectForm.viewReport": "View report",
     "revenueStats.repeatPurchaseRate": "Repeat purchase rate",
     "revenueStats.averagePayment": "Average payment",
-    "revenueStats.totalRevenue": "Total revenue"
+    "revenueStats.totalRevenue": "Total revenue",
+    "revenueChart.caption": "Revenue",
+    "revenueChart.selectInterval": "Interval",
+    "revenueChart.currentWeekOption": "Current week",
+    "revenueChart.previousWeekOption": "Previous week",
+    "revenueChart.revenueAxis": "Revenue",
+    "revenueChart.salesAxis": "Sales",
+    "footer.caption": "Footer"
 }
