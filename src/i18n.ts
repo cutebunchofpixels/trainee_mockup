@@ -4,6 +4,7 @@ import Backend from 'i18next-http-backend'
 import { inferSelectedLocale } from 'utils/inferSelectedLocale'
 
 const selectedLocale = inferSelectedLocale()
+document.documentElement.setAttribute('lang', selectedLocale)
 
 i18next.use(initReactI18next).use(Backend).init({
   fallbackLng: 'en',

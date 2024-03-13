@@ -20,6 +20,7 @@ export default function LocaleSelect() {
       onChange={locale => {
         i18n.changeLanguage(locale)
         ls.set(SELECTED_LOCALE_KEY, locale)
+        document.documentElement.setAttribute('lang', locale)
       }}
     />
   )
