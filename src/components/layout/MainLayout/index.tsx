@@ -8,9 +8,7 @@ import Header from '../Header'
 export default function MainLayout() {
   return (
     <Layout className={classNames['main-layout']}>
-      <Layout.Header>
-        <Header />
-      </Layout.Header>
+      <Header />
       <Layout.Content>
         <Outlet />
       </Layout.Content>
