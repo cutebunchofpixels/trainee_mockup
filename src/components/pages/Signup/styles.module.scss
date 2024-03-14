@@ -1,0 +1,22 @@
+@use 'src/sass/abstracts';
+
+.signup-page {
+  max-width: 500px;
+  width: 100%;
+
+  :global {
+    .ant-card-body {
+      height: 100%;
+    }
+
+    .ant-divider-inner-text {
+      text-transform: uppercase;
+      color: abstracts.$variables-color-gray-dark;
+    }
+
+    .create-new-account-message {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}

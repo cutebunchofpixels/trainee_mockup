@@ -5,6 +5,7 @@ import App from 'App'
 import MainLayout from 'components/layout/MainLayout'
 import AuthLayout from 'components/layout/AuthLayout'
 import Signin from 'components/pages/Signin'
+import Signup from 'components/pages/Signup'
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
           {
             path: 'signin',
             element: <Signin />,
+          },
+          {
+            path: 'signup',
+            element: <Signup />,
           },
         ],
       },
