@@ -16,9 +16,15 @@
     "auth.username": "Username",
     "auth.password": "Password",
     "auth.login": "Login",
+    "auth.register": "Register",
     "auth.dividerCaption": "Or",
+    "auth.email": "Email",
+    "auth.errors.emailRequired": "Email is a required filed",
+    "auth.errors.invalidEmail": "Your input should be a valid email",
     "auth.errors.passwordRequired": "Password is a required field",
     "auth.errors.usernameRequired": "Username is a required field",
     "signin.noAccoutMessage": "Don't have an accout yet?",
-    "signin.createNewAccoutMessage": "Create a new one!"
+    "signin.createNewAccoutMessage": "Create a new one!",
+    "signup.accountExistsMessage": "Already have an account?",
+    "signup.loginWithExisginAccountMessage": "Login instead!"
 }

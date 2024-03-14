@@ -15,7 +15,10 @@ export default function Signup() {
         handleSubmit={values => console.log(values)}
       />
       <Typography.Paragraph className="create-new-account-message">
-        Already have an accout? <Link to="/auth/signin">Login instead!</Link>
+        {t('signup.accountExistsMessage')}{' '}
+        <Link to="/auth/signin">
+          {t('signup.loginWithExisginAccountMessage')}
+        </Link>
       </Typography.Paragraph>
     </Card>
   )

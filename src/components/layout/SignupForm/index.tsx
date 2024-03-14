@@ -36,14 +36,14 @@ export default function SignupForm({
         <Input placeholder={t('auth.username')} />
       </Form.Item>
       <Form.Item<SignupFormValues>
-        label="Email"
+        label={t('auth.email')}
         name="email"
         rules={[
-          { required: true, message: 'Email is a required field' },
-          { type: 'email', message: 'Your input should be a valid email' },
+          { required: true, message: t('auth.errors.emailRequired') },
+          { type: 'email', message: t('auth.errors.invalidEmail') },
         ]}
       >
-        <Input placeholder="Email" />
+        <Input placeholder={t('auth.email')} />
       </Form.Item>
       <Form.Item<SignupFormValues>
         label={t('auth.password')}
@@ -53,7 +53,7 @@ export default function SignupForm({
         <Input.Password placeholder={t('auth.password')} />
       </Form.Item>
       <Form.Item className="submit-button-wrapper">
-        <Button htmlType="submit">{t('auth.login')}</Button>
+        <Button htmlType="submit">{t('auth.register')}</Button>
       </Form.Item>
       <Divider>{t('auth.dividerCaption')}</Divider>
       <Button htmlType="button" icon={<GoogleOutlined />}>
