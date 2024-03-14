@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Form, FormProps, Input } from 'antd'
+import { Button, Divider, Form, FormProps, Input } from 'antd'
 import { useTranslation } from 'react-i18next'
-import './styles.modules.scss'
+import classNames from './styles.module.scss'
+import { GoogleOutlined } from '@ant-design/icons'
 
 interface SigninFormValues {
   username: string
@@ -24,6 +25,7 @@ export default function SigninForm({
       onFinish={handleSubmit}
       onFinishFailed={handleError}
       layout="vertical"
+      className={classNames['signin-form']}
     >
       <Form.Item<SigninFormValues>
         label={t('auth.username')}
@@ -42,6 +44,10 @@ export default function SigninForm({
       <Form.Item className="submit-button-wrapper">
         <Button htmlType="submit">{t('auth.login')}</Button>
       </Form.Item>
+      <Divider>{t('auth.dividerCaption')}</Divider>
+      <Button htmlType="button" icon={<GoogleOutlined />}>
+        Google
+      </Button>
     </Form>
   )
 }
