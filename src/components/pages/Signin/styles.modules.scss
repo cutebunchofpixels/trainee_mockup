@@ -1,0 +1,20 @@
+@use "src/sass/abstracts";
+
+.ant-card {
+    max-width: 500px;
+    width: 100%;
+}
+
+.ant-card-body {
+    height: 100%;
+}
+
+.ant-divider-inner-text {
+    text-transform: uppercase;
+    color: abstracts.$variables-color-gray-dark
+}
+
+.create-new-account-message {
+    text-align: center;
+    margin-top: 10px;
+}
