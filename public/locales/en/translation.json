@@ -12,5 +12,13 @@
     "revenueChart.previousWeekOption": "Previous week",
     "revenueChart.revenueAxis": "Revenue",
     "revenueChart.salesAxis": "Sales",
-    "footer.caption": "Footer"
+    "footer.caption": "Footer",
+    "auth.username": "Username",
+    "auth.password": "Password",
+    "auth.login": "Login",
+    "auth.dividerCaption": "Or",
+    "auth.errors.passwordRequired": "Password is a required field",
+    "auth.errors.usernameRequired": "Username is a required field",
+    "signin.noAccoutMessage": "Don't have an accout yet?",
+    "signin.createNewAccoutMessage": "Create a new one!"
 }

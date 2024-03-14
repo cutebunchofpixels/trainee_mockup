@@ -12,5 +12,13 @@
     "revenueChart.previousWeekOption": "שבוע שעבר",
     "revenueChart.revenueAxis": "הַכנָסָה",
     "revenueChart.salesAxis": "מכירות",
-    "footer.caption": "כותרת תחתונה"
+    "footer.caption": "כותרת תחתונה",
+    "auth.username": "שם משתמש",
+    "auth.password": "סיסמה",
+    "auth.login": "התחברות",
+    "auth.dividerCaption": "אוֹ",
+    "auth.errors.passwordRequired": "סיסמה היא שדה חובה",
+    "auth.errors.usernameRequired": "שם משתמש הוא שדה חובה",
+    "signin.noAccoutMessage": "אין לך עדיין חשבון?",
+    "signin.createNewAccoutMessage": "צור אחד חדש!"
 }
