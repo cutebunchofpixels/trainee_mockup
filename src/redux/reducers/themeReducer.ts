@@ -1,12 +1,15 @@
 import { ThemeActions } from 'redux/actions/theme'
 import { Theme } from 'types/Theme'
+import { inferePreferredTheme } from 'utils/inferPreferredTheme'
 
 interface ThemeState {
   value: Theme
 }
 
+const preferredTheme = inferePreferredTheme()
+
 const initialState: ThemeState = {
-  value: Theme.Light,
+  value: preferredTheme,
 }
 
 export function themeReducer(state = initialState, action: ThemeActions) {
