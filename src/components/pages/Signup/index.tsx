@@ -1,9 +1,11 @@
 import React from 'react'
 import { Card, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
-import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
+
 import SignupForm from 'components/layout/SignupForm'
+
+import styles from './styles.module.scss'
 
 export default function Signup() {
   const { t } = useTranslation()

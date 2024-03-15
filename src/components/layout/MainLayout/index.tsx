@@ -1,9 +1,11 @@
-import { Layout } from 'antd'
 import React from 'react'
+import { Layout } from 'antd'
 import { Outlet } from 'react-router-dom'
+
 import Footer from '../Footer'
-import styles from './styles.module.scss'
 import Header from '../Header'
+
+import styles from './styles.module.scss'
 
 export default function MainLayout() {
   return (

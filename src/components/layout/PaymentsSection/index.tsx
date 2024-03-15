@@ -15,13 +15,15 @@ import {
   ShoppingOutlined,
   DownOutlined,
 } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
+
 import DateSelector from 'components/ui/DateSelector'
 import PaymentStatCard from 'components/ui/PaymentStatCard'
-import styles from './styles.module.scss'
 import RevenueChart from 'components/layout/RevenueChart'
 import { useAppSelector } from 'redux/app/hooks'
 import { Theme } from 'types/Theme'
-import { useTranslation } from 'react-i18next'
+
+import styles from './styles.module.scss'
 
 export default function PaymentsSection() {
   const cardsInfo = useAppSelector(state => state.paymentStats.value)

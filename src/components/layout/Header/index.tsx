@@ -1,7 +1,9 @@
 import React from 'react'
+import { Layout } from 'antd'
+
 import ThemeSwitch from '../ThemeSwitch'
 import LocaleSelect from '../LocaleSelect'
-import { Layout } from 'antd'
+
 import styles from './styles.module.scss'
 
 export default function Header() {

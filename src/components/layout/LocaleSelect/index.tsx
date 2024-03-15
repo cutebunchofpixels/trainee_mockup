@@ -1,7 +1,8 @@
 import React from 'react'
-import { Locale } from 'types/Locale'
 import { Select } from 'antd'
 import { useTranslation } from 'react-i18next'
+
+import { Locale } from 'types/Locale'
 import { ls } from 'utils/secureLS'
 import { SELECTED_LOCALE_KEY } from 'utils/constants'
 

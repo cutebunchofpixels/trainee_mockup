@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button, Divider, Form, FormProps, Input } from 'antd'
-import styles from './styles.module.scss'
 import { GoogleOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
+
+import styles from './styles.module.scss'
 
 interface SignupFormValues {
   email: string

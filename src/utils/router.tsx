@@ -1,6 +1,7 @@
 import React from 'react'
-import Home from 'components/pages/Home'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+
+import Home from 'components/pages/Home'
 import App from 'App'
 import MainLayout from 'components/layout/MainLayout'
 import AuthLayout from 'components/layout/AuthLayout'

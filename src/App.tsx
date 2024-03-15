@@ -1,13 +1,15 @@
 import React from 'react'
 import { ConfigProvider, theme } from 'antd'
-import variables from './sass/abstracts/_variables.scss'
-import './styles.module.scss'
+import { useTranslation } from 'react-i18next'
+import { Outlet } from 'react-router-dom'
+
 import { Theme } from 'types/Theme'
 import { useAppSelector } from 'redux/app/hooks'
 import { locales } from 'utils/constants'
 import { Locale } from 'types/Locale'
-import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
+
+import colorVariables from './sass/abstracts/_variables.scss'
+import './styles.module.scss'
 
 export function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
@@ -23,8 +25,8 @@ export function App() {
             : theme.defaultAlgorithm,
         token: {
           borderRadius: 3,
-          colorPrimary: variables.colorPrimary,
-          colorBorder: variables.colorGray,
+          colorPrimary: colorVariables.colorPrimary,
+          colorBorder: colorVariables.colorGray,
         },
       }}
       locale={

@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react'
 import { Card, Statistic } from 'antd'
-import styles from './styles.module.scss'
-import resources from 'types/resources'
 import { useTranslation } from 'react-i18next'
+
+import resources from 'types/resources'
+
+import styles from './styles.module.scss'
 
 type PaymentStatsCardType = 'currency' | 'percentage'
 

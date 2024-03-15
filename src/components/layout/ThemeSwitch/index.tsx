@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch } from 'antd'
 import { MoonOutlined, SunOutlined } from '@ant-design/icons'
+
 import { Theme } from 'types/Theme'
 import { useAppDispatch, useAppSelector } from 'redux/app/hooks'
 import { setTheme } from 'redux/actions/theme'
