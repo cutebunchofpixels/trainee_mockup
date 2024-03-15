@@ -9,6 +9,7 @@ import { PREFERED_THEME_KEY } from 'utils/constants'
 import './i18n'
 import { RouterProvider } from 'react-router-dom'
 import { router } from 'utils/router'
+import './normalize.css'
 
 const preferredTheme = inferePreferredTheme()
 store.dispatch(setTheme(preferredTheme))
