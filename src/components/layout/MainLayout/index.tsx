@@ -14,9 +14,7 @@ export default function MainLayout() {
       <Layout.Content>
         <Outlet />
       </Layout.Content>
-      <Layout.Footer>
-        <Footer />
-      </Layout.Footer>
+      <Footer />
     </Layout>
   )
 }

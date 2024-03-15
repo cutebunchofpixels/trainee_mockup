@@ -1,8 +1,11 @@
 .mainLayout {
-  min-height: 100vh;
+  height: 100vh;
+  flex-direction: column;
 
   :global {
     .ant-layout-content {
+      flex: auto;
+      overflow: auto;
       display: flex;
       justify-content: center;
       align-items: center;
