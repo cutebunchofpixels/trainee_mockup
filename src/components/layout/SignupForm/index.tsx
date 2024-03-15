@@ -5,36 +5,23 @@ import { GoogleOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 
 interface SignupFormValues {
-  username: string
   email: string
   password: string
 }
 
 interface SignupFormProps {
   handleSubmit: FormProps<SignupFormValues>['onFinish']
-  handleError: FormProps<SignupFormValues>['onFinishFailed']
 }
 
-export default function SignupForm({
-  handleSubmit,
-  handleError,
-}: SignupFormProps) {
+export default function SignupForm({ handleSubmit }: SignupFormProps) {
   const { t } = useTranslation()
 
   return (
     <Form
       onFinish={handleSubmit}
-      onFinishFailed={handleError}
       layout="vertical"
       className={classNames['signup-form']}
     >
-      <Form.Item<SignupFormValues>
-        label={t('auth.username')}
-        name="username"
-        rules={[{ required: true, message: t('auth.errors.usernameRequired') }]}
-      >
-        <Input placeholder={t('auth.username')} />
-      </Form.Item>
       <Form.Item<SignupFormValues>
         label={t('auth.email')}
         name="email"

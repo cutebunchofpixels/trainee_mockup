@@ -10,10 +10,7 @@ export default function Signup() {
 
   return (
     <Card className={classNames['signup-page']}>
-      <SignupForm
-        handleError={error => console.log(error)}
-        handleSubmit={values => console.log(values)}
-      />
+      <SignupForm handleSubmit={values => console.log(values)} />
       <Typography.Paragraph className="create-new-account-message">
         {t('signup.accountExistsMessage')}{' '}
         <Link to="/auth/signin">
