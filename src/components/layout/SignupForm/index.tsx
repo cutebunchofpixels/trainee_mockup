@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Divider, Form, FormProps, Input } from 'antd'
-import classNames from './styles.module.scss'
+import styles from './styles.module.scss'
 import { GoogleOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 
@@ -20,7 +20,7 @@ export default function SignupForm({ handleSubmit }: SignupFormProps) {
     <Form
       onFinish={handleSubmit}
       layout="vertical"
-      className={classNames['signup-form']}
+      className={styles.signupForm}
     >
       <Form.Item<SignupFormValues>
         label={t('auth.email')}

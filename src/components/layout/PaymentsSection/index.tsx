@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons'
 import DateSelector from 'components/ui/DateSelector'
 import PaymentStatCard from 'components/ui/PaymentStatCard'
-import classNames from './styles.module.scss'
+import styles from './styles.module.scss'
 import RevenueChart from 'components/layout/RevenueChart'
 import { useAppSelector } from 'redux/app/hooks'
 import { Theme } from 'types/Theme'
@@ -40,7 +40,7 @@ export default function PaymentsSection() {
   ]
 
   return (
-    <section className={classNames['payments-section']}>
+    <section className={styles.paymentsSection}>
       <Typography.Title>{t('sectionPayments.heading')}</Typography.Title>
       <Card>
         <form>
@@ -52,11 +52,7 @@ export default function PaymentsSection() {
               <DateSelector caption={t('reportDateSelectForm.endDate')} />
             </Col>
             <Col xs={24} md={{ span: 5, offset: 1 }}>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className={classNames['report-button']}
-              >
+              <Button type="primary" htmlType="submit">
                 {t('reportDateSelectForm.viewReport')}
                 {i18n.dir() === 'ltr' ? <RightOutlined /> : <LeftOutlined />}
               </Button>
@@ -64,7 +60,7 @@ export default function PaymentsSection() {
           </Row>
         </form>
       </Card>
-      <div className={classNames['stat-cards']}>
+      <div className={styles.statCards}>
         {cardsInfo.map(item => (
           <PaymentStatCard
             icon={<ShoppingOutlined />}
@@ -75,7 +71,7 @@ export default function PaymentsSection() {
       </div>
       <Card
         title={t('revenueChart.caption')}
-        className={classNames['chart-card']}
+        className={styles.chartCard}
         extra={
           <Dropdown menu={{ items: dropdownItems }}>
             <Button type="primary">
@@ -88,7 +84,7 @@ export default function PaymentsSection() {
         }
       >
         <div
-          className={classNames['revenue-chart-container']}
+          className={styles.revenueChartContainer}
           dir="ltr"
           style={{
             backgroundColor:
