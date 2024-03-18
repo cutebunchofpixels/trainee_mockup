@@ -24,21 +24,12 @@ export const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: 'auth',
-            children: [
-              {
-                index: true,
-                element: <Navigate to="signin" />,
-              },
-              {
-                path: 'signin',
-                element: <Signin />,
-              },
-              {
-                path: 'signup',
-                element: <Signup />,
-              },
-            ],
+            path: 'signin',
+            element: <Signin />,
+          },
+          {
+            path: 'signup',
+            element: <Signup />,
           },
         ],
       },

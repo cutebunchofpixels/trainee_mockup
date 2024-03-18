@@ -15,7 +15,7 @@ export default function Signin() {
       <SignupForm handleSubmit={values => console.log(values)} />
       <Typography.Paragraph className="create-new-account-message">
         {t('signin.noAccoutMessage') + ' '}
-        <Link to="/auth/signup">{t('signin.createNewAccoutMessage')}</Link>
+        <Link to="/signup">{t('signin.createNewAccoutMessage')}</Link>
       </Typography.Paragraph>
     </Card>
   )
