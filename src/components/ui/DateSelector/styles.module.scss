@@ -1,23 +1,36 @@
-@use "src/sass/common";
-@use "src/sass/abstracts";
+@use 'src/sass/common';
+@use 'src/sass/abstracts';
 
-.date-selector {
-    display: grid;
+.dateSelector {
+  display: grid;
+  column-gap: 15px;
+  row-gap: 8px;
+  align-items: center;
+
+  @include abstracts.mixins-respond(md) {
     grid-template-columns: auto 1fr;
-    gap: 15px;
-    align-items: center;
-    width: 100%;
+  }
+
+  :global {
+    .ant-space-compact {
+      width: 100%;
+    }
+
+    .ant-picker {
+      width: 100%;
+    }
+  }
 }
 
-.icon-block {
-    border: 1px solid abstracts.$variables-color-gray;
-    background-color: abstracts.$variables-color-gray;
-    display: grid;
-    place-items: center;
-    padding: 10px;
+.iconBlock {
+  border: 1px solid abstracts.$variables-color-gray;
+  background-color: abstracts.$variables-color-gray;
+  display: grid;
+  place-items: center;
+  padding: 10px;
 }
 
 .caption {
-    font-weight: 700;
-    white-space: nowrap;
+  font-weight: 700;
+  white-space: nowrap;
 }

@@ -1,9 +1,12 @@
 import React from 'react'
-import { Locale } from 'types/Locale'
 import { Select } from 'antd'
 import { useTranslation } from 'react-i18next'
+
+import { Locale } from 'types/Locale'
 import { ls } from 'utils/secureLS'
 import { SELECTED_LOCALE_KEY } from 'utils/constants'
+
+import styles from './styles.module.scss'
 
 const localeOptions = Object.values(Locale).map(locale => ({
   label: locale.toUpperCase(),
@@ -17,6 +20,7 @@ export default function LocaleSelect() {
     <Select
       defaultValue={i18n.resolvedLanguage}
       options={localeOptions}
+      className={styles.localeSelect}
       onChange={locale => {
         i18n.changeLanguage(locale)
         ls.set(SELECTED_LOCALE_KEY, locale)

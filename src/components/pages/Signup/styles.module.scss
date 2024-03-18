@@ -1,0 +1,15 @@
+.signupPage {
+  max-width: 500px;
+  width: 100%;
+
+  :global {
+    .ant-card-body {
+      height: 100%;
+    }
+
+    .create-new-account-message {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}
