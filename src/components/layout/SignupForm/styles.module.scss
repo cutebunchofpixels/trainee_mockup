@@ -1,3 +1,5 @@
+@use 'src/sass/abstracts';
+
 .signupForm {
   :global {
     .ant-form-item {
@@ -6,6 +8,11 @@
 
     .submit-button-wrapper {
       margin-top: 24px;
+    }
+
+    .ant-divider-inner-text {
+      text-transform: uppercase;
+      color: abstracts.$variables-color-gray-dark;
     }
 
     .ant-btn {
