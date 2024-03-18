@@ -21,22 +21,3 @@
     }
   }
 }
-
-.statCards {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-}
-
-.chartCard {
-  :global {
-    .ant-card-body {
-      padding: 0;
-    }
-  }
-}
-
-.revenueChartContainer {
-  height: 250px;
-  width: 100%;
-}

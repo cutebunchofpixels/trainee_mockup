@@ -1,0 +1,12 @@
+.chartCard {
+  :global {
+    .ant-card-body {
+      padding: 0;
+    }
+  }
+}
+
+.revenueChartContainer {
+  height: 250px;
+  width: 100%;
+}

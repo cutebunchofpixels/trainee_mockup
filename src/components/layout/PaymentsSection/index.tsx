@@ -1,101 +1,22 @@
 import React from 'react'
-import {
-  Typography,
-  Col,
-  Row,
-  Button,
-  Card,
-  Dropdown,
-  Space,
-  MenuProps,
-} from 'antd'
-import {
-  RightOutlined,
-  LeftOutlined,
-  ShoppingOutlined,
-  DownOutlined,
-} from '@ant-design/icons'
+import { Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import DateSelector from 'components/ui/DateSelector'
-import PaymentStatCard from 'components/ui/PaymentStatCard'
-import RevenueChart from 'components/layout/RevenueChart'
-import { useAppSelector } from 'redux/app/hooks'
-import { Theme } from 'types/Theme'
+import DateSelectorsBlock from '../DateSelectorsBlock'
+import PaymentStatCardList from '../PaymentStatCardList'
+import RevenueChartBlock from '../RevenueChartBlock'
 
 import styles from './styles.module.scss'
 
 export default function PaymentsSection() {
-  const cardsInfo = useAppSelector(state => state.paymentStats.value)
-  const { value: currentTheme } = useAppSelector(state => state.theme)
-  const { t, i18n } = useTranslation()
-
-  const dropdownItems: MenuProps['items'] = [
-    {
-      label: t('revenueChart.currentWeekOption'),
-      key: '1',
-    },
-    {
-      label: t('revenueChart.previousWeekOption'),
-      key: '2',
-    },
-  ]
+  const { t } = useTranslation()
 
   return (
     <section className={styles.paymentsSection}>
       <Typography.Title>{t('sectionPayments.heading')}</Typography.Title>
-      <Card>
-        <form>
-          <Row gutter={[32, 16]}>
-            <Col xs={24} md={9}>
-              <DateSelector caption={t('reportDateSelectForm.startDate')} />
-            </Col>
-            <Col xs={24} md={9}>
-              <DateSelector caption={t('reportDateSelectForm.endDate')} />
-            </Col>
-            <Col xs={24} md={{ span: 5, offset: 1 }}>
-              <Button type="primary" htmlType="submit">
-                {t('reportDateSelectForm.viewReport')}
-                {i18n.dir() === 'ltr' ? <RightOutlined /> : <LeftOutlined />}
-              </Button>
-            </Col>
-          </Row>
-        </form>
-      </Card>
-      <div className={styles.statCards}>
-        {cardsInfo.map(item => (
-          <PaymentStatCard
-            icon={<ShoppingOutlined />}
-            cardInfo={item}
-            key={item.captionKey}
-          />
-        ))}
-      </div>
-      <Card
-        title={t('revenueChart.caption')}
-        className={styles.chartCard}
-        extra={
-          <Dropdown menu={{ items: dropdownItems }}>
-            <Button type="primary">
-              <Space>
-                {t('revenueChart.selectInterval')}
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-        }
-      >
-        <div
-          className={styles.revenueChartContainer}
-          dir="ltr"
-          style={{
-            backgroundColor:
-              currentTheme === Theme.Dark ? '#A9A9A9' : undefined,
-          }}
-        >
-          <RevenueChart />
-        </div>
-      </Card>
+      <DateSelectorsBlock />
+      <PaymentStatCardList />
+      <RevenueChartBlock />
     </section>
   )
 }
