@@ -2,11 +2,12 @@ import React from 'react'
 import { Card, Typography, message } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 
 import SignupForm, { SignupFormValues } from 'components/layout/SignupForm'
 import { auth } from 'fb'
+import { googleAuthProvider } from 'fb/googleAuth'
 
 import styles from './styles.module.scss'
 
@@ -27,12 +28,25 @@ export default function Signup() {
       })
   }
 
+  function handleGoogleSignin() {
+    signInWithPopup(auth, googleAuthProvider)
+      .then(() => navigate('/data'))
+      .catch(error => {
+        if (error instanceof FirebaseError) {
+          messageApi.error(error.message)
+        } else {
+          messageApi.error('Unexpected error occured')
+        }
+      })
+  }
+
   return (
     <Card className={styles.signupPage}>
       {contextHolder}
       <SignupForm
         handleSubmit={handleFormSubmit}
         submitButtonCaptionKey="auth.register"
+        handleGoogleSignin={handleGoogleSignin}
       />
       <Typography.Paragraph className="create-new-account-message">
         {t('signup.accountExistsMessage')}{' '}

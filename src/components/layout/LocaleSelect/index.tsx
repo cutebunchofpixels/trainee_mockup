@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Locale } from 'types/Locale'
 import { ls } from 'utils/secureLS'
 import { SELECTED_LOCALE_KEY } from 'utils/constants'
+import { auth } from 'fb'
 
 import styles from './styles.module.scss'
 
@@ -25,6 +26,7 @@ export default function LocaleSelect() {
         i18n.changeLanguage(locale)
         ls.set(SELECTED_LOCALE_KEY, locale)
         document.documentElement.setAttribute('lang', locale)
+        auth.languageCode = locale
       }}
     />
   )

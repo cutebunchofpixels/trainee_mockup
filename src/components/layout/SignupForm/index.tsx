@@ -15,11 +15,13 @@ export interface SignupFormValues {
 interface SignupFormProps {
   handleSubmit: FormProps<SignupFormValues>['onFinish']
   submitButtonCaptionKey: TranslationKey
+  handleGoogleSignin: () => void
 }
 
 export default function SignupForm({
   handleSubmit,
   submitButtonCaptionKey,
+  handleGoogleSignin,
 }: SignupFormProps) {
   const { t } = useTranslation()
 
@@ -50,7 +52,11 @@ export default function SignupForm({
         <Button htmlType="submit">{t(submitButtonCaptionKey)}</Button>
       </Form.Item>
       <Divider>{t('auth.dividerCaption')}</Divider>
-      <Button htmlType="button" icon={<GoogleOutlined />}>
+      <Button
+        htmlType="button"
+        icon={<GoogleOutlined />}
+        onClick={handleGoogleSignin}
+      >
         Google
       </Button>
     </Form>

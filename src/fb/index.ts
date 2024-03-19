@@ -15,6 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
+auth.languageCode = document.documentElement.lang
 
 onAuthStateChanged(auth, user => {
   store.dispatch(setUser(user))
