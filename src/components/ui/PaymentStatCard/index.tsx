@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { Card, Statistic } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import resources from 'types/resources'
+import { TranslationKey } from 'types/TranslationKey'
 
 import styles from './styles.module.scss'
 
@@ -10,7 +10,7 @@ type PaymentStatsCardType = 'currency' | 'percentage'
 
 export interface PaymentStatsCardInfo {
   type: PaymentStatsCardType
-  captionKey: keyof (typeof resources)['translation']
+  captionKey: TranslationKey
   value: number
 }
 
