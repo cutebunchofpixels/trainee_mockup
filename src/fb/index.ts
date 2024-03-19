@@ -1,5 +1,8 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
+import { setUser } from 'redux/actions/auth'
+import { store } from 'redux/app/store'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,3 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
+
+onAuthStateChanged(auth, user => {
+  store.dispatch(setUser(user))
+})
