@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppSelector } from 'redux/app/hooks'
-import { redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 export default function ProtectedRoute({
   children,
@@ -10,8 +10,7 @@ export default function ProtectedRoute({
   const user = useAppSelector(state => state.auth.user)
 
   if (!user) {
-    redirect('/signin')
-    return null
+    return <Navigate to="/signin" replace />
   }
 
   return children

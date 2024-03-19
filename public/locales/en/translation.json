@@ -26,5 +26,6 @@
     "signin.noAccoutMessage": "Don't have an accout yet?",
     "signin.createNewAccoutMessage": "Create a new one!",
     "signup.accountExistsMessage": "Already have an account?",
-    "signup.loginWithExisginAccountMessage": "Login instead!"
+    "signup.loginWithExisginAccountMessage": "Login instead!",
+    "auth.signout": "Sign out"
 }

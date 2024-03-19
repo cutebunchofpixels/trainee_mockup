@@ -5,5 +5,9 @@
   align-items: center;
   padding-block: 15px;
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
+
+  & > :first-child {
+    margin-right: auto;
+  }
 }

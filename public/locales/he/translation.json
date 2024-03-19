@@ -26,5 +26,6 @@
     "signin.noAccoutMessage": "אין לך עדיין חשבון?",
     "signin.createNewAccoutMessage": "צור אחד חדש!",
     "signup.accountExistsMessage": "כבר יש לך חשבון?",
-    "signup.loginWithExisginAccountMessage": "היכנס במקום!"
+    "signup.loginWithExisginAccountMessage": "היכנס במקום!",
+    "auth.signout": "התנתק"
 }
