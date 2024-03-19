@@ -6,6 +6,7 @@ import App from 'App'
 import MainLayout from 'components/layout/MainLayout'
 import Signin from 'components/pages/Signin'
 import Signup from 'components/pages/Signup'
+import ProtectedRoute from 'components/hoc/ProtectedRoute'
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ export const router = createBrowserRouter([
           },
           {
             path: 'data',
-            element: <Home />,
+            element: (
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            ),
           },
           {
             path: 'signin',
