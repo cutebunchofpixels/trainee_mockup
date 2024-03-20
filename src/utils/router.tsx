@@ -18,10 +18,10 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to="data" replace />,
+            element: <Navigate to="currency" replace />,
           },
           {
-            path: 'data',
+            path: 'currency',
             element: (
               <ProtectedRoute>
                 <Home />

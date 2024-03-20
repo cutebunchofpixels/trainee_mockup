@@ -18,7 +18,7 @@ export default function GoogleSigninButton() {
 
   function handleGoogleSignin() {
     signInWithPopup(auth, googleAuthProvider)
-      .then(() => navigate('/data'))
+      .then(() => navigate('/currency'))
       .catch(error =>
         handleFirebaseError(
           error,

@@ -17,7 +17,7 @@ export default function Signup() {
 
   function handleFormSubmit({ email, password }: SignupFormValues) {
     createUserWithEmailAndPassword(auth, email, password)
-      .then(_ => navigate('/data'))
+      .then(_ => navigate('/currency'))
       .catch(error =>
         handleFirebaseError(
           error,
