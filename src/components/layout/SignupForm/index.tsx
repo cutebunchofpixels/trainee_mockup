@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, Divider, Form, FormProps, Input } from 'antd'
-import { GoogleOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 
 import { TranslationKey } from 'types/TranslationKey'
+import GoogleSigninButton from '../GoogleSigninButton'
 
 import styles from './styles.module.scss'
 
@@ -15,13 +15,11 @@ export interface SignupFormValues {
 interface SignupFormProps {
   handleSubmit: FormProps<SignupFormValues>['onFinish']
   submitButtonCaptionKey: TranslationKey
-  handleGoogleSignin: () => void
 }
 
 export default function SignupForm({
   handleSubmit,
   submitButtonCaptionKey,
-  handleGoogleSignin,
 }: SignupFormProps) {
   const { t } = useTranslation()
 
@@ -52,13 +50,7 @@ export default function SignupForm({
         <Button htmlType="submit">{t(submitButtonCaptionKey)}</Button>
       </Form.Item>
       <Divider>{t('auth.dividerCaption')}</Divider>
-      <Button
-        htmlType="button"
-        icon={<GoogleOutlined />}
-        onClick={handleGoogleSignin}
-      >
-        Google
-      </Button>
+      <GoogleSigninButton />
     </Form>
   )
 }
