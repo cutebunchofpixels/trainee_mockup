@@ -10,7 +10,7 @@ export default function ProtectedRoute({
   children: JSX.Element | null
 }) {
   const user = useAppSelector(state => state.auth.user)
-  const isAuthReady = useAppSelector(state => state.auth.user)
+  const isAuthReady = useAppSelector(state => state.auth.isReady)
 
   if (!isAuthReady) {
     return <Loader size="large" />
