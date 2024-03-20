@@ -1,13 +1,13 @@
 import { User } from '@firebase/auth'
 
 export type SetUserAction = {
-  type: 'user/set'
+  type: 'auth/setUser'
   payload: User | null
 }
 
 export function setUser(user: User | null): SetUserAction {
   return {
-    type: 'user/set',
+    type: 'auth/setUser',
     payload: user,
   }
 }
