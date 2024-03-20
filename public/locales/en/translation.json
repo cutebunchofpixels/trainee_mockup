@@ -27,5 +27,9 @@
     "signin.createNewAccoutMessage": "Create a new one!",
     "signup.accountExistsMessage": "Already have an account?",
     "signup.loginWithExisginAccountMessage": "Login instead!",
-    "auth.signout": "Sign out"
+    "auth.signout": "Sign out",
+    "errors.unexpected": "An unexpected error occurred",
+    "errors.fb.auth/network-request-failed": "Network request failed! Check your internet connection and try again",
+    "errors.fb.auth/invalid-credential": "Provided credentials are incorrect",
+    "errors.fb.auth/email-already-in-use": "Provided email is already in use"
 }

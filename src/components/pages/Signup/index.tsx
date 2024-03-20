@@ -8,6 +8,7 @@ import { FirebaseError } from 'firebase/app'
 import SignupForm, { SignupFormValues } from 'components/layout/SignupForm'
 import { auth } from 'fb'
 import { googleAuthProvider } from 'fb/googleAuth'
+import { handleFirebaseError } from 'utils/handleFirebaseError'
 
 import styles from './styles.module.scss'
 
@@ -19,25 +20,25 @@ export default function Signup() {
   function handleFormSubmit({ email, password }: SignupFormValues) {
     createUserWithEmailAndPassword(auth, email, password)
       .then(_ => navigate('/data'))
-      .catch(error => {
-        if (error instanceof FirebaseError) {
-          messageApi.error(error.message)
-        } else {
-          messageApi.error('Unexpected error occured')
-        }
-      })
+      .catch(error =>
+        handleFirebaseError(
+          error,
+          message => messageApi.error(message),
+          key => t(key)
+        )
+      )
   }
 
   function handleGoogleSignin() {
     signInWithPopup(auth, googleAuthProvider)
       .then(() => navigate('/data'))
-      .catch(error => {
-        if (error instanceof FirebaseError) {
-          messageApi.error(error.message)
-        } else {
-          messageApi.error('Unexpected error occured')
-        }
-      })
+      .catch(error =>
+        handleFirebaseError(
+          error,
+          message => messageApi.error(message),
+          key => t(key)
+        )
+      )
   }
 
   return (
