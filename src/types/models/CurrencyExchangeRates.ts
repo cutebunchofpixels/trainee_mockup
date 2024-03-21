@@ -1,9 +1,8 @@
-import { Dayjs } from 'dayjs'
 import { Currency } from 'src/types/Currency'
 
 export interface CurrencyExchangeRates {
   currency: Currency
-  date: Dayjs
+  date: string
   exchangeRates: {
     [key in Currency]: number
   }
