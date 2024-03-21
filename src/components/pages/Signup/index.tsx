@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
-import SignupForm, { SignupFormValues } from 'components/layout/SignupForm'
-import { auth } from 'fb'
-import { handleFirebaseError } from 'utils/handleFirebaseError'
+import SignupForm, { SignupFormValues } from 'src/components/layout/SignupForm'
+import { auth } from 'src/fb'
+import { handleFirebaseError } from 'src/utils/handleFirebaseError'
 
 import styles from './styles.module.scss'
 

@@ -2,10 +2,10 @@ import React from 'react'
 import { Select } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { Locale } from 'types/Locale'
-import { ls } from 'utils/secureLS'
-import { SELECTED_LOCALE_KEY } from 'utils/constants'
-import { auth } from 'fb'
+import { Locale } from 'src/types/Locale'
+import { ls } from 'src/utils/secureLS'
+import { SELECTED_LOCALE_KEY } from 'src/utils/constants'
+import { auth } from 'src/fb'
 
 import styles from './styles.module.scss'
 

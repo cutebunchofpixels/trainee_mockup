@@ -1,4 +1,4 @@
-import { PaymentStatsCardInfo } from 'components/ui/PaymentStatCard'
+import { PaymentStatsCardInfo } from 'src/components/ui/PaymentStatCard'
 
 interface PaymentStatsState {
   value: PaymentStatsCardInfo[]

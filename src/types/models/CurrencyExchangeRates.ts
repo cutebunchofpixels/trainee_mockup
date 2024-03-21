@@ -1,5 +1,5 @@
 import { Dayjs } from 'dayjs'
-import { Currency } from 'types/Currency'
+import { Currency } from 'src/types/Currency'
 
 export interface CurrencyExchangeRates {
   currency: Currency

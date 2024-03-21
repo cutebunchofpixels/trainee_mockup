@@ -1,4 +1,4 @@
-import { Currency } from 'types/Currency'
+import { Currency } from 'src/types/Currency'
 
 export type CurrencyExchangeRateDto = { date: string } & {
   [key: string]: {

@@ -1,6 +1,6 @@
-import { ThemeActions } from 'redux/actions/theme'
-import { Theme } from 'types/Theme'
-import { inferePreferredTheme } from 'utils/inferPreferredTheme'
+import { ThemeActions } from 'src/redux/actions/theme'
+import { Theme } from 'src/types/Theme'
+import { inferePreferredTheme } from 'src/utils/inferPreferredTheme'
 
 interface ThemeState {
   value: Theme

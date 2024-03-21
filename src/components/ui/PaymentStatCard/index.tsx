@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { Card, Statistic } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { TranslationKey } from 'types/TranslationKey'
+import { TranslationKey } from 'src/types/TranslationKey'
 
 import styles from './styles.module.scss'
 

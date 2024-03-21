@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Divider, Form, FormProps, Input } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { TranslationKey } from 'types/TranslationKey'
+import { TranslationKey } from 'src/types/TranslationKey'
 import GoogleSigninButton from '../GoogleSigninButton'
 
 import styles from './styles.module.scss'

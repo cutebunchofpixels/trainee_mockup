@@ -1,6 +1,6 @@
 import { ls } from './secureLS'
 import { PREFERED_THEME_KEY } from './constants'
-import { Theme } from 'types/Theme'
+import { Theme } from 'src/types/Theme'
 
 export function inferePreferredTheme() {
   const persistedPreference = ls.get(PREFERED_THEME_KEY)

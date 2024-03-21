@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { Dayjs } from 'dayjs'
 
-import { CurrencyExchangeRateDto } from 'types/dto/CurrencyExchangeRateDto'
-import { CurrencyExchangeRates } from 'types/models/CurrencyExchangeRates'
-import { Currency } from 'types/Currency'
+import { CurrencyExchangeRateDto } from 'src/types/dto/CurrencyExchangeRateDto'
+import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
+import { Currency } from 'src/types/Currency'
 
 export class CurrencyService {
   private static axiosInstance = axios.create({

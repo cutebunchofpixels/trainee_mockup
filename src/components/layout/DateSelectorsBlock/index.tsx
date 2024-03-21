@@ -3,7 +3,7 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { Button, Card, Col, Row } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import DateSelector from 'components/ui/DateSelector'
+import DateSelector from 'src/components/ui/DateSelector'
 
 export default function DateSelectorsBlock() {
   const { t, i18n } = useTranslation()

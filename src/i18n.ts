@@ -2,7 +2,7 @@ import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import Backend from 'i18next-http-backend'
 
-import { inferSelectedLocale } from 'utils/inferSelectedLocale'
+import { inferSelectedLocale } from 'src/utils/inferSelectedLocale'
 
 const selectedLocale = inferSelectedLocale()
 document.documentElement.setAttribute('lang', selectedLocale)

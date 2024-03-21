@@ -1,8 +1,8 @@
 import React from 'react'
 import { ShoppingOutlined } from '@ant-design/icons'
 
-import PaymentStatCard from 'components/ui/PaymentStatCard'
-import { useAppSelector } from 'redux/app/hooks'
+import PaymentStatCard from 'src/components/ui/PaymentStatCard'
+import { useAppSelector } from 'src/redux/app/hooks'
 
 import styles from './styles.module.scss'
 

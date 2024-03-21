@@ -2,10 +2,10 @@ import React from 'react'
 import { Button, Card, Dropdown, MenuProps, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { DownOutlined } from '@ant-design/icons'
-import { useAppSelector } from 'redux/app/hooks'
 
-import { Theme } from 'types/Theme'
+import { Theme } from 'src/types/Theme'
 import RevenueChart from '../RevenueChart'
+import { useAppSelector } from 'src/redux/app/hooks'
 
 import styles from './styles.module.scss'
 

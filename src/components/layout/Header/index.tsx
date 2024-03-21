@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next'
 
 import ThemeSwitch from '../ThemeSwitch'
 import LocaleSelect from '../LocaleSelect'
-import { auth } from 'fb'
-import { useAppSelector } from 'redux/app/hooks'
+import { auth } from 'src/fb'
+import { useAppSelector } from 'src/redux/app/hooks'
 
 import styles from './styles.module.scss'
 

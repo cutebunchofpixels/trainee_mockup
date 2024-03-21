@@ -5,9 +5,9 @@ import { signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import { auth } from 'fb'
-import { googleAuthProvider } from 'fb/googleAuth'
-import { handleFirebaseError } from 'utils/handleFirebaseError'
+import { auth } from 'src/fb'
+import { googleAuthProvider } from 'src/fb/googleAuth'
+import { handleFirebaseError } from 'src/utils/handleFirebaseError'
 
 import styles from './styles.module.scss'
 
