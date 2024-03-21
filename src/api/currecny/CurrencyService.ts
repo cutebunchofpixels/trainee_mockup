@@ -5,12 +5,12 @@ import { CurrencyExchangeRateDto } from 'src/types/dto/CurrencyExchangeRateDto'
 import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
 import { Currency } from 'src/types/Currency'
 
-export class CurrencyService {
+export class CurrencyExchangeService {
   private static axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_CURRENCY_API_URL,
   })
 
-  static async getExchangeRate(
+  static async getExchangeRates(
     currency: Currency,
     date: Dayjs
   ): Promise<CurrencyExchangeRates> {
@@ -27,7 +27,7 @@ export class CurrencyService {
     }
   }
 
-  static async getExchangeRateForPeriod(
+  static async getExchangeRatesForPeriod(
     currency: Currency,
     startDate: Dayjs,
     endDate: Dayjs
@@ -37,7 +37,7 @@ export class CurrencyService {
     const promises: Promise<CurrencyExchangeRates>[] = []
 
     for (let i = 0; i <= difference; i++) {
-      promises.push(this.getExchangeRate(currency, startDate.add(i, 'day')))
+      promises.push(this.getExchangeRates(currency, startDate.add(i, 'day')))
     }
 
     return Promise.all(promises)

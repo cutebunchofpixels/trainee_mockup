@@ -1,7 +1,7 @@
 import { Dayjs } from 'dayjs'
 
 import { Currency } from 'src/types/Currency'
-import { CurrencyService } from 'src/api/currecy/CurrencyService'
+import { CurrencyExchangeService } from 'src/api/currecny/CurrencyService'
 import { AppDispatch } from 'src/redux/app/store'
 import {
   currencyExchangeFetchError,
@@ -17,11 +17,12 @@ export function fetchExchangeRates(
   return async function (dispatch: AppDispatch) {
     dispatch(currencyExchangeFetchStart())
     try {
-      const exchangeRates = await CurrencyService.getExchangeRateForPeriod(
-        currency,
-        startDate,
-        endDate
-      )
+      const exchangeRates =
+        await CurrencyExchangeService.getExchangeRatesForPeriod(
+          currency,
+          startDate,
+          endDate
+        )
       dispatch(currencyExchangeFetchSuccess(exchangeRates))
     } catch (error) {
       dispatch(currencyExchangeFetchError((error as Error).message))
