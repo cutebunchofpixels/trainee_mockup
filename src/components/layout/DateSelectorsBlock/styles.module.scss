@@ -1,0 +1,10 @@
+@use 'src/sass/abstracts';
+
+.dateSelectorsForm {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include abstracts.mixins-respond(md) {
+    grid-template-columns: 1fr 1fr auto;
+  }
+}
