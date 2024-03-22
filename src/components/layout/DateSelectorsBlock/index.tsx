@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive'
 import DateSelector from 'src/components/ui/DateSelector'
 
 import styles from './styles.module.scss'
+import { minDate, dateDifference } from 'src/utils/validators'
 
 interface FormValues {
   startDate: Dayjs
@@ -37,7 +38,12 @@ export default function DateSelectorsBlock() {
         <Form.Item<FormValues>
           name="startDate"
           label={t('reportDateSelectForm.startDate')}
-          rules={[{ required: true }]}
+          rules={[
+            {
+              required: true,
+              message: t('errors.dateSelectors.startDateRequired'),
+            },
+          ]}
         >
           <DateSelector />
         </Form.Item>
@@ -45,44 +51,25 @@ export default function DateSelectorsBlock() {
           name="endDate"
           label={t('reportDateSelectForm.endDate')}
           rules={[
-            { required: true },
             {
-              validator: (_, value: Dayjs) => {
-                const startDate = form.getFieldValue('startDate')
-
-                if (!startDate) {
-                  return Promise.resolve()
-                }
-
-                if (value && !value.isBefore(startDate)) {
-                  return Promise.resolve()
-                }
-
-                return Promise.reject()
-              },
-              message: 'End date must not be earlier than start date',
+              required: true,
+              message: t('errors.dateSelectors.endDateRequired'),
             },
             {
-              validator: (_, value: Dayjs) => {
-                const startDate = form.getFieldValue('startDate')
-
-                if (value && value.diff(startDate, 'day') > 5) {
-                  return Promise.reject()
-                }
-
-                return Promise.resolve()
-              },
-              message: 'Selected period cannot be longer than 5 days',
+              validator: (_, endDate: Dayjs) =>
+                minDate(form.getFieldValue('startDate'), endDate),
+              message: t('errors.dateSelectors.endDateBeforeStartDate'),
             },
             {
-              validator: (_, value: Dayjs) => {
-                if (value && value.isAfter(dayjs())) {
-                  return Promise.reject()
-                }
-
-                return Promise.resolve()
-              },
-              message: 'Selected period cannot be longer than 5 days',
+              validator: (_, endDate: Dayjs) =>
+                dateDifference(endDate, form.getFieldValue('startDate'), {
+                  maxDifference: { value: 5, unit: 'day' },
+                }),
+              message: t('errors.dateSelectors.selectedPeriodIsTooLong'),
+            },
+            {
+              validator: (_, endDate: Dayjs) => minDate(endDate, dayjs()),
+              message: t('errors.dateSelectors.futureEndDate'),
             },
           ]}
         >

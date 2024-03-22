@@ -31,5 +31,11 @@
     "errors.unexpected": "An unexpected error occurred",
     "errors.fb.auth/network-request-failed": "Network request failed! Check your internet connection and try again",
     "errors.fb.auth/invalid-credential": "Provided credentials are incorrect",
-    "errors.fb.auth/email-already-in-use": "Provided email is already in use"
+    "errors.fb.auth/email-already-in-use": "Provided email is already in use",
+    "errors.dateSelectors.startDateRequired": "Start date is a required field",
+    "errors.dateSelectors.endDateRequired": "End date is a required field",
+    "errors.dateSelectors.futureStartDate": "Start date must be a past date",
+    "errors.dateSelectors.futureEndDate": "End date must be a past date",
+    "errors.dateSelectors.endDateBeforeStartDate": "End date must not be earlier than start date",
+    "errors.dateSelectors.selectedPeriodIsTooLong": "Selected period cannot be longer than 5 days"
 }
