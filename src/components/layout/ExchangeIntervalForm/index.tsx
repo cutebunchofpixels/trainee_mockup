@@ -19,9 +19,10 @@ interface FormValues {
   endDate: Dayjs
 }
 
-const initialValues: FormValues = {
-  startDate: dayjs().subtract(5, 'day'),
-  endDate: dayjs(),
+const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('week')
+export const initialCurrencyExchangePeriod: FormValues = {
+  startDate: startOfPreviousWeek,
+  endDate: startOfPreviousWeek.add(5, 'day'),
 }
 
 function shouldRefetch(
@@ -57,19 +58,9 @@ export default function ExchangeIntervalForm() {
     state => state.currencyExchange.data
   )
 
-  useEffect(() => {
-    dispatch(
-      fetchExchangeRates(
-        Currency.EUR,
-        initialValues.startDate,
-        initialValues.endDate
-      )
-    )
-  }, [])
-
   return (
     <Form<FormValues>
-      initialValues={initialValues}
+      initialValues={initialCurrencyExchangePeriod}
       layout={isScreenMd ? 'vertical' : 'inline'}
       className={styles.dateSelectorsForm}
       onFinish={({ startDate, endDate }) => {
