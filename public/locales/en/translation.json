@@ -31,5 +31,7 @@
     "errors.unexpected": "An unexpected error occurred",
     "errors.fb.auth/network-request-failed": "Network request failed! Check your internet connection and try again",
     "errors.fb.auth/invalid-credential": "Provided credentials are incorrect",
-    "errors.fb.auth/email-already-in-use": "Provided email is already in use"
+    "errors.fb.auth/email-already-in-use": "Provided email is already in use",
+    "errors.pageNotFound": "The page you are looking for does not exist",
+    "notFoundPage.goBackButton": "Bring me home"
 }
