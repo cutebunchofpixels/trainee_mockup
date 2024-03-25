@@ -1,15 +1,19 @@
 import React from 'react'
-import { Layout } from 'antd'
-import { useTranslation } from 'react-i18next'
+import { Layout, Typography } from 'antd'
+import { Link } from 'react-router-dom'
 
 import styles from './styles.module.scss'
 
 export default function Footer() {
-  const { t } = useTranslation()
-
   return (
     <Layout.Footer className={styles.footer}>
-      {t('footer.caption')}
+      <Typography.Text className={styles.appTitle}>
+        Trainee mockup
+      </Typography.Text>
+      <Link to="/signin">Signin</Link>
+      <Link to="/signup">Signup</Link>
+      <Link to="/currency">Currency</Link>
+      <Link to="/users">Users</Link>
     </Layout.Footer>
   )
 }
