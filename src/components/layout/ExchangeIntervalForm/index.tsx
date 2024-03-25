@@ -7,9 +7,10 @@ import { useMediaQuery } from 'react-responsive'
 
 import DateSelector from 'src/components/ui/DateSelector'
 import { minDate, dateDifference } from 'src/utils/validators'
-import { useAppDispatch } from 'src/redux/app/hooks'
+import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
 import { fetchExchangeRates } from 'src/redux/thunks/currencyExchange'
 import { Currency } from 'src/types/Currency'
+import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
 
 import styles from './styles.module.scss'
 
@@ -23,12 +24,38 @@ const initialValues: FormValues = {
   endDate: dayjs(),
 }
 
+function shouldRefetch(
+  loadedExchangeRates: CurrencyExchangeRates[],
+  startDate: Dayjs,
+  endDate: Dayjs
+) {
+  if (loadedExchangeRates.length < 1) {
+    return true
+  }
+
+  if (endDate.isSame(dayjs(), 'day')) {
+    return true
+  }
+
+  if (
+    !dayjs(loadedExchangeRates[0].date).isSame(startDate, 'day') ||
+    !dayjs(loadedExchangeRates.at(-1)!.date).isSame(endDate, 'day')
+  ) {
+    return true
+  }
+
+  return false
+}
+
 export default function ExchangeIntervalForm() {
   const [form] = Form.useForm<FormValues>()
   const { token } = theme.useToken()
   const isScreenMd = useMediaQuery({ maxWidth: token.screenMD })
   const dispatch = useAppDispatch()
   const { t, i18n } = useTranslation()
+  const currencyExchangeRates = useAppSelector(
+    state => state.currencyExchange.data
+  )
 
   useEffect(() => {
     dispatch(
@@ -46,7 +73,9 @@ export default function ExchangeIntervalForm() {
       layout={isScreenMd ? 'vertical' : 'inline'}
       className={styles.dateSelectorsForm}
       onFinish={({ startDate, endDate }) => {
-        dispatch(fetchExchangeRates(Currency.EUR, startDate, endDate))
+        if (shouldRefetch(currencyExchangeRates, startDate, endDate)) {
+          dispatch(fetchExchangeRates(Currency.EUR, startDate, endDate))
+        }
       }}
       form={form}
     >

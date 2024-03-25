@@ -33,7 +33,6 @@ export class CurrencyExchangeService {
     endDate: Dayjs
   ) {
     const difference = endDate.diff(startDate, 'days')
-    console.log(difference)
     const promises: Promise<CurrencyExchangeRates>[] = []
 
     for (let i = 0; i <= difference; i++) {
