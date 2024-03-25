@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
-import Home from 'src/components/pages/Home'
 import App from 'src/App'
 import MainLayout from 'src/components/layout/MainLayout'
 import Signin from 'src/components/pages/Signin'
 import Signup from 'src/components/pages/Signup'
 import ProtectedRoute from 'src/components/hoc/ProtectedRoute'
+
+const CurrencyPage = lazy(() => import('src/components/pages/Currency'))
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
             path: 'currency',
             element: (
               <ProtectedRoute>
-                <Home />
+                <CurrencyPage />
               </ProtectedRoute>
             ),
           },

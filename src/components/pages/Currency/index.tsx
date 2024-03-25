@@ -2,6 +2,6 @@ import React from 'react'
 
 import PaymentsSection from 'src/components/layout/PaymentsSection'
 
-export default function Home() {
+export default function Currency() {
   return <PaymentsSection />
 }
