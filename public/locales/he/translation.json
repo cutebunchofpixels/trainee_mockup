@@ -6,12 +6,12 @@
     "revenueStats.repeatPurchaseRate": "שיעור רכישה חוזרת",
     "revenueStats.averagePayment": "תשלום ממוצע",
     "revenueStats.totalRevenue": "סך הרווחים",
-    "revenueChart.caption": "הַפסָקָה",
+    "revenueChart.caption": "שערי מטבע",
     "revenueChart.selectInterval": "הַכנָסָה",
     "revenueChart.currentWeekOption": "השבוע הנוכחי",
     "revenueChart.previousWeekOption": "שבוע שעבר",
-    "revenueChart.revenueAxis": "הַכנָסָה",
-    "revenueChart.salesAxis": "מכירות",
+    "revenueChart.eurToUsdAxis": "אירו לדולר ארה\"ב",
+    "revenueChart.usdToEurAxis": "דולר עד יורו",
     "footer.caption": "כותרת תחתונה",
     "auth.username": "שם משתמש",
     "auth.password": "סיסמה",
@@ -37,5 +37,6 @@
     "errors.dateSelectors.futureStartDate": "תאריך ההתחלה חייב להיות תאריך עבר",
     "errors.dateSelectors.futureEndDate": "תאריך הסיום חייב להיות תאריך עבר",
     "errors.dateSelectors.endDateBeforeStartDate": "תאריך הסיום לא יכול להיות מוקדם מתאריך ההתחלה",
-    "errors.dateSelectors.selectedPeriodIsTooLong": "התקופה שנבחרה לא יכולה להיות יותר מ-5 ימים"
+    "errors.dateSelectors.selectedPeriodIsTooLong": "התקופה שנבחרה לא יכולה להיות יותר מ-5 ימים",
+    "errors.dateSelectors.selectedPeriodIsTooShort": "התקופה שנבחרה לא יכולה להיות קצרה מ-3 ימים"
 }

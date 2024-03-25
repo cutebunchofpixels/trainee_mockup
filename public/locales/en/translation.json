@@ -6,12 +6,12 @@
     "revenueStats.repeatPurchaseRate": "Repeat purchase rate",
     "revenueStats.averagePayment": "Average payment",
     "revenueStats.totalRevenue": "Total revenue",
-    "revenueChart.caption": "Revenue",
+    "revenueChart.caption": "Currency exchange rates",
     "revenueChart.selectInterval": "Interval",
     "revenueChart.currentWeekOption": "Current week",
     "revenueChart.previousWeekOption": "Previous week",
-    "revenueChart.revenueAxis": "Revenue",
-    "revenueChart.salesAxis": "Sales",
+    "revenueChart.eurToUsdAxis": "EUR to USD",
+    "revenueChart.usdToEurAxis": "USD to EUR",
     "footer.caption": "Footer",
     "auth.username": "Username",
     "auth.password": "Password",
@@ -37,5 +37,6 @@
     "errors.dateSelectors.futureStartDate": "Start date must be a past date",
     "errors.dateSelectors.futureEndDate": "End date must be a past date",
     "errors.dateSelectors.endDateBeforeStartDate": "End date must not be earlier than start date",
-    "errors.dateSelectors.selectedPeriodIsTooLong": "Selected period cannot be longer than 5 days"
+    "errors.dateSelectors.selectedPeriodIsTooLong": "Selected period cannot be longer than 5 days",
+    "errors.dateSelectors.selectedPeriodIsTooShort": "Selected period cannot be shorter than 3 days"
 }

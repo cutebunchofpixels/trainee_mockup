@@ -1,30 +1,35 @@
 import React, { useMemo } from 'react'
 import { DualAxes } from '@ant-design/plots'
 import { useTranslation } from 'react-i18next'
+import dayjs from 'dayjs'
+import { Empty, Skeleton } from 'antd'
+import { LineChartOutlined } from '@ant-design/icons'
 
-interface ChartItem {
-  year: number
-  sales: number
-  revenue: number
-}
-const chartData: ChartItem[] = []
+import { useAppSelector } from 'src/redux/app/hooks'
 
-for (let i = 0; i < 20; i++) {
-  const initialYear = 2010
-
-  chartData.push({
-    year: initialYear + i,
-    revenue: 1000 + Math.random() * 1000,
-    sales: 50 + Math.random() * 20,
-  })
-}
+import styles from './styles.module.scss'
 
 export default function RevenueChart() {
   const { t, i18n } = useTranslation()
+  const currencyExchangeRates = useAppSelector(
+    state => state.currencyExchange.data
+  )
+
+  const isChartDataLoading = useAppSelector(
+    state => state.currencyExchange.loading
+  )
+
+  const chartData = useMemo(() => {
+    return currencyExchangeRates.map(item => ({
+      date: item.date,
+      eurToUsd: item.exchangeRates.usd,
+      usdToEur: 1 / item.exchangeRates.usd,
+    }))
+  }, [currencyExchangeRates])
 
   const chartConfig = useMemo(() => {
     const config = {
-      xField: 'year',
+      xField: 'date',
       data: chartData,
       tooltip: false,
       legend: false,
@@ -32,29 +37,32 @@ export default function RevenueChart() {
       children: [
         {
           type: 'line',
-          yField: 'sales',
+          yField: 'usdToEur',
           style: {
             lineWidth: 2,
             stroke: '#F6CECB',
           },
           axis: {
+            x: {
+              labelFormatter: (label: string) =>
+                dayjs(label).format('YYYY-MM-DD'),
+            },
             y: {
               position: 'right',
-              title: t('revenueChart.salesAxis'),
+              title: t('revenueChart.usdToEurAxis'),
             },
           },
         },
         {
           type: 'line',
-          yField: 'revenue',
+          yField: 'eurToUsd',
           style: {
             lineWidth: 2,
             stroke: '#6CD0F8',
           },
           axis: {
             y: {
-              title: t('revenueChart.revenueAxis'),
-              labelFormatter: (label: string) => `$${label}`,
+              title: t('revenueChart.eurToUsdAxis'),
             },
           },
         },
@@ -62,7 +70,19 @@ export default function RevenueChart() {
     }
 
     return config
-  }, [i18n.resolvedLanguage])
+  }, [i18n.resolvedLanguage, currencyExchangeRates])
+
+  if (isChartDataLoading) {
+    return (
+      <Skeleton.Node active className={styles.chartLoadingSkeleton}>
+        <LineChartOutlined />
+      </Skeleton.Node>
+    )
+  }
+
+  if (currencyExchangeRates.length === 0) {
+    return <Empty className={styles.chartEmptyMessage} />
+  }
 
   return <DualAxes {...chartConfig} />
 }

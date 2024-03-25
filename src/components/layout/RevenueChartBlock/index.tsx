@@ -12,6 +12,9 @@ import styles from './styles.module.scss'
 export default function RevenueChartBlock() {
   const { t } = useTranslation()
   const { value: currentTheme } = useAppSelector(state => state.theme)
+  const isChartDataLoading = useAppSelector(
+    state => state.currencyExchange.loading
+  )
 
   const dropdownItems: MenuProps['items'] = [
     {
@@ -23,6 +26,7 @@ export default function RevenueChartBlock() {
       key: '2',
     },
   ]
+
   return (
     <Card
       title={t('revenueChart.caption')}
@@ -43,6 +47,7 @@ export default function RevenueChartBlock() {
         dir="ltr"
         style={{
           backgroundColor: currentTheme === Theme.Dark ? '#A9A9A9' : undefined,
+          padding: isChartDataLoading ? '10px' : '0',
         }}
       >
         <RevenueChart />
