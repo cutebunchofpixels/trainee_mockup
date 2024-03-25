@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { DualAxes } from '@ant-design/plots'
 import { useTranslation } from 'react-i18next'
-import dayjs from 'dayjs'
+import { dayjs } from 'src/utils/dayjs'
 import { Empty, Skeleton } from 'antd'
 import { LineChartOutlined } from '@ant-design/icons'
 

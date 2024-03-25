@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { Button, Form, theme } from 'antd'
 import { useTranslation } from 'react-i18next'
-import dayjs, { Dayjs } from 'dayjs'
+import { Dayjs } from 'dayjs'
+import { dayjs } from 'src/utils/dayjs'
 import { useMediaQuery } from 'react-responsive'
 
 import DateSelector from 'src/components/ui/DateSelector'
@@ -19,10 +20,10 @@ interface FormValues {
   endDate: Dayjs
 }
 
-const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('week')
+const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('day')
 export const initialCurrencyExchangePeriod: FormValues = {
   startDate: startOfPreviousWeek,
-  endDate: startOfPreviousWeek.add(5, 'day'),
+  endDate: startOfPreviousWeek.add(4, 'day'),
 }
 
 function shouldRefetch(
