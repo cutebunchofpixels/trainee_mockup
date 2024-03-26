@@ -26,5 +26,12 @@
     "signin.noAccoutMessage": "אין לך עדיין חשבון?",
     "signin.createNewAccoutMessage": "צור אחד חדש!",
     "signup.accountExistsMessage": "כבר יש לך חשבון?",
-    "signup.loginWithExisginAccountMessage": "היכנס במקום!"
+    "signup.loginWithExisginAccountMessage": "היכנס במקום!",
+    "auth.signout": "התנתק",
+    "errors.unexpected": "שגיאה לא צפויה התרחשה",
+    "errors.fb.auth/network-request-failed": "בקשת הרשת נכשלה! בדוק את חיבור האינטרנט שלך ונסה שוב",
+    "errors.fb.auth/invalid-credential": "האישורים שסופקו אינם נכונים",
+    "errors.fb.auth/email-already-in-use": "בתנאי שהאימייל כבר בשימוש",
+    "errors.pageNotFound": "העמוד שאתה מחפש לא קיים",
+    "notFoundPage.goBackButton": "תביא אותי הביתה"
 }

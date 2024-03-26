@@ -1,4 +1,14 @@
 .footer {
   flex: 0 0 64px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  & > :first-child {
+    margin-inline-end: auto;
+  }
+}
+
+.appTitle {
+  font-weight: 700;
 }
