@@ -19,7 +19,7 @@ interface FormValues {
   endDate: Dayjs
 }
 
-const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('day')
+const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('week')
 export const initialCurrencyExchangePeriod: FormValues = {
   startDate: startOfPreviousWeek,
   endDate: startOfPreviousWeek.add(4, 'day'),
