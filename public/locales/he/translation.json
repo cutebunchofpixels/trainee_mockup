@@ -38,5 +38,7 @@
     "errors.dateSelectors.futureEndDate": "תאריך הסיום חייב להיות תאריך עבר",
     "errors.dateSelectors.endDateBeforeStartDate": "תאריך הסיום לא יכול להיות מוקדם מתאריך ההתחלה",
     "errors.dateSelectors.selectedPeriodIsTooLong": "התקופה שנבחרה לא יכולה להיות יותר מ-5 ימים",
-    "errors.dateSelectors.selectedPeriodIsTooShort": "התקופה שנבחרה לא יכולה להיות קצרה מ-3 ימים"
+    "errors.dateSelectors.selectedPeriodIsTooShort": "התקופה שנבחרה לא יכולה להיות קצרה מ-3 ימים",
+    "errors.pageNotFound": "העמוד שאתה מחפש לא קיים",
+    "notFoundPage.goBackButton": "תביא אותי הביתה"
 }

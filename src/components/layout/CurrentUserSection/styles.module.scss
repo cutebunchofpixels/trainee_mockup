@@ -1,0 +1,12 @@
+.currentUserSection {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+
+  :global {
+    .ant-typography {
+      color: #fff;
+    }
+  }
+}

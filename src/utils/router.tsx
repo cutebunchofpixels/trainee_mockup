@@ -6,8 +6,9 @@ import MainLayout from 'src/components/layout/MainLayout'
 import Signin from 'src/components/pages/Signin'
 import Signup from 'src/components/pages/Signup'
 import ProtectedRoute from 'src/components/hoc/ProtectedRoute'
+import NotFound from 'src/components/pages/NotFound'
 
-const CurrencyPage = lazy(() => import('src/components/pages/Currency'))
+const Currency = lazy(() => import('src/components/pages/Currency'))
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
             path: 'currency',
             element: (
               <ProtectedRoute>
-                <CurrencyPage />
+                <Currency />
               </ProtectedRoute>
             ),
           },
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
           {
             path: 'signup',
             element: <Signup />,
+          },
+          {
+            path: '*',
+            element: <NotFound />,
           },
         ],
       },

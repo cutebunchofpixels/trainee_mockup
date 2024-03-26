@@ -38,5 +38,7 @@
     "errors.dateSelectors.futureEndDate": "End date must be a past date",
     "errors.dateSelectors.endDateBeforeStartDate": "End date must not be earlier than start date",
     "errors.dateSelectors.selectedPeriodIsTooLong": "Selected period cannot be longer than 5 days",
-    "errors.dateSelectors.selectedPeriodIsTooShort": "Selected period cannot be shorter than 3 days"
+    "errors.dateSelectors.selectedPeriodIsTooShort": "Selected period cannot be shorter than 3 days",
+    "errors.pageNotFound": "The page you are looking for does not exist",
+    "notFoundPage.goBackButton": "Bring me home"
 }
