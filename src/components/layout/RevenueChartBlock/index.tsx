@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button, Card, Dropdown, MenuProps, Space } from 'antd'
+import { Card } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { DownOutlined } from '@ant-design/icons'
 
 import { Theme } from 'src/types/Theme'
-import RevenueChart from '../RevenueChart'
+import RevenueChart from 'src/components/layout/RevenueChart'
 import { useAppSelector } from 'src/redux/app/hooks'
+import ExchangeIntervalDropdown from 'src/components/layout/ExchangeIntervalDropdown'
 
 import styles from './styles.module.scss'
 
@@ -16,31 +16,11 @@ export default function RevenueChartBlock() {
     state => state.currencyExchange.loading
   )
 
-  const dropdownItems: MenuProps['items'] = [
-    {
-      label: t('revenueChart.currentWeekOption'),
-      key: '1',
-    },
-    {
-      label: t('revenueChart.previousWeekOption'),
-      key: '2',
-    },
-  ]
-
   return (
     <Card
       title={t('revenueChart.caption')}
       className={styles.chartCard}
-      extra={
-        <Dropdown menu={{ items: dropdownItems }}>
-          <Button type="primary">
-            <Space>
-              {t('revenueChart.selectInterval')}
-              <DownOutlined />
-            </Space>
-          </Button>
-        </Dropdown>
-      }
+      extra={<ExchangeIntervalDropdown />}
     >
       <div
         className={styles.revenueChartContainer}

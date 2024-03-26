@@ -4,12 +4,16 @@ import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
 interface CurrencyExchangeState {
   loading: boolean
   data: CurrencyExchangeRates[]
+  startDate: string | null
+  endDate: string | null
   error: string | null
 }
 
 const initialState: CurrencyExchangeState = {
   loading: false,
   data: [],
+  startDate: null,
+  endDate: null,
   error: null,
 }
 
@@ -28,10 +32,14 @@ export function currencyExchangeReducer(
     }
 
     case 'currencyExchange/fetchSuccess': {
+      const { exchangeRates, startDate, endDate } = action.payload
+
       const newState = {
         ...state,
         loading: false,
-        data: action.payload,
+        data: exchangeRates,
+        startDate,
+        endDate,
         error: null,
       }
 
@@ -43,6 +51,8 @@ export function currencyExchangeReducer(
         ...state,
         loading: false,
         data: [],
+        startDate: null,
+        endDate: null,
         error: action.payload,
       }
 

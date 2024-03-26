@@ -23,7 +23,13 @@ export function fetchExchangeRates(
           startDate,
           endDate
         )
-      dispatch(currencyExchangeFetchSuccess(exchangeRates))
+      dispatch(
+        currencyExchangeFetchSuccess(
+          exchangeRates,
+          startDate.toISOString(),
+          endDate.toISOString()
+        )
+      )
     } catch (error) {
       dispatch(currencyExchangeFetchError((error as Error).message))
     }

@@ -2,14 +2,20 @@ import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
 
 export type CurrencyExchangeFetchSuccess = {
   type: 'currencyExchange/fetchSuccess'
-  payload: CurrencyExchangeRates[]
+  payload: {
+    exchangeRates: CurrencyExchangeRates[]
+    startDate: string
+    endDate: string
+  }
 }
 
 export function currencyExchangeFetchSuccess(
-  currencyExchangeRates: CurrencyExchangeRates[]
+  exchangeRates: CurrencyExchangeRates[],
+  startDate: string,
+  endDate: string
 ): CurrencyExchangeFetchSuccess {
   return {
     type: 'currencyExchange/fetchSuccess',
-    payload: currencyExchangeRates,
+    payload: { exchangeRates, startDate, endDate },
   }
 }
