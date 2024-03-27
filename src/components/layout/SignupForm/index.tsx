@@ -3,7 +3,7 @@ import { Button, Divider, Form, FormProps, Input } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { TranslationKey } from 'src/types/TranslationKey'
-import GoogleSigninButton from '../GoogleSigninButton'
+import GoogleSigninButton from 'src/components/layout/GoogleSigninButton'
 
 import styles from './styles.module.scss'
 
@@ -33,8 +33,8 @@ export default function SignupForm({
         label={t('auth.email')}
         name="email"
         rules={[
-          { required: true, message: t('auth.errors.emailRequired') },
-          { type: 'email', message: t('auth.errors.invalidEmail') },
+          { required: true, message: 'Email is a required filed' },
+          { type: 'email', message: 'Your input should be a valid email' },
         ]}
       >
         <Input placeholder={t('auth.email')} />
@@ -42,7 +42,7 @@ export default function SignupForm({
       <Form.Item<SignupFormValues>
         label={t('auth.password')}
         name="password"
-        rules={[{ required: true, message: t('auth.errors.passwordRequired') }]}
+        rules={[{ required: true, message: 'Password is a required field' }]}
       >
         <Input.Password placeholder={t('auth.password')} />
       </Form.Item>
