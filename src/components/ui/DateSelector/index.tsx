@@ -12,7 +12,9 @@ export default function DateSelector({ ...rest }: DatePickerProps) {
       </div>
       <DatePicker
         suffixIcon={null}
-        format={value => value.format('MMM DD, YYYY')}
+        format={value => {
+          return value.format('MMM DD, YYYY')
+        }}
         {...rest}
       />
     </Space.Compact>
