@@ -12,7 +12,7 @@ export default function Currency() {
   useEffect(() => {
     dispatch(
       fetchExchangeRates(
-        CurrencyEnum.EUR,
+        CurrencyEnum.UAH,
         initialExchangeChartPeriod.startDate,
         initialExchangeChartPeriod.endDate
       )

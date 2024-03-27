@@ -1,31 +1,26 @@
 import React, { useMemo } from 'react'
 import { DualAxes } from '@ant-design/plots'
 import { useTranslation } from 'react-i18next'
-import { dayjs } from 'src/utils/dayjs'
 import { Empty, Skeleton } from 'antd'
 import { LineChartOutlined } from '@ant-design/icons'
 
 import { useAppSelector } from 'src/redux/app/hooks'
+import { dayjs } from 'src/utils/dayjs'
 
 import styles from './styles.module.scss'
 
 export default function RevenueChart() {
   const { t, i18n } = useTranslation()
-  const currencyExchangeRates = useAppSelector(
-    state => state.currencyExchange.data
-  )
-
-  const isChartDataLoading = useAppSelector(
-    state => state.currencyExchange.loading
-  )
+  const exchangeRates = useAppSelector(state => state.currencyExchange.data)
+  const isLoading = useAppSelector(state => state.currencyExchange.loading)
 
   const chartData = useMemo(() => {
-    return currencyExchangeRates.map(item => ({
+    return exchangeRates.map(item => ({
       date: item.date,
-      eurToUsd: item.exchangeRates.usd,
-      usdToEur: 1 / item.exchangeRates.usd,
+      uahToUsd: 1 / item.exchangeRates.usd,
+      uahToEur: 1 / item.exchangeRates.eur,
     }))
-  }, [currencyExchangeRates])
+  }, [exchangeRates])
 
   const chartConfig = useMemo(() => {
     const config = {
@@ -37,7 +32,7 @@ export default function RevenueChart() {
       children: [
         {
           type: 'line',
-          yField: 'usdToEur',
+          yField: 'uahToUsd',
           style: {
             lineWidth: 2,
             stroke: '#F6CECB',
@@ -49,20 +44,20 @@ export default function RevenueChart() {
             },
             y: {
               position: 'right',
-              title: t('revenueChart.usdToEurAxis'),
+              title: t('revenueChart.uahToUsdAxis'),
             },
           },
         },
         {
           type: 'line',
-          yField: 'eurToUsd',
+          yField: 'uahToEur',
           style: {
             lineWidth: 2,
             stroke: '#6CD0F8',
           },
           axis: {
             y: {
-              title: t('revenueChart.eurToUsdAxis'),
+              title: t('revenueChart.uahToUsdAxis'),
             },
           },
         },
@@ -70,9 +65,9 @@ export default function RevenueChart() {
     }
 
     return config
-  }, [i18n.resolvedLanguage, currencyExchangeRates])
+  }, [i18n.resolvedLanguage, exchangeRates])
 
-  if (isChartDataLoading) {
+  if (isLoading) {
     return (
       <Skeleton.Node active className={styles.chartLoadingSkeleton}>
         <LineChartOutlined />
@@ -80,7 +75,7 @@ export default function RevenueChart() {
     )
   }
 
-  if (currencyExchangeRates.length === 0) {
+  if (exchangeRates.length === 0) {
     return <Empty className={styles.chartEmptyMessage} />
   }
 

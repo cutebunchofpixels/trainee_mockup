@@ -59,7 +59,7 @@ export default function ExchangeIntervalForm() {
       className={styles.dateSelectorsForm}
       onFinish={({ startDate, endDate }) => {
         if (shouldRefetchExchangeRates(startDate, endDate)) {
-          dispatch(fetchExchangeRates(Currency.EUR, startDate, endDate))
+          dispatch(fetchExchangeRates(Currency.UAH, startDate, endDate))
         }
       }}
       form={form}

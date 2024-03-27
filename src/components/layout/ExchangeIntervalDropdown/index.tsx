@@ -45,7 +45,7 @@ export default function ExchangeIntervalDropdown() {
           }
 
           if (shouldRefetchExchangeRates(startDate, endDate)) {
-            dispatch(fetchExchangeRates(Currency.EUR, startDate, endDate))
+            dispatch(fetchExchangeRates(Currency.UAH, startDate, endDate))
           }
         },
       }}
