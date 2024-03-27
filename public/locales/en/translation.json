@@ -19,6 +19,7 @@
     "auth.register": "Register",
     "auth.dividerCaption": "Or",
     "auth.email": "Email",
+    "auth.loggedAs": "Logged in as",
     "signin.noAccoutMessage": "Don't have an accout yet?",
     "signin.createNewAccoutMessage": "Create a new one!",
     "signup.accountExistsMessage": "Already have an account?",
