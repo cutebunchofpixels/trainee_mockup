@@ -1,8 +1,8 @@
 import React from 'react'
-import { useAppSelector } from 'redux/app/hooks'
 import { Navigate } from 'react-router-dom'
 
-import Loader from 'components/ui/Loader'
+import Loader from 'src/components/ui/Loader'
+import { useAppSelector } from 'src/redux/app/hooks'
 
 export default function ProtectedRoute({
   children,

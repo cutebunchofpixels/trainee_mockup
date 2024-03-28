@@ -11,7 +11,7 @@ export default function NotFound() {
     <Result
       status="404"
       title="404"
-      subTitle={t('errors.pageNotFound')}
+      subTitle={t('notFoundPage.caption')}
       extra={
         <Button type="primary" onClick={() => navigate('/')}>
           {t('notFoundPage.goBackButton')}

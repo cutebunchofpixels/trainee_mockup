@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import DateSelectorsBlock from '../DateSelectorsBlock'
+import ExchangeIntervalSelectorsBlock from '../ExchangeIntervalSelectorsBlock'
 import PaymentStatCardList from '../PaymentStatCardList'
 import RevenueChartBlock from '../RevenueChartBlock'
 
@@ -14,7 +14,7 @@ export default function PaymentsSection() {
   return (
     <section className={styles.paymentsSection}>
       <Typography.Title>{t('sectionPayments.heading')}</Typography.Title>
-      <DateSelectorsBlock />
+      <ExchangeIntervalSelectorsBlock />
       <PaymentStatCardList />
       <RevenueChartBlock />
     </section>

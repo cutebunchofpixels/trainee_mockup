@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app'
-import { TranslationKey } from 'types/TranslationKey'
+import { TranslationKey } from 'src/types/TranslationKey'
 
 export function handleFirebaseError(
   error: unknown,

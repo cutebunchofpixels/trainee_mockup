@@ -1,0 +1,9 @@
+.currentUserPopover {
+  min-width: 150px;
+
+  :global {
+    .ant-divider {
+      margin-block: 8px;
+    }
+  }
+}

@@ -2,10 +2,7 @@ import React from 'react'
 import { Select } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { Locale } from 'types/Locale'
-import { ls } from 'utils/secureLS'
-import { SELECTED_LOCALE_KEY } from 'utils/constants'
-import { auth } from 'fb'
+import { Locale } from 'src/types/Locale'
 
 import styles from './styles.module.scss'
 
@@ -22,12 +19,7 @@ export default function LocaleSelect() {
       defaultValue={i18n.resolvedLanguage}
       options={localeOptions}
       className={styles.localeSelect}
-      onChange={locale => {
-        i18n.changeLanguage(locale)
-        ls.set(SELECTED_LOCALE_KEY, locale)
-        document.documentElement.setAttribute('lang', locale)
-        auth.languageCode = locale
-      }}
+      onChange={locale => i18n.changeLanguage(locale)}
     />
   )
 }

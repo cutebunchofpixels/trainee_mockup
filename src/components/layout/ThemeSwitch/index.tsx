@@ -2,11 +2,9 @@ import React from 'react'
 import { Switch } from 'antd'
 import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 
-import { Theme } from 'types/Theme'
-import { useAppDispatch, useAppSelector } from 'redux/app/hooks'
-import { setTheme } from 'redux/actions/theme'
-import { ls } from 'utils/secureLS'
-import { PREFERED_THEME_KEY } from 'utils/constants'
+import { Theme } from 'src/types/Theme'
+import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
+import { toggleTheme } from 'src/redux/thunks/theme'
 
 export default function ThemeSwitch() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
@@ -14,9 +12,7 @@ export default function ThemeSwitch() {
   const dispatch = useAppDispatch()
 
   function handleThemeChange() {
-    const newTheme = currentTheme === Theme.Dark ? Theme.Light : Theme.Dark
-    dispatch(setTheme(newTheme))
-    ls.set(PREFERED_THEME_KEY, newTheme)
+    dispatch(toggleTheme())
   }
 
   return (

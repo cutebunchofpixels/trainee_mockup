@@ -1,6 +1,6 @@
 import { User } from '@firebase/auth'
 
-import { AuthActions } from 'redux/actions/auth'
+import { AuthActions } from 'src/redux/actions/auth'
 
 interface AuthState {
   user: User | null

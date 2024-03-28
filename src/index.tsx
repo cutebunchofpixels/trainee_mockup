@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 
-import { store } from 'redux/app/store'
-import { router } from 'utils/router'
+import { store } from 'src/redux/app/store'
+import { router } from 'src/utils/router'
 import './i18n'
 
 import './normalize.css'

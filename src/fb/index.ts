@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-import { setUser } from 'redux/actions/auth'
-import { store } from 'redux/app/store'
+import { setUser } from 'src/redux/actions/auth'
+import { store } from 'src/redux/app/store'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

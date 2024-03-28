@@ -1,22 +1,22 @@
 import React from 'react'
-import { DatePicker, Space, Typography } from 'antd'
+import { DatePicker, DatePickerProps, Space } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
 
 import styles from './styles.module.scss'
 
-export default function DateSelector({ caption }: { caption: string }) {
+export default function DateSelector({ ...rest }: DatePickerProps) {
   return (
-    <div className={styles.dateSelector}>
-      <Typography.Text className={styles.caption}>{caption}</Typography.Text>
-      <Space.Compact>
-        <div className={styles.iconBlock}>
-          <CalendarOutlined />
-        </div>
-        <DatePicker
-          suffixIcon={null}
-          format={value => value.format('MMM DD, YYYY')}
-        />
-      </Space.Compact>
-    </div>
+    <Space.Compact className={styles.dateSelector}>
+      <div className={styles.iconBlock}>
+        <CalendarOutlined />
+      </div>
+      <DatePicker
+        suffixIcon={null}
+        format={value => {
+          return value.format('MMM DD, YYYY')
+        }}
+        {...rest}
+      />
+    </Space.Compact>
   )
 }
