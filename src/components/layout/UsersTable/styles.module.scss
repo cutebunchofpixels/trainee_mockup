@@ -1,0 +1,25 @@
+.usersTable {
+  overflow-x: auto;
+
+  :global {
+    & .ant-table-tbody {
+      background-color: #141414;
+    }
+  }
+}
+
+.usersTableLight {
+  :global {
+    .ant-table-tbody {
+      background-color: #fff;
+    }
+  }
+}
+
+.usersTableDark {
+  :global {
+    .ant-table-tbody {
+      background-color: #141414;
+    }
+  }
+}
