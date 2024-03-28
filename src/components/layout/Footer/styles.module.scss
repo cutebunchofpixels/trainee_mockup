@@ -1,0 +1,12 @@
+.footer {
+  flex: 0 0 64px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.appTitle {
+  font-weight: 700;
+}

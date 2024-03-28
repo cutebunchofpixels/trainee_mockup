@@ -1,23 +1,20 @@
-@use "src/sass/common";
-@use "src/sass/abstracts";
+@use 'src/sass/common';
+@use 'src/sass/abstracts';
 
-.date-selector {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 15px;
-    align-items: center;
-    width: 100%;
+.iconBlock {
+  border: 1px solid abstracts.$variables-color-gray;
+  background-color: abstracts.$variables-color-gray;
+  display: grid;
+  place-items: center;
+  padding: 10px;
 }
 
-.icon-block {
-    border: 1px solid abstracts.$variables-color-gray;
-    background-color: abstracts.$variables-color-gray;
-    display: grid;
-    place-items: center;
-    padding: 10px;
-}
+.dateSelector {
+  width: 100%;
 
-.caption {
-    font-weight: 700;
-    white-space: nowrap;
+  :global {
+    .ant-picker {
+      width: 100%;
+    }
+  }
 }

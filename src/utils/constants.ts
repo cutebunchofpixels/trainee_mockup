@@ -1,4 +1,4 @@
-import { Locale } from 'types/Locale'
+import { Locale } from 'src/types/Locale'
 import heIL from 'antd/locale/he_IL'
 import enUS from 'antd/locale/en_US'
 

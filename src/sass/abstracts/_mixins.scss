@@ -1,31 +1,31 @@
 @mixin respond($breakpoint) {
-    @if $breakpoint ==sm {
-        @media (width >=576px) {
-            @content;
-        }
+  @if $breakpoint == sm {
+    @media (width > 576px) {
+      @content;
     }
+  }
 
-    @if $breakpoint ==md {
-        @media (width >=768px) {
-            @content;
-        }
+  @if $breakpoint == md {
+    @media (width > 768px) {
+      @content;
     }
+  }
 
-    @if $breakpoint ==lg {
-        @media (width >=992px) {
-            @content;
-        }
+  @if $breakpoint == lg {
+    @media (width > 992px) {
+      @content;
     }
+  }
 
-    @if $breakpoint ==xl {
-        @media (width >=1200px) {
-            @content;
-        }
+  @if $breakpoint == xl {
+    @media (width > 1200px) {
+      @content;
     }
+  }
 
-    @if $breakpoint ==xxl {
-        @media (width >=1600px) {
-            @content;
-        }
+  @if $breakpoint == xxl {
+    @media (width > 1600px) {
+      @content;
     }
+  }
 }

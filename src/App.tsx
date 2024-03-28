@@ -1,19 +1,26 @@
-import React from 'react'
-import { ConfigProvider, Layout, theme } from 'antd'
-import Home from './components/pages/Home'
-import variables from './sass/abstracts/_variables.scss'
-import './styles.module.scss'
-import ThemeSwitch from 'components/layout/ThemeSwitch'
-import { Theme } from 'types/Theme'
-import { useAppSelector } from 'redux/app/hooks'
-import LocaleSelect from 'components/layout/LocaleSelect'
-import { locales } from 'utils/constants'
-import { Locale } from 'types/Locale'
+import React, { useEffect } from 'react'
+import { ConfigProvider, theme } from 'antd'
 import { useTranslation } from 'react-i18next'
+import { Outlet } from 'react-router-dom'
 
-function App() {
+import { Theme } from 'src/types/Theme'
+import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
+import { locales } from 'src/utils/constants'
+import { Locale } from 'src/types/Locale'
+import { auth } from 'src/fb'
+import { setAuthReady } from 'src/redux/actions/auth'
+
+import colorVariables from './sass/abstracts/_variables.scss'
+import './styles.module.scss'
+
+export function App() {
   const { value: currentTheme } = useAppSelector(state => state.theme)
-  const { i18n, t } = useTranslation()
+  const dispatch = useAppDispatch()
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    auth.authStateReady().then(() => dispatch(setAuthReady(true)))
+  }, [])
 
   return (
     <ConfigProvider
@@ -25,8 +32,8 @@ function App() {
             : theme.defaultAlgorithm,
         token: {
           borderRadius: 3,
-          colorPrimary: variables.colorPrimary,
-          colorBorder: variables.colorGray,
+          colorPrimary: colorVariables.colorPrimary,
+          colorBorder: colorVariables.colorGray,
         },
       }}
       locale={
@@ -35,16 +42,7 @@ function App() {
           : locales[Locale.English]
       }
     >
-      <Layout>
-        <Layout.Header>
-          <ThemeSwitch />
-          <LocaleSelect />
-        </Layout.Header>
-        <Layout.Content>
-          <Home />
-        </Layout.Content>
-        <Layout.Footer>{t('footer.caption')}</Layout.Footer>
-      </Layout>
+      <Outlet />
     </ConfigProvider>
   )
 }

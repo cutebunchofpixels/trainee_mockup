@@ -1,0 +1,25 @@
+@use 'src/sass/abstracts';
+
+.signupForm {
+  :global {
+    .ant-form-item {
+      margin-bottom: 8px;
+    }
+
+    .submit-button-wrapper {
+      margin-top: 24px;
+    }
+
+    .ant-divider-inner-text {
+      text-transform: uppercase;
+      color: abstracts.$variables-color-gray-dark;
+    }
+
+    .ant-btn {
+      width: 100%;
+      border-radius: 500px;
+      height: auto;
+      padding: 8px;
+    }
+  }
+}

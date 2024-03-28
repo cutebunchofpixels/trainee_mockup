@@ -1,0 +1,18 @@
+@use 'src/sass/abstracts';
+
+.currentUserSection {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+
+  @include abstracts.mixins-respond(sm) {
+    gap: 15px;
+  }
+
+  :global {
+    .ant-typography {
+      color: #fff;
+    }
+  }
+}

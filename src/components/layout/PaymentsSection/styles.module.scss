@@ -1,46 +1,24 @@
-@use "src/sass/abstracts";
-@use "src/sass/common";
+@use 'src/sass/abstracts';
+@use 'src/sass/common';
 
-.payments-section {
-    max-width: 900px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.paymentsSection {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 
-    :global {
-        h1.ant-typography {
-            font-size: abstracts.$variables-font-lg;
-        }
-
-        .ant-picker {
-            width: 100%;
-        }
-
-        .ant-btn {
-            width: 100%;
-            font-weight: 500;
-            font-size: abstracts.$variables-font-sm;
-            text-transform: uppercase;
-        }
+  :global {
+    h1.ant-typography {
+      font-size: abstracts.$variables-font-lg;
     }
-}
 
-.stat-cards {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-}
-
-.chart-card {
-    :global {
-        .ant-card-body {
-            padding: 0;
-        }
+    .ant-btn {
+      width: 100%;
+      font-weight: 500;
+      font-size: abstracts.$variables-font-sm;
+      text-transform: uppercase;
     }
-}
-
-.revenue-chart-container {
-    height: 250px;
-    width: 100%;
+  }
 }

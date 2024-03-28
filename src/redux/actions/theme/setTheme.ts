@@ -1,4 +1,4 @@
-import { Theme } from 'types/Theme'
+import { Theme } from 'src/types/Theme'
 
 export type SetThemeAction = {
   type: 'theme/set'

@@ -1,0 +1,20 @@
+@use 'src/sass/abstracts';
+
+.dateSelectorsForm {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include abstracts.mixins-respond(md) {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  :global {
+    .ant-form-item-with-help {
+      margin-bottom: 0;
+    }
+
+    .ant-form-item-explain {
+      display: none;
+    }
+  }
+}
