@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Dayjs } from 'dayjs'
 
-import { CurrencyExchangeRateDto } from 'src/types/dto/CurrencyExchangeRateDto'
+import { CurrencyExchangeRateDto } from 'src/types/dto/currency-exchange/CurrencyExchangeRateDto'
 import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
 import { Currency } from 'src/types/Currency'
 
