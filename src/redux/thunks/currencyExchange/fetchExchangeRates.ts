@@ -1,6 +1,6 @@
 import { Dayjs } from 'dayjs'
 
-import { Currency } from 'src/types/Currency'
+import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { CurrencyExchangeService } from 'src/api/currecny/CurrencyService'
 import { AppDispatch } from 'src/redux/app/store'
 import {

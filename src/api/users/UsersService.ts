@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GetUsersDto } from 'src/types/dto/users/GetUsersDto'
+import { GetUsersDto } from 'src/types/models/User/dto/GetUsersDto'
 import { GorestUser } from 'src/types/models/User'
 
 export class UserService {

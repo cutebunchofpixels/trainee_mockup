@@ -1,5 +1,5 @@
 import { CurrencyExchangeActions } from 'src/redux/actions/currencyExchange'
-import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
+import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchange/CurrencyExchangeRates'
 
 interface CurrencyExchangeState {
   loading: boolean

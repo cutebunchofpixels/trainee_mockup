@@ -1,4 +1,4 @@
-import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchangeRates'
+import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchange/CurrencyExchangeRates'
 
 export type CurrencyExchangeFetchSuccess = {
   type: 'currencyExchange/fetchSuccess'

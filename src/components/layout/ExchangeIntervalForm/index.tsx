@@ -9,7 +9,7 @@ import { dayjs } from 'src/utils/dayjs'
 import DateSelector from 'src/components/ui/DateSelector'
 import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
 import { fetchExchangeRates } from 'src/redux/thunks/currencyExchange'
-import { Currency } from 'src/types/Currency'
+import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
 
 import styles from './styles.module.scss'

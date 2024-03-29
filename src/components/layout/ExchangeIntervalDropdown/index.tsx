@@ -6,7 +6,7 @@ import { DownOutlined } from '@ant-design/icons'
 import { dayjs } from 'src/utils/dayjs'
 import { useAppDispatch } from 'src/redux/app/hooks'
 import { fetchExchangeRates } from 'src/redux/thunks/currencyExchange'
-import { Currency } from 'src/types/Currency'
+import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
 
 enum DropdownOption {
