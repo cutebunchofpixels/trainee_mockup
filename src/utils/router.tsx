@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
 
 import App from 'src/App'
 import MainLayout from 'src/components/layout/MainLayout'
@@ -10,6 +10,7 @@ import NotFound from 'src/components/pages/NotFound'
 
 const Currency = lazy(() => import('src/components/pages/Currency'))
 const Users = lazy(() => import('src/components/pages/Users'))
+const EditUser = lazy(() => import('src/components/pages/EditUser'))
 
 export const router = createBrowserRouter([
   {
@@ -43,9 +44,19 @@ export const router = createBrowserRouter([
             path: 'users',
             element: (
               <ProtectedRoute>
-                <Users />
+                <Outlet />
               </ProtectedRoute>
             ),
+            children: [
+              {
+                index: true,
+                element: <Users />,
+              },
+              {
+                path: ':userId',
+                element: <EditUser />,
+              },
+            ],
           },
           {
             path: '*',
