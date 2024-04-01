@@ -27,5 +27,9 @@
     "auth.signout": "התנתק",
     "errors.unexpected": "שגיאה לא צפויה התרחשה",
     "notFoundPage.caption": "העמוד שאתה מחפש לא קיים",
-    "notFoundPage.goBackButton": "תביא אותי הביתה"
+    "notFoundPage.goBackButton": "תביא אותי הביתה",
+    "users.filterByGender": "סנן לפי מין",
+    "gender.male": "זָכָר",
+    "gender.female": "נְקֵבָה",
+    "all": "את כל"
 }
