@@ -2,6 +2,7 @@ import axios from 'axios'
 
 import { GetUsersDto } from 'src/types/models/User/dto/GetUsersDto'
 import { GorestUser } from 'src/types/models/User'
+import { toURLSearchParams } from 'src/utils/toURLSearchParams'
 
 export class UserService {
   private static axiosInstance = axios.create({
@@ -13,12 +14,14 @@ export class UserService {
   }
 
   static async getAll(dto: GetUsersDto) {
+    const params = toURLSearchParams(dto)
+
     const resp = await this.axiosInstance.get<GorestUser[]>('', {
-      params: new URLSearchParams(dto as any),
+      params,
     })
 
     return {
-      totalPages: resp.headers['X-Pagination-Pages'],
+      totalPages: resp.headers['x-pagination-pages'],
       users: resp.data,
     }
   }

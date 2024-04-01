@@ -14,7 +14,7 @@ export default function UsersFilters() {
 
   function handleGenderChange(value: string) {
     if (value === 'all') {
-      dispatch(fetchUsers())
+      dispatch(fetchUsers({ gender: undefined }))
     } else {
       dispatch(fetchUsers({ gender: value as Gender }))
     }

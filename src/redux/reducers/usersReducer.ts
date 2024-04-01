@@ -40,13 +40,14 @@ export function usersReducer(
     }
 
     case 'users/fetchSuccess': {
-      const { users, filters } = action.payload
+      const { users, filters, totalPages } = action.payload
 
       const newState = {
         ...state,
         loading: false,
         data: users,
         filters,
+        totalPages,
         error: null,
       }
 

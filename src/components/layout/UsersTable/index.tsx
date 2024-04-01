@@ -4,8 +4,9 @@ import classNames from 'classnames'
 
 import { mockUsers } from './mockUsers'
 import { GorestUser } from 'src/types/models/User'
-import { useAppSelector } from 'src/redux/app/hooks'
+import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
 import { Theme } from 'src/types/Theme'
+import { fetchUsers } from 'src/redux/thunks/users'
 
 import styles from './styles.module.scss'
 
@@ -34,8 +35,15 @@ const columns: TableProps<GorestUser>['columns'] = [
 
 export default function UsersTable() {
   const currentTheme = useAppSelector(state => state.theme.value)
+  const totalPages = useAppSelector(state => state.users.totalPages)
+  const pageSize = useAppSelector(state => state.users.filters.per_page)
+  const page = useAppSelector(state => state.users.filters.page)
+  const users = useAppSelector(state => state.users.data)
+  const isLoading = useAppSelector(state => state.users.loading)
+  const dispatch = useAppDispatch()
+
   function handlePageChange(page: number, pageSize: number) {
-    console.log(page, pageSize)
+    dispatch(fetchUsers({ page, per_page: pageSize }))
   }
 
   const classes = classNames(styles.usersTable, {
@@ -43,12 +51,22 @@ export default function UsersTable() {
     [styles.usersTableDark]: currentTheme === Theme.Dark,
   })
 
+  if (isLoading) {
+    return <div>Loading..</div>
+  }
+
   return (
     <Table
       className={classes}
-      pagination={{ pageSize: 8, onChange: handlePageChange }}
+      pagination={{
+        pageSize: pageSize,
+        onChange: handlePageChange,
+        total: totalPages,
+        current: page,
+        showSizeChanger: false,
+      }}
       columns={columns}
-      dataSource={mockUsers}
+      dataSource={users}
       rowKey={record => record.id}
     />
   )
