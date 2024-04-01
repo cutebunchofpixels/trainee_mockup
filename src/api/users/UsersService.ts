@@ -13,13 +13,15 @@ export class UserService {
   }
 
   static async getAll(dto: GetUsersDto) {
-    return this.axiosInstance.get<GorestUser>('', {
+    const resp = await this.axiosInstance.get<GorestUser[]>('', {
       params: new URLSearchParams(dto as any),
     })
+
+    return resp.data
   }
 
   static async update(id: number, dto: Partial<GorestUser>) {
-    return this.axiosInstance.patch<GorestUser>(`/${id}`, {
+    this.axiosInstance.patch(`/${id}`, {
       data: dto,
     })
   }
