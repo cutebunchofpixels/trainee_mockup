@@ -20,8 +20,8 @@ export function fetchUsers(filters?: Partial<GetUsersDto>) {
     dispatch(usersFetchStart())
 
     try {
-      const users = await UserService.getAll(newFilters)
-      dispatch(usersFetchSuccess(users, newFilters))
+      const { users, totalPages } = await UserService.getAll(newFilters)
+      dispatch(usersFetchSuccess(users, newFilters, totalPages))
     } catch (error) {
       dispatch(usersFetchError((error as Error).message))
     }

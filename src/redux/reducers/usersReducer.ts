@@ -6,6 +6,7 @@ interface UsersState {
   loading: boolean
   data: GorestUser[]
   filters: GetUsersDto
+  totalPages: number
   error: string | null
 }
 
@@ -20,6 +21,7 @@ const initialState: UsersState = {
   loading: false,
   data: [],
   filters: defaultFilters,
+  totalPages: 0,
   error: null,
 }
 
@@ -57,6 +59,7 @@ export function usersReducer(
         loading: false,
         data: [],
         filters: defaultFilters,
+        totalPages: 0,
         error: action.payload,
       }
 

@@ -17,7 +17,10 @@ export class UserService {
       params: new URLSearchParams(dto as any),
     })
 
-    return resp.data
+    return {
+      totalPages: resp.headers['X-Pagination-Pages'],
+      users: resp.data,
+    }
   }
 
   static async update(id: number, dto: Partial<GorestUser>) {

@@ -6,15 +6,17 @@ export type UsersFetchSuccessAction = {
   payload: {
     users: GorestUser[]
     filters: GetUsersDto
+    totalPages: number
   }
 }
 
 export function usersFetchSuccess(
   users: GorestUser[],
-  filters: GetUsersDto
+  filters: GetUsersDto,
+  totalPages: number
 ): UsersFetchSuccessAction {
   return {
     type: 'users/fetchSuccess',
-    payload: { users, filters },
+    payload: { users, filters, totalPages },
   }
 }
