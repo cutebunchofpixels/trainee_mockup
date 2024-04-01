@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react'
 import { DualAxes } from '@ant-design/plots'
 import { useTranslation } from 'react-i18next'
-import { Empty, Skeleton } from 'antd'
+import { Empty } from 'antd'
 import { LineChartOutlined } from '@ant-design/icons'
 
 import { useAppSelector } from 'src/redux/app/hooks'
 import { dayjs } from 'src/utils/dayjs'
+import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
 
 import styles from './styles.module.scss'
 
@@ -69,9 +70,9 @@ export default function RevenueChart() {
 
   if (isLoading) {
     return (
-      <Skeleton.Node active className={styles.chartLoadingSkeleton}>
-        <LineChartOutlined />
-      </Skeleton.Node>
+      <ContainerSkeleton active>
+        <LineChartOutlined className={styles.chartLoadingIcon} />
+      </ContainerSkeleton>
     )
   }
 

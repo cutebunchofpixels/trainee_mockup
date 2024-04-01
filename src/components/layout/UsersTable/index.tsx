@@ -1,12 +1,13 @@
 import React from 'react'
-import { Table, TableProps } from 'antd'
+import { Table, TableProps, Typography } from 'antd'
 import classNames from 'classnames'
+import { TableOutlined } from '@ant-design/icons'
 
-import { mockUsers } from './mockUsers'
 import { GorestUser } from 'src/types/models/User'
 import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
 import { Theme } from 'src/types/Theme'
 import { fetchUsers } from 'src/redux/thunks/users'
+import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
 
 import styles from './styles.module.scss'
 
@@ -52,7 +53,15 @@ export default function UsersTable() {
   })
 
   if (isLoading) {
-    return <div>Loading..</div>
+    return (
+      <div className={styles.tableLoadingSkeleton}>
+        <ContainerSkeleton active>
+          <Typography.Text>
+            <TableOutlined className={styles.tableLoadingIcon} />
+          </Typography.Text>
+        </ContainerSkeleton>
+      </div>
+    )
   }
 
   return (

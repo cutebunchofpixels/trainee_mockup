@@ -1,19 +1,7 @@
 @use 'src/sass/abstracts';
 
-.chartLoadingSkeleton {
-  width: 100% !important;
-  height: 100% !important;
-
-  :global {
-    .ant-skeleton-image {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    .anticon {
-      font-size: 72px;
-    }
-  }
+.chartLoadingIcon {
+  font-size: 48px;
 }
 
 .chartEmptyMessage {

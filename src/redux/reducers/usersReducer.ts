@@ -1,6 +1,7 @@
 import { GorestUser } from 'src/types/models/User'
 import { UsersActions } from '../actions/users'
 import { GetUsersDto } from 'src/types/models/User/dto/GetUsersDto'
+import { mockUsers } from 'src/components/layout/UsersTable/mockUsers'
 
 interface UsersState {
   loading: boolean
@@ -19,7 +20,7 @@ const defaultFilters: GetUsersDto = {
 
 const initialState: UsersState = {
   loading: false,
-  data: [],
+  data: mockUsers,
   filters: defaultFilters,
   totalPages: 0,
   error: null,
