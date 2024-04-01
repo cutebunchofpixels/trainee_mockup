@@ -31,5 +31,12 @@
     "users.filterByGender": "סנן לפי מין",
     "gender.male": "זָכָר",
     "gender.female": "נְקֵבָה",
-    "all": "את כל"
+    "status.active": "פָּעִיל",
+    "status.inactive": "לֹא פָּעִיל",
+    "all": "את כל",
+    "users.pageHeading": "משתמשים",
+    "usersTable.id": "תְעוּדַת זֶהוּת",
+    "usersTable.name": "שֵׁם",
+    "usersTable.gender": "מִין",
+    "usersTable.Status": "סטָטוּס"
 }

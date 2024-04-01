@@ -34,5 +34,12 @@
     "users.filterByGender": "Filter by gender",
     "gender.male": "Male",
     "gender.female": "Female",
-    "all": "All"
+    "status.active": "Active",
+    "status.inactive": "Inactive",
+    "all": "All",
+    "users.pageHeading": "Users",
+    "usersTable.id": "Id",
+    "usersTable.name": "Name",
+    "usersTable.gender": "Gender",
+    "usersTable.Status": "Status"
 }
