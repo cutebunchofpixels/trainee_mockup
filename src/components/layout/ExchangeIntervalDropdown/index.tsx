@@ -52,7 +52,7 @@ export default function ExchangeIntervalDropdown() {
     >
       <Button type="primary">
         <Space>
-          {t('revenueChart.selectInterval')}
+          {t('interval', { ns: 'common' })}
           <DownOutlined />
         </Space>
       </Button>

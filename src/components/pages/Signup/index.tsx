@@ -32,7 +32,7 @@ export default function Signup() {
       {contextHolder}
       <SignupForm
         handleSubmit={handleFormSubmit}
-        submitButtonCaptionKey="auth.register"
+        submitButtonCaption={t('register', { ns: 'common' })}
       />
       <Typography.Paragraph className="create-new-account-message">
         {t('signup.accountExistsMessage')}{' '}

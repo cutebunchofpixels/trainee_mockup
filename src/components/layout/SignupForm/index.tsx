@@ -14,12 +14,12 @@ export interface SignupFormValues {
 
 interface SignupFormProps {
   handleSubmit: FormProps<SignupFormValues>['onFinish']
-  submitButtonCaptionKey: TranslationKey
+  submitButtonCaption: TranslationKey
 }
 
 export default function SignupForm({
   handleSubmit,
-  submitButtonCaptionKey,
+  submitButtonCaption,
 }: SignupFormProps) {
   const { t } = useTranslation()
 
@@ -30,26 +30,26 @@ export default function SignupForm({
       className={styles.signupForm}
     >
       <Form.Item<SignupFormValues>
-        label={t('auth.email')}
+        label={t('email', { ns: 'common' })}
         name="email"
         rules={[
           { required: true, message: 'Email is a required filed' },
           { type: 'email', message: 'Your input should be a valid email' },
         ]}
       >
-        <Input placeholder={t('auth.email')} />
+        <Input placeholder={t('email', { ns: 'common' })} />
       </Form.Item>
       <Form.Item<SignupFormValues>
-        label={t('auth.password')}
+        label={t('password', { ns: 'common' })}
         name="password"
         rules={[{ required: true, message: 'Password is a required field' }]}
       >
-        <Input.Password placeholder={t('auth.password')} />
+        <Input.Password placeholder={t('password', { ns: 'common' })} />
       </Form.Item>
       <Form.Item className="submit-button-wrapper">
-        <Button htmlType="submit">{t(submitButtonCaptionKey)}</Button>
+        <Button htmlType="submit">{submitButtonCaption}</Button>
       </Form.Item>
-      <Divider>{t('auth.dividerCaption')}</Divider>
+      <Divider>{t('or', { ns: 'common' })}</Divider>
       <GoogleSigninButton />
     </Form>
   )

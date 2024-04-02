@@ -34,23 +34,23 @@ export default function UsersTable() {
   const columns = useMemo(
     () => [
       {
-        title: t('usersTable.id'),
+        title: t('id', { ns: 'common' }),
         dataIndex: 'id',
         key: 'id',
       },
       {
-        title: t('usersTable.name'),
+        title: t('name', { ns: 'common' }),
         dataIndex: 'name',
         key: 'name',
       },
       {
-        title: t('usersTable.gender'),
+        title: t('gender', { ns: 'common' }),
         dataIndex: 'gender',
         key: 'gender',
         render: (value: Gender) => t(`gender.${value}`),
       },
       {
-        title: t('usersTable.Status'),
+        title: t('status', { ns: 'common' }),
         dataIndex: 'status',
         key: 'status',
         render: (value: Status) => t(`status.${value}`),

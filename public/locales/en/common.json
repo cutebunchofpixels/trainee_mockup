@@ -3,5 +3,14 @@
     "email": "Email",
     "gender": "Gender",
     "status": "Status",
-    "submit": "Submit"
+    "submit": "Submit",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register",
+    "signout": "Sign out",
+    "all": "All",
+    "or": "Or",
+    "interval": "Interval",
+    "id": "Id"
 }

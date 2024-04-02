@@ -30,7 +30,7 @@ export default function CurrentUserPopover({
           </Typography.Paragraph>
           <Divider />
           <Button onClick={handleSignout} icon={<UserDeleteOutlined />}>
-            {t('auth.signout')}
+            {t('signout', { ns: 'common' })}
           </Button>
         </>
       }

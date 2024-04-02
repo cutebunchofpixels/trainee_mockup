@@ -17,7 +17,11 @@ i18next.on('languageChanged', locale => {
   dayjs.locale(locale)
 })
 
-i18next.use(initReactI18next).use(Backend).init({
-  fallbackLng: 'en',
-  lng: selectedLocale,
-})
+i18next
+  .use(initReactI18next)
+  .use(Backend)
+  .init({
+    fallbackLng: 'en',
+    lng: selectedLocale,
+    ns: ['translation', 'common'],
+  })

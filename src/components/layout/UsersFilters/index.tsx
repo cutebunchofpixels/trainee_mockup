@@ -24,7 +24,7 @@ export default function UsersFilters() {
     () => [
       {
         value: 'all',
-        label: t('all'),
+        label: t('all', { ns: 'common' }),
       },
       ...Object.values(Gender).map(gender => ({
         value: gender,
