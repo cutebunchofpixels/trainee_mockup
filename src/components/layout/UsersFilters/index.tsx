@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Gender } from 'src/types/models/User'
 import { useAppDispatch } from 'src/redux/app/hooks'
 import { fetchUsers } from 'src/redux/thunks/users'
+import { getEnumOptions } from 'src/utils/getEnumOptions'
 
 import styles from './styles.module.scss'
 
@@ -26,10 +27,7 @@ export default function UsersFilters() {
         value: 'all',
         label: t('all', { ns: 'common' }),
       },
-      ...Object.values(Gender).map(gender => ({
-        value: gender,
-        label: t(`gender.${gender}`),
-      })),
+      ...getEnumOptions(Gender, gender => t(`gender.${gender}`)),
     ],
     [i18n.resolvedLanguage]
   )
