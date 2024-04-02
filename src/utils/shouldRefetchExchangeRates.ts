@@ -15,9 +15,14 @@ export function shouldRefetchExchangeRates(startDate: Dayjs, endDate: Dayjs) {
   }
 
   if (
-    !dayjs(currencyExchange.startDate).isSame(startDate, 'day') ||
-    !dayjs(currencyExchange.endDate).isSame(endDate, 'day')
+    !dayjs(startDate).isSameOrAfter(currencyExchange.startDate, 'day') ||
+    !dayjs(endDate).isSameOrBefore(currencyExchange.endDate, 'day')
   ) {
+    console.log('bruuuuuuuuh')
+    console.log(
+      !dayjs(currencyExchange.startDate).isSameOrAfter(startDate, 'day')
+    )
+    console.log(!dayjs(currencyExchange.endDate).isSameOrBefore(endDate, 'day'))
     return true
   }
 

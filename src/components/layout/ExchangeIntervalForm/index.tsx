@@ -20,12 +20,15 @@ interface FormValues {
 }
 
 export const MIN_CURRENCY_EXCHANGE_INTERVAL_SIZE = 3
-const MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE = 5
+export const MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE = 5
 
 const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('week')
 export const initialExchangeChartPeriod: FormValues = {
   startDate: startOfPreviousWeek,
-  endDate: startOfPreviousWeek.add(4, 'day'),
+  endDate: startOfPreviousWeek.add(
+    MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE - 1,
+    'day'
+  ),
 }
 
 export default function ExchangeIntervalForm() {
