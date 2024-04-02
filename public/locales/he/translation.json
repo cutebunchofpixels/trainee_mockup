@@ -26,5 +26,6 @@
     "status.active": "פָּעִיל",
     "status.inactive": "לֹא פָּעִיל",
     "users.pageHeading": "משתמשים",
-    "editUser.pageHeading": "ערוך משתמש"
+    "editUser.pageHeading": "ערוך משתמש",
+    "editUser.success": "משתמש עודכן בהצלחה"
 }

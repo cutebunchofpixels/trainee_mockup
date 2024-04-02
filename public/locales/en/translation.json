@@ -28,5 +28,6 @@
     "status.active": "Active",
     "status.inactive": "Inactive",
     "users.pageHeading": "Users",
-    "editUser.pageHeading": "Edit user"
+    "editUser.pageHeading": "Edit user",
+    "editUser.success": "Successfully updated user"
 }

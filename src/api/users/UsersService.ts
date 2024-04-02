@@ -26,7 +26,12 @@ export class UserService {
     }
   }
 
-  static async update(id: number, dto: Partial<GorestUser>) {
+  static async getById(id: string) {
+    const resp = await this.axiosInstance.get(`/${id}`)
+    return resp.data
+  }
+
+  static async update(id: string, dto: Partial<GorestUser>) {
     this.axiosInstance.patch(`/${id}`, {
       data: dto,
     })

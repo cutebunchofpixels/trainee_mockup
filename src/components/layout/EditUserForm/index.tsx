@@ -6,19 +6,21 @@ import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { getEnumOptions } from 'src/utils/getEnumOptions'
 
 import styles from './styles.module.scss'
+import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
+import { FormOutlined } from '@ant-design/icons'
 
-type FormValues = Omit<GorestUser, 'id'>
+export type EditUserFormValues = Omit<GorestUser, 'id'>
 
 interface EditUserFormProps {
-  user: GorestUser
-  handleSubmit: (values: FormValues) => void
+  user?: GorestUser
+  handleSubmit: (values: EditUserFormValues) => void
 }
 
 export default function EditUserForm({
   user,
   handleSubmit,
 }: EditUserFormProps) {
-  const { t, i18n } = useTranslation(['translation', 'common'])
+  const { t, i18n } = useTranslation()
 
   const genderOptions = useMemo(
     () => getEnumOptions<Gender>(Gender, gender => t(`gender.${gender}`)),
@@ -30,9 +32,19 @@ export default function EditUserForm({
     [i18n.resolvedLanguage]
   )
 
+  if (!user) {
+    return (
+      <div className={styles.formLoadingContainer}>
+        <ContainerSkeleton active>
+          <FormOutlined className={styles.formLoadingIcon} />
+        </ContainerSkeleton>
+      </div>
+    )
+  }
+
   return (
     <Card className={styles.editUserFormContainer}>
-      <Form<FormValues>
+      <Form<EditUserFormValues>
         layout="vertical"
         initialValues={user}
         onFinish={handleSubmit}

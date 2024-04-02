@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ConfigProvider, theme } from 'antd'
+import { ConfigProvider, theme, App as AntdApp } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Outlet } from 'react-router-dom'
 
@@ -42,7 +42,9 @@ export function App() {
           : locales[Locale.English]
       }
     >
-      <Outlet />
+      <AntdApp>
+        <Outlet />
+      </AntdApp>
     </ConfigProvider>
   )
 }

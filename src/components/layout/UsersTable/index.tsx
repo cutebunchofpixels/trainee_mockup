@@ -3,8 +3,9 @@ import { Table, Typography } from 'antd'
 import classNames from 'classnames'
 import { TableOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
-import { Gender, Status } from 'src/types/models/User'
+import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
 import { Theme } from 'src/types/Theme'
 import { fetchUsers } from 'src/redux/thunks/users'
@@ -21,6 +22,7 @@ export default function UsersTable() {
   const isLoading = useAppSelector(state => state.users.loading)
   const dispatch = useAppDispatch()
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
 
   function handlePageChange(page: number, pageSize: number) {
     dispatch(fetchUsers({ page, per_page: pageSize }))
@@ -72,7 +74,7 @@ export default function UsersTable() {
   }
 
   return (
-    <Table
+    <Table<GorestUser>
       className={classes}
       pagination={{
         pageSize: pageSize,
@@ -81,6 +83,9 @@ export default function UsersTable() {
         current: page,
         showSizeChanger: false,
       }}
+      onRow={user => ({
+        onClick: () => navigate(`${user.id}`),
+      })}
       columns={columns}
       dataSource={users}
       rowKey={record => record.id}

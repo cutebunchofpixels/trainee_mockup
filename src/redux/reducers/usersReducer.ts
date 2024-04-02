@@ -20,7 +20,7 @@ const defaultFilters: GetUsersDto = {
 
 const initialState: UsersState = {
   loading: false,
-  data: mockUsers,
+  data: [],
   filters: defaultFilters,
   totalPages: 0,
   error: null,
