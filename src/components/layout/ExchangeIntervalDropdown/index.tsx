@@ -8,6 +8,7 @@ import { useAppDispatch } from 'src/redux/app/hooks'
 import { fetchExchangeRates } from 'src/redux/thunks/currencyExchange'
 import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
+import { MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE } from '../ExchangeIntervalForm'
 
 enum DropdownOption {
   CurrentWeek = 'currentWeek',
@@ -36,12 +37,18 @@ export default function ExchangeIntervalDropdown() {
         onClick: params => {
           const key = params.key as DropdownOption
 
-          let startDate = dayjs().subtract(5, 'day')
+          let startDate = dayjs().subtract(
+            MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE - 1,
+            'day'
+          )
           let endDate = dayjs()
 
           if (key === DropdownOption.PreviousWeek) {
             startDate = dayjs().subtract(1, 'week').startOf('week')
-            endDate = startDate.add(5, 'd')
+            endDate = startDate.add(
+              MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE - 1,
+              'd'
+            )
           }
 
           if (shouldRefetchExchangeRates(startDate, endDate)) {

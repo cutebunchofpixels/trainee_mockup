@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, Button, Typography, message, theme } from 'antd'
-import { UserDeleteOutlined, UserOutlined } from '@ant-design/icons'
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from 'react-responsive'
@@ -50,7 +50,7 @@ export default function CurrentUserSection() {
         </Typography.Text>
         <Button
           shape="circle"
-          icon={<UserDeleteOutlined />}
+          icon={<LogoutOutlined />}
           onClick={handleSignout}
           className={styles.signoutButton}
         />
