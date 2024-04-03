@@ -1,15 +1,14 @@
 import { Dayjs } from 'dayjs'
 
+import { currencyExchangeStore } from 'src/mobx/currency-exchange'
 import { dayjs } from 'src/utils/dayjs'
 
 export function shouldRefetchExchangeRates(startDate: Dayjs, endDate: Dayjs) {
-  const currencyExchange = {
-    data: [],
-    startDate: dayjs().subtract(30, 'day'),
-    endDate: dayjs(),
-  }
+  const loadedStartDate = currencyExchangeStore.startDate
+  const loadedEndDate = currencyExchangeStore.endDate
+  const exchangeRates = currencyExchangeStore.exchangeRates
 
-  if (currencyExchange.data.length === 0) {
+  if (exchangeRates.length === 0) {
     return true
   }
 
@@ -18,14 +17,9 @@ export function shouldRefetchExchangeRates(startDate: Dayjs, endDate: Dayjs) {
   }
 
   if (
-    !dayjs(startDate).isSameOrAfter(currencyExchange.startDate, 'day') ||
-    !dayjs(endDate).isSameOrBefore(currencyExchange.endDate, 'day')
+    !dayjs(startDate).isSameOrAfter(loadedStartDate, 'day') ||
+    !dayjs(endDate).isSameOrBefore(loadedEndDate, 'day')
   ) {
-    console.log('bruuuuuuuuh')
-    console.log(
-      !dayjs(currencyExchange.startDate).isSameOrAfter(startDate, 'day')
-    )
-    console.log(!dayjs(currencyExchange.endDate).isSameOrBefore(endDate, 'day'))
     return true
   }
 

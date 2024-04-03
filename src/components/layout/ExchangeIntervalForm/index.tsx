@@ -4,11 +4,13 @@ import { Button, Form, theme } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Dayjs } from 'dayjs'
 import { useMediaQuery } from 'react-responsive'
+import { observer } from 'mobx-react-lite'
 
 import { dayjs } from 'src/utils/dayjs'
 import DateSelector from 'src/components/ui/DateSelector'
 import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
+import { currencyExchangeStore } from 'src/mobx/currency-exchange'
 
 import styles from './styles.module.scss'
 
@@ -29,15 +31,24 @@ export const initialExchangeChartPeriod: FormValues = {
   ),
 }
 
-export default function ExchangeIntervalForm() {
+function ExchangeIntervalForm() {
   const [form] = Form.useForm<FormValues>()
   const { t, i18n } = useTranslation()
 
   const { token } = theme.useToken()
   const isScreenMd = useMediaQuery({ maxWidth: token.screenMD })
+  const loadedStartDate = currencyExchangeStore.startDate
+  const loadedEndDate = currencyExchangeStore.endDate
 
   const currentStartDate = Form.useWatch('startDate', form)
   const currentEndDate = Form.useWatch('endDate', form)
+
+  useEffect(() => {
+    if (loadedStartDate && loadedEndDate) {
+      form.setFieldValue('startDate', dayjs(loadedStartDate))
+      form.setFieldValue('endDate', dayjs(loadedEndDate))
+    }
+  }, [loadedStartDate, loadedEndDate])
 
   return (
     <Form<FormValues>
@@ -46,7 +57,11 @@ export default function ExchangeIntervalForm() {
       className={styles.dateSelectorsForm}
       onFinish={({ startDate, endDate }) => {
         if (shouldRefetchExchangeRates(startDate, endDate)) {
-          console.log('form submit')
+          currencyExchangeStore.fetchExchangeRates(
+            Currency.UAH,
+            startDate,
+            endDate
+          )
         }
       }}
       form={form}
@@ -123,3 +138,5 @@ export default function ExchangeIntervalForm() {
     </Form>
   )
 }
+
+export default observer(ExchangeIntervalForm)

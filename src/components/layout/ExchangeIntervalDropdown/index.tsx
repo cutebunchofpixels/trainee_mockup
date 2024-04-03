@@ -6,6 +6,8 @@ import { DownOutlined } from '@ant-design/icons'
 import { dayjs } from 'src/utils/dayjs'
 import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
 import { MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE } from '../ExchangeIntervalForm'
+import { currencyExchangeStore } from 'src/mobx/currency-exchange'
+import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 
 enum DropdownOption {
   CurrentWeek = 'currentWeek',
@@ -48,7 +50,11 @@ export default function ExchangeIntervalDropdown() {
           }
 
           if (shouldRefetchExchangeRates(startDate, endDate)) {
-            console.log('fetch')
+            currencyExchangeStore.fetchExchangeRates(
+              Currency.UAH,
+              startDate,
+              endDate
+            )
           }
         },
       }}

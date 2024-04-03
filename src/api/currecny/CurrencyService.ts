@@ -21,7 +21,7 @@ export class CurrencyExchangeService {
     )
 
     return {
-      date: date.toISOString(),
+      date: date,
       currency: currency,
       exchangeRates: resp.data[currency],
     }
