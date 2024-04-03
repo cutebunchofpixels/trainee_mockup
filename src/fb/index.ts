@@ -21,6 +21,6 @@ onAuthStateChanged(auth, user => {
   if (user) {
     store.dispatch(signin(user))
   } else {
-    store.dispatch(signout)
+    store.dispatch(signout())
   }
 })
