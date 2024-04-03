@@ -3,22 +3,14 @@ import { Typography } from 'antd'
 
 import UsersTable from 'src/components/layout/UsersTable'
 import UsersFilters from 'src/components/layout/UsersFilters'
-import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
-import { fetchUsers } from 'src/redux/thunks/users'
 import { useTranslation } from 'react-i18next'
 
 import styles from './styles.module.scss'
+import { mockUsers } from 'src/components/layout/UsersTable/mockUsers'
 
 export default function Users() {
-  const users = useAppSelector(state => state.users.data)
-  const dispatch = useAppDispatch()
+  const users = mockUsers
   const { t } = useTranslation()
-
-  useEffect(() => {
-    if (users.length === 0) {
-      dispatch(fetchUsers())
-    }
-  }, [])
 
   return (
     <div className={styles.usersPageContainer}>

@@ -5,15 +5,15 @@ import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from 'react-responsive'
 import { signOut } from 'firebase/auth'
 
-import { useAppSelector } from 'src/redux/app/hooks'
 import { auth } from 'src/fb'
 import { handleFirebaseError } from 'src/utils/handleFirebaseError'
 import CurrentUserPopover from 'src/components/layout/CurrentUserPopover'
+import { mockUser } from 'src/utils/mockUser'
 
 import styles from './styles.module.scss'
 
 export default function CurrentUserSection() {
-  const user = useAppSelector(state => state.auth.user)
+  const user = mockUser
   const [messageApi, contextHolder] = message.useMessage()
   const { token } = theme.useToken()
   const isScreenMd = useMediaQuery({ minWidth: token.screenSM })

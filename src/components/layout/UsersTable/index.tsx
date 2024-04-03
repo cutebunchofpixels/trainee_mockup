@@ -6,30 +6,30 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
-import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
 import { Theme } from 'src/types/Theme'
-import { fetchUsers } from 'src/redux/thunks/users'
 import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
 
 import styles from './styles.module.scss'
+import { mockUsers } from './mockUsers'
 
 export default function UsersTable() {
-  const currentTheme = useAppSelector(state => state.theme.value)
-  const totalPages = useAppSelector(state => state.users.totalPages)
-  const pageSize = useAppSelector(state => state.users.filters.per_page)
-  const page = useAppSelector(state => state.users.filters.page)
-  const users = useAppSelector(state => state.users.data)
-  const isLoading = useAppSelector(state => state.users.loading)
-  const dispatch = useAppDispatch()
+  const currentTheme = Theme.Light
+  const totalPages = 100
+  const pageSize = 8
+  const page = 1
+  const users = mockUsers
+  const isLoading = false
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
 
   function handlePageChange(page: number, pageSize: number) {
-    dispatch(fetchUsers({ page, per_page: pageSize }))
+    console.log('users table page change')
   }
 
   const classes = classNames(styles.usersTable, {
     [styles.usersTableLight]: currentTheme === Theme.Light,
+    //eslint-disable-next-line
+    //@ts-ignore
     [styles.usersTableDark]: currentTheme === Theme.Dark,
   })
 

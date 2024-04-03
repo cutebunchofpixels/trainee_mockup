@@ -3,16 +3,15 @@ import { Switch } from 'antd'
 import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 
 import { Theme } from 'src/types/Theme'
-import { useAppDispatch, useAppSelector } from 'src/redux/app/hooks'
-import { toggleTheme } from 'src/redux/thunks/theme'
 
 export default function ThemeSwitch() {
-  const { value: currentTheme } = useAppSelector(state => state.theme)
+  const currentTheme = Theme.Light
+  //eslint-disable-next-line
+  //@ts-ignore
   const isChecked = currentTheme === Theme.Dark
-  const dispatch = useAppDispatch()
 
   function handleThemeChange() {
-    dispatch(toggleTheme())
+    console.log('theme change')
   }
 
   return (

@@ -1,10 +1,13 @@
 import { Dayjs } from 'dayjs'
 
 import { dayjs } from 'src/utils/dayjs'
-import { store } from 'src/redux/app/store'
 
 export function shouldRefetchExchangeRates(startDate: Dayjs, endDate: Dayjs) {
-  const { currencyExchange } = store.getState()
+  const currencyExchange = {
+    data: [],
+    startDate: dayjs().subtract(30, 'day'),
+    endDate: dayjs(),
+  }
 
   if (currencyExchange.data.length === 0) {
     return true

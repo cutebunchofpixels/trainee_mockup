@@ -1,9 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-import { store } from 'src/redux/app/store'
-import { signin, signout } from 'src/redux/thunks/auth'
-
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'trainee-mockup.firebaseapp.com',
@@ -18,9 +15,5 @@ export const auth = getAuth(app)
 auth.languageCode = document.documentElement.lang
 
 onAuthStateChanged(auth, user => {
-  if (user) {
-    store.dispatch(signin(user))
-  } else {
-    store.dispatch(signout())
-  }
+  console.log('firebase auth observer triggered')
 })

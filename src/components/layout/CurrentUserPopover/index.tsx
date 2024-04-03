@@ -2,8 +2,7 @@ import React from 'react'
 import { Button, Divider, Popover, Typography } from 'antd'
 import { CaretDownFilled, UserDeleteOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
-
-import { useAppSelector } from 'src/redux/app/hooks'
+import { mockUser } from 'src/utils/mockUser'
 
 import styles from './styles.module.scss'
 
@@ -13,7 +12,7 @@ export default function CurrentUserPopover({
   handleSignout: () => void
 }) {
   const { t } = useTranslation()
-  const user = useAppSelector(state => state.auth.user)
+  const user = mockUser
 
   if (!user) {
     return null

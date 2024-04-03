@@ -4,16 +4,56 @@ import { useTranslation } from 'react-i18next'
 import { Empty } from 'antd'
 import { LineChartOutlined } from '@ant-design/icons'
 
-import { useAppSelector } from 'src/redux/app/hooks'
 import { dayjs } from 'src/utils/dayjs'
 import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
+import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchange/CurrencyExchangeRates'
+import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 
 import styles from './styles.module.scss'
 
+const mockExchangeRates: CurrencyExchangeRates[] = [
+  {
+    date: '2024-04-01',
+    currency: Currency.UAH,
+    exchangeRates: {
+      uah: 1,
+      eur: 0.023584706,
+      usd: 0.02563804,
+    },
+  },
+  {
+    date: '2024-04-02',
+    currency: Currency.UAH,
+    exchangeRates: {
+      uah: 1,
+      eur: 0.022584706,
+      usd: 0.02463804,
+    },
+  },
+  {
+    date: '2024-04-03',
+    currency: Currency.UAH,
+    exchangeRates: {
+      uah: 1,
+      eur: 0.021584706,
+      usd: 0.02363804,
+    },
+  },
+  {
+    date: '2024-04-04',
+    currency: Currency.UAH,
+    exchangeRates: {
+      uah: 1,
+      eur: 0.020584706,
+      usd: 0.02263804,
+    },
+  },
+]
+
 export default function RevenueChart() {
   const { t, i18n } = useTranslation()
-  const exchangeRates = useAppSelector(state => state.currencyExchange.data)
-  const isLoading = useAppSelector(state => state.currencyExchange.loading)
+  const exchangeRates = mockExchangeRates
+  const isLoading = false
 
   const chartData = useMemo(() => {
     return exchangeRates.map(item => ({

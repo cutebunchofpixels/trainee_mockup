@@ -2,15 +2,15 @@ import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
 import Loader from 'src/components/ui/Loader'
-import { useAppSelector } from 'src/redux/app/hooks'
+import { mockUser } from 'src/utils/mockUser'
 
 export default function ProtectedRoute({
   children,
 }: {
   children: JSX.Element | null
 }) {
-  const user = useAppSelector(state => state.auth.user)
-  const isAuthReady = useAppSelector(state => state.auth.isReady)
+  const user = mockUser
+  const isAuthReady = true
   const location = useLocation()
 
   if (!isAuthReady) {

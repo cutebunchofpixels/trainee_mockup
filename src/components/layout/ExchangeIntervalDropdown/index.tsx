@@ -4,9 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { DownOutlined } from '@ant-design/icons'
 
 import { dayjs } from 'src/utils/dayjs'
-import { useAppDispatch } from 'src/redux/app/hooks'
-import { fetchExchangeRates } from 'src/redux/thunks/currencyExchange'
-import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
 import { MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE } from '../ExchangeIntervalForm'
 
@@ -17,7 +14,6 @@ enum DropdownOption {
 
 export default function ExchangeIntervalDropdown() {
   const { t } = useTranslation()
-  const dispatch = useAppDispatch()
 
   const dropdownItems: MenuProps['items'] = [
     {
@@ -52,7 +48,7 @@ export default function ExchangeIntervalDropdown() {
           }
 
           if (shouldRefetchExchangeRates(startDate, endDate)) {
-            dispatch(fetchExchangeRates(Currency.UAH, startDate, endDate))
+            console.log('fetch')
           }
         },
       }}
