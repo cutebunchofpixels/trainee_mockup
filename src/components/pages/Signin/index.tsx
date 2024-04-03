@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Typography, message } from 'antd'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
@@ -14,10 +14,12 @@ export default function Signin() {
   const { t } = useTranslation()
   const [messageApi, contextHolder] = message.useMessage()
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname
 
   function handleFormSubmit({ email, password }: SignupFormValues) {
     signInWithEmailAndPassword(auth, email, password)
-      .then(_ => navigate('/currency'))
+      .then(() => navigate(from || '/currency'))
       .catch(error =>
         handleFirebaseError(
           error,
