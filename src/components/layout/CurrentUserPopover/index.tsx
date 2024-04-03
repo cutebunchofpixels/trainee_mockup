@@ -2,17 +2,14 @@ import React from 'react'
 import { Button, Divider, Popover, Typography } from 'antd'
 import { CaretDownFilled, UserDeleteOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
-import { mockUser } from 'src/utils/mockUser'
+import { observer } from 'mobx-react-lite'
 
 import styles from './styles.module.scss'
+import { authStore } from 'src/mobx/auth'
 
-export default function CurrentUserPopover({
-  handleSignout,
-}: {
-  handleSignout: () => void
-}) {
+function CurrentUserPopover({ handleSignout }: { handleSignout: () => void }) {
   const { t } = useTranslation()
-  const user = mockUser
+  const user = authStore.user
 
   if (!user) {
     return null
@@ -45,3 +42,5 @@ export default function CurrentUserPopover({
     </Popover>
   )
 }
+
+export default observer(CurrentUserPopover)

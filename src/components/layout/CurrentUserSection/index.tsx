@@ -4,16 +4,17 @@ import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from 'react-responsive'
 import { signOut } from 'firebase/auth'
+import { observer } from 'mobx-react-lite'
 
 import { auth } from 'src/fb'
 import { handleFirebaseError } from 'src/utils/handleFirebaseError'
 import CurrentUserPopover from 'src/components/layout/CurrentUserPopover'
-import { mockUser } from 'src/utils/mockUser'
+import { authStore } from 'src/mobx/auth'
 
 import styles from './styles.module.scss'
 
-export default function CurrentUserSection() {
-  const user = mockUser
+function CurrentUserSection() {
+  const user = authStore.user
   const [messageApi, contextHolder] = message.useMessage()
   const { token } = theme.useToken()
   const isScreenMd = useMediaQuery({ minWidth: token.screenSM })
@@ -39,7 +40,15 @@ export default function CurrentUserSection() {
         {contextHolder}
         <Avatar
           icon={!user.photoURL && <UserOutlined />}
-          src={user.photoURL && <img src={user.photoURL} alt="User avatar" />}
+          src={
+            user.photoURL && (
+              <img
+                src={user.photoURL}
+                alt="User avatar"
+                referrerPolicy="no-referrer"
+              />
+            )
+          }
         />
         <Typography.Text>
           {user.displayName ? user.displayName : user.email}
@@ -64,3 +73,5 @@ export default function CurrentUserSection() {
     </div>
   )
 }
+
+export default observer(CurrentUserSection)

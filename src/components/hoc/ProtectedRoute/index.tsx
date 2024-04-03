@@ -1,25 +1,22 @@
+import { observer } from 'mobx-react-lite'
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
 import Loader from 'src/components/ui/Loader'
-import { mockUser } from 'src/utils/mockUser'
+import { authStore } from 'src/mobx/auth'
 
-export default function ProtectedRoute({
-  children,
-}: {
-  children: JSX.Element | null
-}) {
-  const user = mockUser
-  const isAuthReady = true
+function ProtectedRoute({ children }: { children: JSX.Element | null }) {
   const location = useLocation()
 
-  if (!isAuthReady) {
+  if (authStore.isReady) {
     return <Loader size="large" />
   }
 
-  if (!user) {
+  if (!authStore.user) {
     return <Navigate to="/signin" state={{ from: location }} replace />
   }
 
   return children
 }
+
+export default observer(ProtectedRoute)

@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
+import { authStore } from 'src/mobx/auth'
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'trainee-mockup.firebaseapp.com',
@@ -15,5 +17,5 @@ export const auth = getAuth(app)
 auth.languageCode = document.documentElement.lang
 
 onAuthStateChanged(auth, user => {
-  console.log('firebase auth observer triggered')
+  user ? authStore.signin(user) : authStore.signout()
 })
