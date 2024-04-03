@@ -8,7 +8,7 @@ import { authStore } from 'src/mobx/auth'
 function ProtectedRoute({ children }: { children: JSX.Element | null }) {
   const location = useLocation()
 
-  if (authStore.isReady) {
+  if (!authStore.isReady) {
     return <Loader size="large" />
   }
 

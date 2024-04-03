@@ -22,6 +22,10 @@ class AuthStore {
     this.user = null
     UserService.setAuthHeader(undefined)
   }
+
+  setReady(value: boolean) {
+    this.isReady = value
+  }
 }
 
 export const authStore = new AuthStore()
