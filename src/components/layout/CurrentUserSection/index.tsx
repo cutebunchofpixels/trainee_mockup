@@ -1,7 +1,6 @@
 import React from 'react'
 import { Avatar, Button, Typography, message, theme } from 'antd'
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from 'react-responsive'
 import { signOut } from 'firebase/auth'
@@ -18,19 +17,16 @@ export default function CurrentUserSection() {
   const [messageApi, contextHolder] = message.useMessage()
   const { token } = theme.useToken()
   const isScreenMd = useMediaQuery({ minWidth: token.screenSM })
-  const navigate = useNavigate()
   const { t } = useTranslation()
 
   function handleSignout() {
-    signOut(auth)
-      .then(() => navigate('/signin'))
-      .catch(error =>
-        handleFirebaseError(
-          error,
-          message => messageApi.error(message),
-          key => t(key)
-        )
+    signOut(auth).catch(error =>
+      handleFirebaseError(
+        error,
+        message => messageApi.error(message),
+        key => t(key)
       )
+    )
   }
 
   if (!user) {
