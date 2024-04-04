@@ -2,18 +2,20 @@ import React, { useEffect } from 'react'
 import { ConfigProvider, theme, App as AntdApp } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Outlet } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 import { Theme } from 'src/types/Theme'
 import { locales } from 'src/utils/constants'
 import { Locale } from 'src/types/Locale'
 import { auth } from 'src/fb'
 import { authStore } from 'src/mobx/auth'
+import { themeStore } from './mobx/theme'
 
 import colorVariables from './sass/abstracts/_variables.scss'
 import './styles.module.scss'
 
-export function App() {
-  const currentTheme: Theme = Theme.Light
+function App() {
+  const currentTheme = themeStore.theme
   const { i18n } = useTranslation()
 
   useEffect(() => {
@@ -25,8 +27,6 @@ export function App() {
       direction={i18n.dir()}
       theme={{
         algorithm:
-          //eslint-disable-next-line
-          //@ts-ignore
           currentTheme === Theme.Dark
             ? theme.darkAlgorithm
             : theme.defaultAlgorithm,
@@ -48,4 +48,4 @@ export function App() {
   )
 }
 
-export default App
+export default observer(App)

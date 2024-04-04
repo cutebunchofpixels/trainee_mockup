@@ -1,16 +1,18 @@
 import React from 'react'
 import { Card } from 'antd'
 import { useTranslation } from 'react-i18next'
+import { observer } from 'mobx-react-lite'
 
 import { Theme } from 'src/types/Theme'
 import RevenueChart from 'src/components/layout/RevenueChart'
 import ExchangeIntervalDropdown from 'src/components/layout/ExchangeIntervalDropdown'
+import { themeStore } from 'src/mobx/theme'
 
 import styles from './styles.module.scss'
 
-export default function RevenueChartBlock() {
+function RevenueChartBlock() {
   const { t } = useTranslation()
-  const currentTheme = Theme.Light
+  const currentTheme = themeStore.theme
   const isChartDataLoading = false
 
   return (
@@ -23,8 +25,6 @@ export default function RevenueChartBlock() {
         className={styles.revenueChartContainer}
         dir="ltr"
         style={{
-          //eslint-disable-next-line
-          //@ts-ignore
           backgroundColor: currentTheme === Theme.Dark ? '#A9A9A9' : undefined,
           padding: isChartDataLoading ? '10px' : '0',
         }}
@@ -34,3 +34,5 @@ export default function RevenueChartBlock() {
     </Card>
   )
 }
+
+export default observer(RevenueChartBlock)

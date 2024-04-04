@@ -4,16 +4,18 @@ import classNames from 'classnames'
 import { TableOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { Theme } from 'src/types/Theme'
 import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
+import { mockUsers } from './mockUsers'
+import { themeStore } from 'src/mobx/theme'
 
 import styles from './styles.module.scss'
-import { mockUsers } from './mockUsers'
 
-export default function UsersTable() {
-  const currentTheme = Theme.Light
+function UsersTable() {
+  const currentTheme = themeStore.theme
   const totalPages = 100
   const pageSize = 8
   const page = 1
@@ -28,8 +30,6 @@ export default function UsersTable() {
 
   const classes = classNames(styles.usersTable, {
     [styles.usersTableLight]: currentTheme === Theme.Light,
-    //eslint-disable-next-line
-    //@ts-ignore
     [styles.usersTableDark]: currentTheme === Theme.Dark,
   })
 
@@ -92,3 +92,5 @@ export default function UsersTable() {
     />
   )
 }
+
+export default observer(UsersTable)
