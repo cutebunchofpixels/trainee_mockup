@@ -4,11 +4,10 @@ import { currencyExchangeStore } from 'src/mobx/currency-exchange'
 import { dayjs } from 'src/utils/dayjs'
 
 export function shouldRefetchExchangeRates(startDate: Dayjs, endDate: Dayjs) {
-  const loadedStartDate = currencyExchangeStore.startDate
-  const loadedEndDate = currencyExchangeStore.endDate
-  const exchangeRates = currencyExchangeStore.exchangeRates
+  const { startDate: loadedStartDate, endDate: loadedEndDate } =
+    currencyExchangeStore
 
-  if (exchangeRates.length === 0) {
+  if (currencyExchangeStore.isEmpty) {
     return true
   }
 

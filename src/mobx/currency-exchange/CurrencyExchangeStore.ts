@@ -1,25 +1,47 @@
-import { Dayjs } from 'dayjs'
-import { makeAutoObservable, runInAction } from 'mobx'
+import dayjs, { Dayjs } from 'dayjs'
+import { makeAutoObservable, reaction, runInAction } from 'mobx'
 
 import { CurrencyExchangeService } from 'src/api/currecny/CurrencyService'
 import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchange/CurrencyExchangeRates'
+import { shouldRefetchExchangeRates } from './shouldRefetchExchangeRates'
+
+const BASE_CURRENCY = Currency.UAH
+export const MIN_EXCHANGE_INTERVAL = 3
+export const MAX_EXCHANGE_INTERVAL = 5
 
 class CurrencyExchangeStore {
   constructor() {
     makeAutoObservable(this)
   }
 
-  isLoading = false
   exchangeRates: CurrencyExchangeRates[] = []
+  startDate: Dayjs = dayjs().subtract(1, 'week').startOf('week')
+  endDate: Dayjs = this.startDate.add(MAX_EXCHANGE_INTERVAL - 1, 'day')
+  isLoading = false
   error: string | null = null
 
-  get startDate() {
-    return this.exchangeRates[0]?.date
+  async initStore() {
+    await this.fetchExchangeRates(BASE_CURRENCY, this.startDate, this.endDate)
   }
 
-  get endDate() {
-    return this.exchangeRates.at(-1)?.date
+  get isEmpty() {
+    return this.exchangeRates.length === 0
+  }
+
+  setInterval(startDate: Dayjs, endDate: Dayjs) {
+    this.startDate = startDate
+    this.endDate = endDate
+  }
+
+  setToPreviousWeek() {
+    this.startDate = dayjs().subtract(1, 'week').startOf('week')
+    this.endDate = this.startDate.add(MAX_EXCHANGE_INTERVAL - 1, 'day')
+  }
+
+  setToCurrentWeek() {
+    this.startDate = dayjs().subtract(MAX_EXCHANGE_INTERVAL - 1, 'day')
+    this.endDate = dayjs()
   }
 
   async fetchExchangeRates(
@@ -55,3 +77,21 @@ class CurrencyExchangeStore {
 }
 
 export const currencyExchangeStore = new CurrencyExchangeStore()
+
+currencyExchangeStore.initStore()
+
+reaction(
+  () => ({
+    startDate: currencyExchangeStore.startDate,
+    endDate: currencyExchangeStore.endDate,
+  }),
+  ({ startDate, endDate }) => {
+    if (shouldRefetchExchangeRates(startDate, endDate)) {
+      currencyExchangeStore.fetchExchangeRates(
+        BASE_CURRENCY,
+        startDate,
+        endDate
+      )
+    }
+  }
+)

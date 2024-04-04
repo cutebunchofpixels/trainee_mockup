@@ -8,9 +8,11 @@ import { observer } from 'mobx-react-lite'
 
 import { dayjs } from 'src/utils/dayjs'
 import DateSelector from 'src/components/ui/DateSelector'
-import { Currency } from 'src/types/models/CurrencyExchange/Currency'
-import { shouldRefetchExchangeRates } from 'src/utils/shouldRefetchExchangeRates'
-import { currencyExchangeStore } from 'src/mobx/currency-exchange'
+import {
+  MAX_EXCHANGE_INTERVAL,
+  MIN_EXCHANGE_INTERVAL,
+  currencyExchangeStore,
+} from 'src/mobx/currency-exchange'
 
 import styles from './styles.module.scss'
 
@@ -19,50 +21,63 @@ interface FormValues {
   endDate: Dayjs
 }
 
-export const MIN_CURRENCY_EXCHANGE_INTERVAL_SIZE = 3
-export const MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE = 5
+const initialValues: FormValues = {
+  startDate: currencyExchangeStore.startDate,
+  endDate: currencyExchangeStore.endDate,
+}
 
-const startOfPreviousWeek = dayjs().subtract(1, 'week').startOf('week')
-export const initialExchangeChartPeriod: FormValues = {
-  startDate: startOfPreviousWeek,
-  endDate: startOfPreviousWeek.add(
-    MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE - 1,
-    'day'
-  ),
+function isValidStartDate(startDate: Dayjs, endDate: Dayjs | null) {
+  if (startDate.isAfter(dayjs())) {
+    return false
+  }
+
+  if (!endDate) {
+    return true
+  }
+
+  const minValidDays = MIN_EXCHANGE_INTERVAL - 1
+  const maxValidDays = MAX_EXCHANGE_INTERVAL - 1
+  const diff = endDate.diff(startDate, 'day')
+
+  return diff >= minValidDays && diff <= maxValidDays
+}
+
+function isValidEndDate(startDate: Dayjs, endDate: Dayjs) {
+  if (endDate.isAfter(dayjs())) {
+    return false
+  }
+
+  if (!startDate) {
+    return true
+  }
+
+  const minValidDays = MIN_EXCHANGE_INTERVAL - 1
+  const maxValidDays = MAX_EXCHANGE_INTERVAL - 1
+  const diff = endDate.diff(startDate, 'day')
+
+  return diff >= minValidDays && diff <= maxValidDays
 }
 
 function ExchangeIntervalForm() {
   const [form] = Form.useForm<FormValues>()
   const { t, i18n } = useTranslation()
-
   const { token } = theme.useToken()
   const isScreenMd = useMediaQuery({ maxWidth: token.screenMD })
-  const loadedStartDate = currencyExchangeStore.startDate
-  const loadedEndDate = currencyExchangeStore.endDate
-
-  const currentStartDate = Form.useWatch('startDate', form)
-  const currentEndDate = Form.useWatch('endDate', form)
+  const formStartDate = Form.useWatch('startDate', form)
+  const formEndDate = Form.useWatch('endDate', form)
 
   useEffect(() => {
-    if (loadedStartDate && loadedEndDate) {
-      form.setFieldValue('startDate', dayjs(loadedStartDate))
-      form.setFieldValue('endDate', dayjs(loadedEndDate))
-    }
-  }, [loadedStartDate, loadedEndDate])
+    form.setFieldValue('startDate', currencyExchangeStore.startDate)
+    form.setFieldValue('endDate', currencyExchangeStore.endDate)
+  }, [currencyExchangeStore.startDate, currencyExchangeStore.endDate])
 
   return (
     <Form<FormValues>
-      initialValues={initialExchangeChartPeriod}
+      initialValues={initialValues}
       layout={isScreenMd ? 'vertical' : 'inline'}
       className={styles.dateSelectorsForm}
       onFinish={({ startDate, endDate }) => {
-        if (shouldRefetchExchangeRates(startDate, endDate)) {
-          currencyExchangeStore.fetchExchangeRates(
-            Currency.UAH,
-            startDate,
-            endDate
-          )
-        }
+        currencyExchangeStore.setInterval(startDate, endDate)
       }}
       form={form}
     >
@@ -77,23 +92,7 @@ function ExchangeIntervalForm() {
         ]}
       >
         <DateSelector
-          disabledDate={date => {
-            if (!currentEndDate && date.isBefore(dayjs())) {
-              return false
-            }
-
-            if (
-              currentEndDate &&
-              currentEndDate.diff(date, 'day') >=
-                MIN_CURRENCY_EXCHANGE_INTERVAL_SIZE &&
-              currentEndDate.diff(date, 'day') <=
-                MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE
-            ) {
-              return false
-            }
-
-            return true
-          }}
+          disabledDate={startDate => !isValidStartDate(startDate, formEndDate)}
         />
       </Form.Item>
       <Form.Item<FormValues>
@@ -106,30 +105,14 @@ function ExchangeIntervalForm() {
         ]}
       >
         <DateSelector
-          disabledDate={date => {
-            if (!currentStartDate && date.isBefore(dayjs())) {
-              return false
-            }
-
-            if (
-              currentStartDate &&
-              date.diff(currentStartDate, 'day') >=
-                MIN_CURRENCY_EXCHANGE_INTERVAL_SIZE &&
-              date.diff(currentStartDate, 'day') <=
-                MAX_CURRENCY_EXCHANGE_INTERVAL_SIZE
-            ) {
-              return false
-            }
-
-            return true
-          }}
+          disabledDate={endDate => !isValidEndDate(formStartDate, endDate)}
         />
       </Form.Item>
       <Form.Item noStyle>
         <Button
           type="primary"
           htmlType="submit"
-          disabled={!currentStartDate || !currentEndDate}
+          disabled={!formStartDate || !formEndDate}
         >
           {t('reportDateSelectForm.viewReport')}
           {i18n.dir() === 'ltr' ? <RightOutlined /> : <LeftOutlined />}
