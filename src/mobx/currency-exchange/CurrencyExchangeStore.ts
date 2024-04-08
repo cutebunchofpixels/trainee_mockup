@@ -85,8 +85,12 @@ reaction(
     startDate: currencyExchangeStore.startDate,
     endDate: currencyExchangeStore.endDate,
   }),
-  ({ startDate, endDate }) => {
-    if (shouldRefetchExchangeRates(startDate, endDate)) {
+  ({ startDate, endDate }, prev) => {
+    const { startDate: prevStartDate, endDate: prevEndDate } = prev
+
+    if (
+      shouldRefetchExchangeRates(startDate, endDate, prevStartDate, prevEndDate)
+    ) {
       currencyExchangeStore.fetchExchangeRates(
         BASE_CURRENCY,
         startDate,

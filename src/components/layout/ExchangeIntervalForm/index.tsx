@@ -77,6 +77,7 @@ function ExchangeIntervalForm() {
       layout={isScreenMd ? 'vertical' : 'inline'}
       className={styles.dateSelectorsForm}
       onFinish={({ startDate, endDate }) => {
+        console.log(startDate.format('YYYY-MM-DD'))
         currencyExchangeStore.setInterval(startDate, endDate)
       }}
       form={form}
