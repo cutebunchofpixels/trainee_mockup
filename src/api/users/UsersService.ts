@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-import { GetUsersDto } from 'src/types/models/User/dto/GetUsersDto'
 import { GorestUser } from 'src/types/models/User'
 import { toURLSearchParams } from 'src/utils/toURLSearchParams'
 
@@ -13,8 +12,16 @@ export class UserService {
     this.axiosInstance.defaults.headers.common.Authorization = `Bearer ${value}`
   }
 
-  static async getAll(dto: GetUsersDto) {
-    const params = toURLSearchParams(dto)
+  static async getAll(
+    filters: Partial<GorestUser>,
+    page: number,
+    pageSize: number
+  ) {
+    const params = toURLSearchParams({
+      ...filters,
+      page,
+      per_page: pageSize,
+    })
 
     const resp = await this.axiosInstance.get<GorestUser[]>('', {
       params,

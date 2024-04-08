@@ -6,12 +6,17 @@ import { Gender } from 'src/types/models/User'
 import { getEnumOptions } from 'src/utils/getEnumOptions'
 
 import styles from './styles.module.scss'
+import { userStore } from 'src/mobx/users'
 
 export default function UsersFilters() {
   const { t, i18n } = useTranslation()
 
   function handleGenderChange(value: string) {
-    console.log('gender change')
+    if (value === 'all') {
+      userStore.setFilters({ gender: undefined })
+    } else {
+      userStore.setFilters({ gender: value as Gender })
+    }
   }
 
   const genderOptions = useMemo(

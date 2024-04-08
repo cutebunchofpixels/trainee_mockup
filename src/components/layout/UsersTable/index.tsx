@@ -9,23 +9,19 @@ import { observer } from 'mobx-react-lite'
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { Theme } from 'src/types/Theme'
 import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
-import { mockUsers } from './mockUsers'
 import { themeStore } from 'src/mobx/theme'
+import { userStore } from 'src/mobx/users'
 
 import styles from './styles.module.scss'
 
 function UsersTable() {
   const currentTheme = themeStore.theme
-  const totalPages = 100
-  const pageSize = 8
-  const page = 1
-  const users = mockUsers
-  const isLoading = false
+  const { users, isLoading, page, pageSize, totalPages } = userStore
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
 
   function handlePageChange(page: number, pageSize: number) {
-    console.log('users table page change')
+    userStore.setPagination(page, pageSize)
   }
 
   const classes = classNames(styles.usersTable, {
@@ -77,7 +73,7 @@ function UsersTable() {
     <Table<GorestUser>
       className={classes}
       pagination={{
-        pageSize: pageSize,
+        pageSize,
         onChange: handlePageChange,
         total: totalPages,
         current: page,
