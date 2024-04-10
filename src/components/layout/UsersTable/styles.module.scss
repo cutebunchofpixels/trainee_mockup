@@ -6,6 +6,10 @@
   :global {
     .ant-table-tbody {
       background-color: #fff;
+
+      .ant-table-row {
+        cursor: pointer;
+      }
     }
   }
 }
