@@ -36,6 +36,7 @@ class UserStore {
 
   setFilters(filters: Partial<GorestUser>) {
     this.filters = { ...this.filters, ...filters }
+    this.page = 1
   }
 
   async fetchUsers(
