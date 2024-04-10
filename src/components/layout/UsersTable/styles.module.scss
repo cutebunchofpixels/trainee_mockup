@@ -1,11 +1,5 @@
 .usersTable {
   overflow-x: auto;
-
-  :global {
-    & .ant-table-tbody {
-      background-color: #141414;
-    }
-  }
 }
 
 .usersTableLight {
@@ -25,7 +19,7 @@
 }
 
 .tableLoadingSkeleton {
-  height: 400px;
+  height: 540px;
 }
 
 .tableLoadingIcon {

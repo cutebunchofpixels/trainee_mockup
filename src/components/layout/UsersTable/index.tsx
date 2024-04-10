@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react'
-import { Table, Typography } from 'antd'
+import { Table } from 'antd'
 import classNames from 'classnames'
-import { TableOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { Theme } from 'src/types/Theme'
-import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
 import { themeStore } from 'src/mobx/theme'
 import { userStore } from 'src/mobx/users'
 
@@ -57,21 +55,10 @@ function UsersTable() {
     [i18n.resolvedLanguage]
   )
 
-  if (isLoading) {
-    return (
-      <div className={styles.tableLoadingSkeleton}>
-        <ContainerSkeleton active>
-          <Typography.Text>
-            <TableOutlined className={styles.tableLoadingIcon} />
-          </Typography.Text>
-        </ContainerSkeleton>
-      </div>
-    )
-  }
-
   return (
     <Table<GorestUser>
       className={classes}
+      loading={isLoading}
       pagination={{
         pageSize,
         onChange: handlePageChange,
