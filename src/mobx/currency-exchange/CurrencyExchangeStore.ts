@@ -1,12 +1,11 @@
 import dayjs, { Dayjs } from 'dayjs'
-import { makeAutoObservable, reaction, runInAction } from 'mobx'
+import { autorun, makeAutoObservable, runInAction } from 'mobx'
 
 import { CurrencyExchangeService } from 'src/api/currecny/CurrencyService'
 import { Currency } from 'src/types/models/CurrencyExchange/Currency'
 import { CurrencyExchangeRates } from 'src/types/models/CurrencyExchange/CurrencyExchangeRates'
 import { shouldRefetchExchangeRates } from './shouldRefetchExchangeRates'
 
-const BASE_CURRENCY = Currency.UAH
 export const MIN_EXCHANGE_INTERVAL = 3
 export const MAX_EXCHANGE_INTERVAL = 5
 
@@ -19,14 +18,19 @@ class CurrencyExchangeStore {
   startDate: Dayjs = dayjs().subtract(1, 'week').startOf('week')
   endDate: Dayjs = this.startDate.add(MAX_EXCHANGE_INTERVAL - 1, 'day')
   isLoading = false
+  count = 20
   error: string | null = null
-
-  async initStore() {
-    await this.fetchExchangeRates(BASE_CURRENCY, this.startDate, this.endDate)
-  }
 
   get isEmpty() {
     return this.exchangeRates.length === 0
+  }
+
+  get loadedStartDate() {
+    return this.exchangeRates.at(0)?.date
+  }
+
+  get loadedEndDate() {
+    return this.exchangeRates.at(-1)?.date
   }
 
   setInterval(startDate: Dayjs, endDate: Dayjs) {
@@ -42,6 +46,10 @@ class CurrencyExchangeStore {
   setToCurrentWeek() {
     this.startDate = dayjs().subtract(MAX_EXCHANGE_INTERVAL - 1, 'day')
     this.endDate = dayjs()
+  }
+
+  setCount(value: number) {
+    this.count = value
   }
 
   async fetchExchangeRates(
@@ -78,24 +86,19 @@ class CurrencyExchangeStore {
 
 export const currencyExchangeStore = new CurrencyExchangeStore()
 
-currencyExchangeStore.initStore()
+autorun(() => {
+  const { startDate, endDate } = currencyExchangeStore
+  const loadedStartDate = currencyExchangeStore.loadedStartDate
+  const loadedEndDate = currencyExchangeStore.loadedEndDate
 
-reaction(
-  () => ({
-    startDate: currencyExchangeStore.startDate,
-    endDate: currencyExchangeStore.endDate,
-  }),
-  ({ startDate, endDate }, prev) => {
-    const { startDate: prevStartDate, endDate: prevEndDate } = prev
-
-    if (
-      shouldRefetchExchangeRates(startDate, endDate, prevStartDate, prevEndDate)
-    ) {
-      currencyExchangeStore.fetchExchangeRates(
-        BASE_CURRENCY,
-        startDate,
-        endDate
-      )
-    }
+  if (
+    shouldRefetchExchangeRates(
+      startDate,
+      endDate,
+      loadedStartDate,
+      loadedEndDate
+    )
+  ) {
+    currencyExchangeStore.fetchExchangeRates(Currency.UAH, startDate, endDate)
   }
-)
+})

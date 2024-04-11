@@ -1,4 +1,4 @@
-import { makeAutoObservable, reaction, runInAction } from 'mobx'
+import { autorun, makeAutoObservable, reaction, runInAction } from 'mobx'
 
 import { UserService } from 'src/api/users/UsersService'
 import { mockUsers } from 'src/components/layout/UsersTable/mockUsers'
@@ -21,10 +21,6 @@ class UserStore {
 
   isLoading = false
   error: string | null = null
-
-  async initStore() {
-    await this.fetchUsers(this.filters, this.page, this.pageSize)
-  }
 
   get isEmpty() {
     return this.users.length === 0
@@ -94,18 +90,10 @@ class UserStore {
 
 export const userStore = new UserStore()
 
-userStore.initStore()
-
-reaction(
-  () => ({
-    filters: userStore.filters,
-    page: userStore.page,
-    pageSize: userStore.pageSize,
-  }),
-  ({ filters, page, pageSize }) => {
-    userStore.fetchUsers(filters, page, pageSize)
-  }
-)
+autorun(() => {
+  const { filters, page, pageSize } = userStore
+  userStore.fetchUsers(filters, page, pageSize)
+})
 
 reaction(
   () => ({ needsUpdate: userStore.needsUpdate }),
