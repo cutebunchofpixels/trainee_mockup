@@ -4,15 +4,13 @@ import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import EditUserForm, {
-  EditUserFormValues,
-} from 'src/components/layout/EditUserForm'
+import EditUserForm from 'src/components/layout/EditUserForm'
 import { GorestUser } from 'src/types/models/User'
 import { UserService } from 'src/api/users/UsersService'
 
 import styles from './styles.module.scss'
 
-type RoutePararms = {
+export type RoutePararms = {
   userId: string
 }
 
@@ -21,15 +19,6 @@ export default function EditUser() {
   const { t } = useTranslation()
   const { userId } = useParams<RoutePararms>()
   const navigate = useNavigate()
-
-  function handleSubmit(values: EditUserFormValues) {
-    UserService.update(userId!, values)
-      .then(() => {
-        navigate('/users')
-        message.success(t('editUser.success'))
-      })
-      .catch(() => message.error(t('errors.unexpected')))
-  }
 
   useEffect(() => {
     if (!userId) {
@@ -55,7 +44,7 @@ export default function EditUser() {
   return (
     <div className={styles.editUserPageContainer}>
       <Typography.Title>{t('editUser.pageHeading')}</Typography.Title>
-      <EditUserForm user={user} handleSubmit={handleSubmit} />
+      <EditUserForm user={user} />
     </div>
   )
 }

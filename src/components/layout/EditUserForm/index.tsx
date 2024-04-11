@@ -1,11 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { Button, Card, Form, Input, Select, Spin } from 'antd'
+import { Button, Card, Form, Input, Select, Spin, message } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'antd/es/form/Form'
 import { isEqual, omit } from 'lodash'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { getEnumOptions } from 'src/utils/getEnumOptions'
+import { UserService } from 'src/api/users/UsersService'
+import { RoutePararms } from 'src/components/pages/EditUser'
+import { userStore } from 'src/mobx/users'
 
 import styles from './styles.module.scss'
 
@@ -13,16 +17,14 @@ export type EditUserFormValues = Omit<GorestUser, 'id'>
 
 interface EditUserFormProps {
   user?: GorestUser
-  handleSubmit: (values: EditUserFormValues) => void
 }
 
-export default function EditUserForm({
-  user,
-  handleSubmit,
-}: EditUserFormProps) {
+export default function EditUserForm({ user }: EditUserFormProps) {
   const { t, i18n } = useTranslation()
   const [form] = useForm()
   const initialUser = useRef<EditUserFormValues>()
+  const { userId } = useParams<RoutePararms>()
+  const navigate = useNavigate()
   const [formValues, setValues] = useState<EditUserFormValues>(
     {} as EditUserFormValues
   )
@@ -45,6 +47,16 @@ export default function EditUserForm({
       setValues(formUser)
     }
   }, [user])
+
+  function handleSubmit(values: EditUserFormValues) {
+    UserService.update(userId!, values)
+      .then(() => {
+        userStore.invalidate()
+        navigate('/users')
+        message.success(t('editUser.success'))
+      })
+      .catch(() => message.error(t('errors.unexpected')))
+  }
 
   return (
     <Card className={styles.editUserFormContainer}>

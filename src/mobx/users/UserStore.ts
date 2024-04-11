@@ -17,6 +17,7 @@ class UserStore {
   page = 1
   pageSize = USERS_PAGE_SIZE
   totalPages = 0
+  needsUpdate = false
 
   isLoading = false
   error: string | null = null
@@ -37,6 +38,10 @@ class UserStore {
   setFilters(filters: Partial<GorestUser>) {
     this.filters = { ...this.filters, ...filters }
     this.page = 1
+  }
+
+  invalidate() {
+    this.needsUpdate = true
   }
 
   async fetchUsers(
@@ -99,5 +104,16 @@ reaction(
   }),
   ({ filters, page, pageSize }) => {
     userStore.fetchUsers(filters, page, pageSize)
+  }
+)
+
+reaction(
+  () => ({ needsUpdate: userStore.needsUpdate }),
+  ({ needsUpdate }) => {
+    const { filters, page, pageSize } = userStore
+    if (needsUpdate) {
+      userStore.needsUpdate = false
+      userStore.fetchUsers(filters, page, pageSize)
+    }
   }
 )
