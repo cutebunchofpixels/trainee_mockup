@@ -1,14 +1,13 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Button, Card, Form, Input, Select, Spin } from 'antd'
 import { useTranslation } from 'react-i18next'
+import { useForm } from 'antd/es/form/Form'
+import { isEqual, omit } from 'lodash'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { getEnumOptions } from 'src/utils/getEnumOptions'
 
 import styles from './styles.module.scss'
-import ContainerSkeleton from 'src/components/ui/ContainerSkeleton'
-import { FormOutlined } from '@ant-design/icons'
-import { useForm } from 'antd/es/form/Form'
 
 export type EditUserFormValues = Omit<GorestUser, 'id'>
 
@@ -23,6 +22,10 @@ export default function EditUserForm({
 }: EditUserFormProps) {
   const { t, i18n } = useTranslation()
   const [form] = useForm()
+  const initialUser = useRef<EditUserFormValues>()
+  const [formValues, setValues] = useState<EditUserFormValues>(
+    {} as EditUserFormValues
+  )
 
   const genderOptions = useMemo(
     () => getEnumOptions<Gender>(Gender, gender => t(`gender.${gender}`)),
@@ -37,6 +40,9 @@ export default function EditUserForm({
   useEffect(() => {
     if (user) {
       form.setFieldsValue(user)
+      const formUser = omit(user, 'id')
+      initialUser.current = formUser
+      setValues(formUser)
     }
   }, [user])
 
@@ -48,6 +54,16 @@ export default function EditUserForm({
           initialValues={user}
           onFinish={handleSubmit}
           form={form}
+          onFieldsChange={(_, fields) => {
+            const formUser = {} as any
+
+            for (const field of fields) {
+              const fieldName = (field.name as string[])[0]
+              formUser[fieldName] = field.value
+            }
+
+            setValues(formUser)
+          }}
         >
           <Form.Item name="name" label={t('name', { ns: 'common' })}>
             <Input />
@@ -62,7 +78,11 @@ export default function EditUserForm({
             <Select options={statusOptions} />
           </Form.Item>
           <Form.Item noStyle wrapperCol={{ span: 24 }}>
-            <Button htmlType="submit" className={styles.submitButton}>
+            <Button
+              htmlType="submit"
+              className={styles.submitButton}
+              disabled={isEqual(formValues, initialUser.current)}
+            >
               {t('submit', { ns: 'common' })}
             </Button>
           </Form.Item>
