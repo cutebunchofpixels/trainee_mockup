@@ -33,12 +33,12 @@ export class UserService {
     }
   }
 
-  static async getById(id: string) {
+  static async getById(id: number) {
     const resp = await this.axiosInstance.get(`/${id}`)
     return resp.data
   }
 
-  static async update(id: string, dto: Partial<GorestUser>) {
+  static async update(id: number, dto: Partial<GorestUser>) {
     this.axiosInstance.patch(`/${id}`, {
       data: dto,
     })

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Table } from 'antd'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -9,6 +9,7 @@ import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { Theme } from 'src/types/Theme'
 import { themeStore } from 'src/mobx/theme'
 import { userStore } from 'src/mobx/users'
+import EditUserModal from '../EditUserMoal'
 
 import styles from './styles.module.scss'
 
@@ -17,6 +18,8 @@ function UsersTable() {
   const { users, isLoading, page, pageSize, totalPages } = userStore
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null)
+  const [isModalOpen, setModalOpen] = useState<boolean>(false)
 
   function handlePageChange(page: number, pageSize: number) {
     userStore.setPagination(page, pageSize)
@@ -56,23 +59,42 @@ function UsersTable() {
   )
 
   return (
-    <Table<GorestUser>
-      className={classes}
-      loading={isLoading}
-      pagination={{
-        pageSize,
-        onChange: handlePageChange,
-        total: totalPages,
-        current: page,
-        showSizeChanger: false,
-      }}
-      onRow={user => ({
-        onClick: () => navigate(`${user.id}`),
-      })}
-      columns={columns}
-      dataSource={users}
-      rowKey={record => record.id}
-    />
+    <>
+      <EditUserModal
+        userId={selectedUserId}
+        open={isModalOpen}
+        handleOk={() => {
+          setModalOpen(false)
+          setSelectedUserId(null)
+        }}
+        onCancel={() => setModalOpen(false)}
+        key={selectedUserId}
+      />
+      <Table<GorestUser>
+        className={classes}
+        loading={isLoading}
+        pagination={{
+          pageSize,
+          onChange: handlePageChange,
+          total: totalPages,
+          current: page,
+          showSizeChanger: false,
+        }}
+        onRow={user => ({
+          onClick: e => {
+            if (e.ctrlKey || e.metaKey) {
+              setSelectedUserId(user.id)
+              setModalOpen(true)
+            } else {
+              navigate(`${user.id}`)
+            }
+          },
+        })}
+        columns={columns}
+        dataSource={users}
+        rowKey={record => record.id}
+      />
+    </>
   )
 }
 

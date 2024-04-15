@@ -4,7 +4,6 @@ import { Typography } from 'antd'
 import UsersTable from 'src/components/layout/UsersTable'
 import UsersFilters from 'src/components/layout/UsersFilters'
 import { useTranslation } from 'react-i18next'
-import { mockUsers } from 'src/components/layout/UsersTable/mockUsers'
 
 import styles from './styles.module.scss'
 
