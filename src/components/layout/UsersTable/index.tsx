@@ -9,7 +9,7 @@ import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { Theme } from 'src/types/Theme'
 import { themeStore } from 'src/mobx/theme'
 import { userStore } from 'src/mobx/users'
-import EditUserModal from '../EditUserMoal'
+import EditUserModal from '../EditUserModal'
 
 import styles from './styles.module.scss'
 
