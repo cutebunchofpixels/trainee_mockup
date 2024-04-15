@@ -1,5 +1,13 @@
 .usersTable {
   overflow-x: auto;
+
+  :global {
+    .ant-table-tbody {
+      .ant-table-row {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .usersTableLight {

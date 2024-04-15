@@ -36,6 +36,7 @@ function UsersTable() {
         title: t('id', { ns: 'common' }),
         dataIndex: 'id',
         key: 'id',
+        width: 150,
       },
       {
         title: t('name', { ns: 'common' }),
@@ -47,12 +48,14 @@ function UsersTable() {
         dataIndex: 'gender',
         key: 'gender',
         render: (value: Gender) => t(`gender.${value}`),
+        width: 150,
       },
       {
         title: t('status', { ns: 'common' }),
         dataIndex: 'status',
         key: 'status',
         render: (value: Status) => t(`status.${value}`),
+        width: 150,
       },
     ],
     [i18n.resolvedLanguage]
