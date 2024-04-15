@@ -51,7 +51,9 @@ class UserStore {
       newFilters = { ...this.filters, ...filters }
     }
 
-    this.isLoading = true
+    runInAction(() => {
+      this.isLoading = true
+    })
 
     try {
       const { users, totalPages } = await UserService.getAll(
