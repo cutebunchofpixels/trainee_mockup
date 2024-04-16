@@ -10,9 +10,9 @@ import styles from './styles.module.scss'
 
 export default function MainLayout() {
   return (
-    <Layout className={styles.mainLayout}>
+    <Layout>
       <Header />
-      <Layout.Content>
+      <Layout.Content className={styles.content}>
         <Suspense fallback={<Loader size="large" />}>
           <Outlet />
         </Suspense>

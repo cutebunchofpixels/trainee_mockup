@@ -1,0 +1,11 @@
+.link {
+  &:hover,
+  &:focus {
+    color: #69b1ff;
+  }
+
+  &:focus {
+    outline: 4px solid #69b1ff;
+    outline-offset: 5px;
+  }
+}

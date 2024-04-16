@@ -1,19 +1,14 @@
-.mainLayout {
-  height: 100vh;
-  flex-direction: column;
+.content {
+  flex-grow: 1;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  :global {
-    .ant-layout-content {
-      flex-grow: 1;
-      overflow-y: auto;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  background: var(--ant-layout-body-bg);
 
-      & > :first-child {
-        margin: auto;
-      }
-    }
+  & > :first-child {
+    margin: auto;
   }
 }

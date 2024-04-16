@@ -37,6 +37,7 @@ export default function ExchangeIntervalDropdown() {
             : currencyExchangeStore.setToPreviousWeek()
         },
       }}
+      trigger={['click']}
     >
       <Button type="primary">
         <Space>

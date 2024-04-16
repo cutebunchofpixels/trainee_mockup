@@ -12,7 +12,7 @@ import { authStore } from 'src/mobx/auth'
 import { themeStore } from './mobx/theme'
 
 import colorVariables from './sass/abstracts/_variables.scss'
-import './styles.module.scss'
+import styles from './styles.module.scss'
 
 function App() {
   const currentTheme = themeStore.theme
@@ -41,7 +41,7 @@ function App() {
           : locales[Locale.English]
       }
     >
-      <AntdApp>
+      <AntdApp className={styles.appContainer}>
         <Outlet />
       </AntdApp>
     </ConfigProvider>
