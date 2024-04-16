@@ -12,8 +12,9 @@ export default function DateSelector({ ...rest }: DatePickerProps) {
       </div>
       <DatePicker
         suffixIcon={null}
-        format={value => {
-          return value.format('MMM DD, YYYY')
+        format={{
+          format: 'YYYY-MM-DD',
+          type: 'mask',
         }}
         {...rest}
       />

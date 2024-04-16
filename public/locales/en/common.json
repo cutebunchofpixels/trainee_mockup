@@ -12,5 +12,7 @@
     "all": "All",
     "or": "Or",
     "interval": "Interval",
-    "id": "Id"
+    "id": "Id",
+    "en": "English",
+    "he": "Hebrew"
 }

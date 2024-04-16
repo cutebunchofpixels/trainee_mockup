@@ -16,6 +16,7 @@ function ThemeSwitch() {
       checkedChildren={<MoonOutlined />}
       unCheckedChildren={<SunOutlined />}
       onChange={() => themeStore.toggleTheme()}
+      aria-label="Switch color theme"
       style={{
         background: !isChecked ? '#A9A9A9' : undefined,
       }}

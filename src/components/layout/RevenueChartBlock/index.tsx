@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Card, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react-lite'
 
@@ -17,7 +17,11 @@ function RevenueChartBlock() {
 
   return (
     <Card
-      title={t('revenueChart.caption')}
+      title={
+        <Typography.Text id="chartCaption">
+          {t('revenueChart.caption')}
+        </Typography.Text>
+      }
       className={styles.chartCard}
       extra={<ExchangeIntervalDropdown />}
     >

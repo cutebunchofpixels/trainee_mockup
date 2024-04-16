@@ -115,7 +115,11 @@ function ExchangeIntervalForm() {
           disabled={!formStartDate || !formEndDate}
         >
           {t('reportDateSelectForm.viewReport')}
-          {i18n.dir() === 'ltr' ? <RightOutlined /> : <LeftOutlined />}
+          {i18n.dir() === 'ltr' ? (
+            <RightOutlined aria-hidden />
+          ) : (
+            <LeftOutlined aria-hidden />
+          )}
         </Button>
       </Form.Item>
     </Form>
