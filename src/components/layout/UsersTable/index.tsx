@@ -82,6 +82,7 @@ function UsersTable() {
           total: totalPages,
           current: page,
           showSizeChanger: false,
+          'aria-label': 'Table pagination',
         }}
         onRow={user => ({
           onClick: e => {

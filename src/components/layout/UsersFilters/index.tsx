@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 
 import { Gender } from 'src/types/models/User'
 import { getEnumOptions } from 'src/utils/getEnumOptions'
+import { userStore } from 'src/mobx/users'
 
 import styles from './styles.module.scss'
-import { userStore } from 'src/mobx/users'
 
 export default function UsersFilters() {
   const { t, i18n } = useTranslation()
@@ -32,11 +32,14 @@ export default function UsersFilters() {
 
   return (
     <div className={styles.userFilters}>
-      <Typography.Text>{t('users.filterByGender')}</Typography.Text>
+      <Typography.Text id="filtersCaption">
+        {t('users.filterByGender')}
+      </Typography.Text>
       <Select
         options={genderOptions}
         defaultValue="all"
         onChange={handleGenderChange}
+        aria-labelledby="filtersCaption"
       />
     </div>
   )
