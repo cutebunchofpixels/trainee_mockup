@@ -32,7 +32,7 @@ export default function Signin() {
   }
 
   return (
-    <Card className={styles.signinPage}>
+    <Card title={t('pages.signin')} className={styles.signinPage}>
       {contextHolder}
       <Helmet>
         <title>{t('title', { page: t('pages.signin') })}</title>
