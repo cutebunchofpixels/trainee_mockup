@@ -27,5 +27,12 @@
     "status.inactive": "לֹא פָּעִיל",
     "users.pageHeading": "משתמשים",
     "editUser.pageHeading": "ערוך משתמש",
-    "editUser.success": "משתמש עודכן בהצלחה"
+    "editUser.success": "משתמש עודכן בהצלחה",
+    "title": "{{page}} — דגם מתאמן",
+    "pages.users": "משתמשים",
+    "pages.signup": "הירשם",
+    "pages.signin": "להתחבר",
+    "pages.notFound": "שגיאה 404",
+    "pages.editUser": "ערוך משתמש",
+    "pages.currency": "המרת מטבע"
 }

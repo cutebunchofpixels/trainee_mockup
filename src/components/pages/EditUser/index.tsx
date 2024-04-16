@@ -3,6 +3,7 @@ import { Card, Typography, message } from 'antd'
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import EditUserForm, {
   EditUserFormValues,
@@ -57,6 +58,9 @@ export default function EditUser() {
 
   return (
     <div className={styles.editUserPageContainer}>
+      <Helmet>
+        <title>{t('title', { page: t('pages.editUser') })}</title>
+      </Helmet>
       <Typography.Title>{t('editUser.pageHeading')}</Typography.Title>
       <Card className={styles.formContainer}>
         <EditUserForm user={user} handleSubmit={handleSubmit} />

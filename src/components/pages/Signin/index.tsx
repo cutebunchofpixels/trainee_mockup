@@ -3,6 +3,7 @@ import { Card, Typography, message } from 'antd'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { Helmet } from 'react-helmet'
 
 import SignupForm, { SignupFormValues } from 'src/components/layout/SignupForm'
 import { auth } from 'src/fb'
@@ -32,6 +33,9 @@ export default function Signin() {
   return (
     <Card className={styles.signinPage}>
       {contextHolder}
+      <Helmet>
+        <title>{t('title', { page: t('pages.signin') })}</title>
+      </Helmet>
       <SignupForm
         handleSubmit={handleFormSubmit}
         submitButtonCaption={t('login', { ns: 'common' })}

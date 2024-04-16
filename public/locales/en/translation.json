@@ -29,5 +29,12 @@
     "status.inactive": "Inactive",
     "users.pageHeading": "Users",
     "editUser.pageHeading": "Edit user",
-    "editUser.success": "Successfully updated user"
+    "editUser.success": "Successfully updated user",
+    "title": "{{page}} — Trainee mockup",
+    "pages.users": "Users",
+    "pages.signup": "Signup",
+    "pages.signin": "Signin",
+    "pages.notFound": "404 Error",
+    "pages.editUser": "Edit user",
+    "pages.currency": "Currency exchange"
 }

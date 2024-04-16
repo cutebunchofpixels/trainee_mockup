@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography } from 'antd'
+import { Helmet } from 'react-helmet'
 
 import UsersTable from 'src/components/layout/UsersTable'
 import UsersFilters from 'src/components/layout/UsersFilters'
@@ -12,6 +13,9 @@ export default function Users() {
 
   return (
     <div className={styles.usersPageContainer}>
+      <Helmet>
+        <title>{t('title', { page: t('pages.users') })}</title>
+      </Helmet>
       <Typography.Title className={styles.pageHeading}>
         {t('users.pageHeading')}
       </Typography.Title>
