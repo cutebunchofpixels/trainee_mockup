@@ -31,7 +31,8 @@ export default function GoogleSigninButton() {
   return (
     <Button
       htmlType="button"
-      icon={<GoogleOutlined />}
+      aria-label="Signin with Google"
+      icon={<GoogleOutlined aria-hidden />}
       onClick={handleGoogleSignin}
       className={styles.googleSigninButton}
     >

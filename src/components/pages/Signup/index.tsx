@@ -1,13 +1,14 @@
 import React from 'react'
 import { Card, Typography, message } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Helmet } from 'react-helmet'
 
 import SignupForm, { SignupFormValues } from 'src/components/layout/SignupForm'
 import { auth } from 'src/fb'
 import { handleFirebaseError } from 'src/utils/handleFirebaseError'
+import Link from 'src/components/ui/Link'
 
 import styles from './styles.module.scss'
 
@@ -29,7 +30,7 @@ export default function Signup() {
   }
 
   return (
-    <Card className={styles.signupPage}>
+    <Card title={t('pages.signup')} className={styles.signupPage}>
       <Helmet>
         <title>{t('title', { page: t('pages.signup') })}</title>
       </Helmet>
@@ -38,10 +39,9 @@ export default function Signup() {
         handleSubmit={handleFormSubmit}
         submitButtonCaption={t('register', { ns: 'common' })}
       />
-      <Typography.Paragraph className="create-new-account-message">
-        {t('signup.accountExistsMessage')}{' '}
-        <Link to="/signin">{t('signup.loginWithExisginAccountMessage')}</Link>
-      </Typography.Paragraph>
+      <Link to="/signin" className={styles.useExistingAccount}>
+        {t('signup.useExistingAccount')}
+      </Link>
     </Card>
   )
 }

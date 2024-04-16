@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Divider, Form, FormProps, Input } from 'antd'
 import { useTranslation } from 'react-i18next'
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
 
 import { TranslationKey } from 'src/types/TranslationKey'
 import GoogleSigninButton from 'src/components/layout/GoogleSigninButton'
@@ -44,7 +45,16 @@ export default function SignupForm({
         name="password"
         rules={[{ required: true, message: 'Password is a required field' }]}
       >
-        <Input.Password placeholder={t('password', { ns: 'common' })} />
+        <Input.Password
+          placeholder={t('password', { ns: 'common' })}
+          iconRender={visible => {
+            if (visible) {
+              return <EyeOutlined aria-hidden />
+            }
+
+            return <EyeInvisibleOutlined aria-hidden />
+          }}
+        />
       </Form.Item>
       <Form.Item className="submit-button-wrapper">
         <Button htmlType="submit">{submitButtonCaption}</Button>

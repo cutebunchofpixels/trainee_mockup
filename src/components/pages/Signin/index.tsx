@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Typography, message } from 'antd'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Card, message } from 'antd'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { Helmet } from 'react-helmet'
@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet'
 import SignupForm, { SignupFormValues } from 'src/components/layout/SignupForm'
 import { auth } from 'src/fb'
 import { handleFirebaseError } from 'src/utils/handleFirebaseError'
+import Link from 'src/components/ui/Link'
 
 import styles from './styles.module.scss'
 
@@ -40,10 +41,9 @@ export default function Signin() {
         handleSubmit={handleFormSubmit}
         submitButtonCaption={t('login', { ns: 'common' })}
       />
-      <Typography.Paragraph className="create-new-account-message">
-        {t('signin.noAccoutMessage') + ' '}
-        <Link to="/signup">{t('signin.createNewAccoutMessage')}</Link>
-      </Typography.Paragraph>
+      <Link to="/signup" className={styles.createNewAccount}>
+        {t('signin.createNewAccount')}
+      </Link>
     </Card>
   )
 }
