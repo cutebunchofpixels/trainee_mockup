@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet'
 import EditUserForm from 'src/components/layout/EditUserForm'
 
 import styles from './styles.module.scss'
+import FocusFirst from 'src/components/hoc/FocusFirst'
 
 export type RoutePararms = {
   userId: string
@@ -24,10 +25,12 @@ export default function EditUser() {
       </Helmet>
       <Typography.Title>{t('editUser.pageHeading')}</Typography.Title>
       <Card className={styles.formContainer}>
-        <EditUserForm
-          userId={Number(userId)}
-          submitCallback={() => navigate('/users')}
-        />
+        <FocusFirst>
+          <EditUserForm
+            userId={Number(userId)}
+            submitCallback={() => navigate('/users')}
+          />
+        </FocusFirst>
       </Card>
     </div>
   )

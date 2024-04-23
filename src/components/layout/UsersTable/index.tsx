@@ -12,6 +12,7 @@ import { userStore } from 'src/mobx/users'
 import EditUserModal from '../EditUserModal'
 
 import styles from './styles.module.scss'
+import FocusFirst from 'src/components/hoc/FocusFirst'
 
 function UsersTable() {
   const currentTheme = themeStore.theme
@@ -64,16 +65,21 @@ function UsersTable() {
   return (
     <>
       {selectedUserId && (
-        <EditUserModal
-          userId={selectedUserId}
-          open={isModalOpen}
-          submitCallback={() => {
-            setModalOpen(false)
-            setSelectedUserId(null)
-          }}
-          onCancel={() => setModalOpen(false)}
+        <FocusFirst
+          startFrom=".ant-modal-content .ant-form"
           key={selectedUserId}
-        />
+        >
+          <EditUserModal
+            userId={selectedUserId}
+            open={isModalOpen}
+            submitCallback={() => {
+              setModalOpen(false)
+              setSelectedUserId(null)
+            }}
+            onCancel={() => setModalOpen(false)}
+            key={selectedUserId}
+          />
+        </FocusFirst>
       )}
       <Table<GorestUser>
         className={classes}

@@ -8,8 +8,6 @@ export default function Link({
   className,
   ...rest
 }: LinkProps & React.ComponentPropsWithoutRef<'a'>) {
-  className && console.log(classNames(className, styles.link))
-
   return (
     <ReactRouterLink className={classNames(className, styles.link)} {...rest} />
   )

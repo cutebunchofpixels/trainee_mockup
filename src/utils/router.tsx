@@ -7,6 +7,7 @@ import Signin from 'src/components/pages/Signin'
 import Signup from 'src/components/pages/Signup'
 import ProtectedRoute from 'src/components/hoc/ProtectedRoute'
 import NotFound from 'src/components/pages/NotFound'
+import FocusFirst from 'src/components/hoc/FocusFirst'
 
 const Currency = lazy(() => import('src/components/pages/Currency'))
 const Users = lazy(() => import('src/components/pages/Users'))
@@ -28,17 +29,27 @@ export const router = createBrowserRouter([
             path: 'currency',
             element: (
               <ProtectedRoute>
-                <Currency />
+                <FocusFirst>
+                  <Currency />
+                </FocusFirst>
               </ProtectedRoute>
             ),
           },
           {
             path: 'signin',
-            element: <Signin />,
+            element: (
+              <FocusFirst>
+                <Signin />
+              </FocusFirst>
+            ),
           },
           {
             path: 'signup',
-            element: <Signup />,
+            element: (
+              <FocusFirst>
+                <Signup />
+              </FocusFirst>
+            ),
           },
           {
             path: 'users',
@@ -50,11 +61,19 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <Users />,
+                element: (
+                  <FocusFirst>
+                    <Users />
+                  </FocusFirst>
+                ),
               },
               {
                 path: ':userId',
-                element: <EditUser />,
+                element: (
+                  <FocusFirst>
+                    <EditUser />
+                  </FocusFirst>
+                ),
               },
             ],
           },

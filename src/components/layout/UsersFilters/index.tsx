@@ -40,6 +40,7 @@ export default function UsersFilters() {
         defaultValue="all"
         onChange={handleGenderChange}
         aria-labelledby="filtersCaption"
+        showSearch
       />
     </div>
   )

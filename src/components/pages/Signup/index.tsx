@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Typography, message } from 'antd'
+import { Card, message } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
