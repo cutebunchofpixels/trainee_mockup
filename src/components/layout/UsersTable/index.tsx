@@ -63,16 +63,18 @@ function UsersTable() {
 
   return (
     <>
-      <EditUserModal
-        userId={selectedUserId}
-        open={isModalOpen}
-        handleOk={() => {
-          setModalOpen(false)
-          setSelectedUserId(null)
-        }}
-        onCancel={() => setModalOpen(false)}
-        key={selectedUserId}
-      />
+      {selectedUserId && (
+        <EditUserModal
+          userId={selectedUserId}
+          open={isModalOpen}
+          submitCallback={() => {
+            setModalOpen(false)
+            setSelectedUserId(null)
+          }}
+          onCancel={() => setModalOpen(false)}
+          key={selectedUserId}
+        />
+      )}
       <Table<GorestUser>
         className={classes}
         loading={isLoading}

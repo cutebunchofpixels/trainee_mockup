@@ -1,31 +1,46 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { Button, Form, Input, Select, Spin } from 'antd'
+import { Button, Form, Input, Select, Spin, message } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'antd/es/form/Form'
 import { isEqual, omit } from 'lodash'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { getEnumOptions } from 'src/utils/getEnumOptions'
+import { UserService } from 'src/api/users/UsersService'
+import { userStore } from 'src/mobx/users'
 
 import styles from './styles.module.scss'
 
 export type EditUserFormValues = Omit<GorestUser, 'id'>
 
 interface EditUserFormProps {
-  user?: GorestUser
-  handleSubmit: (values: EditUserFormValues) => void
+  userId: number
+  submitCallback?: () => void
 }
 
 export default function EditUserForm({
-  user,
-  handleSubmit,
+  userId,
+  submitCallback,
 }: EditUserFormProps) {
   const { t, i18n } = useTranslation()
   const [form] = useForm()
-  const initialUser = useRef<EditUserFormValues>()
-  const [formValues, setValues] = useState<EditUserFormValues>(
-    {} as EditUserFormValues
-  )
+  const initialUser = useRef<EditUserFormValues>({} as EditUserFormValues)
+  const [formValues, setValues] = useState<EditUserFormValues | null>(null)
+
+  useEffect(() => {
+    if (!formValues) {
+      UserService.getById(userId)
+        .then((user: GorestUser) => {
+          const omitted = omit(user, 'id')
+          form.setFieldsValue(omitted)
+          setValues(omitted)
+          initialUser.current = omitted
+        })
+        .catch(() => {
+          message.error(t('errors.unexpected'))
+        })
+    }
+  }, [])
 
   const genderOptions = useMemo(
     () => getEnumOptions<Gender>(Gender, gender => t(`gender.${gender}`)),
@@ -37,20 +52,21 @@ export default function EditUserForm({
     [i18n.resolvedLanguage]
   )
 
-  useEffect(() => {
-    if (user) {
-      form.setFieldsValue(user)
-      const formUser = omit(user, 'id')
-      initialUser.current = formUser
-      setValues(formUser)
+  async function handleSubmit(values: EditUserFormValues) {
+    try {
+      await UserService.update(userId, values)
+      userStore.invalidate()
+      message.success(t('editUser.success'))
+      submitCallback && submitCallback()
+    } catch (error) {
+      message.error(t('errors.unexpected'))
     }
-  }, [user])
+  }
 
   return (
-    <Spin spinning={!user}>
+    <Spin spinning={!formValues}>
       <Form<EditUserFormValues>
         layout="vertical"
-        initialValues={user}
         onFinish={handleSubmit}
         form={form}
         onFieldsChange={(_, fields) => {
