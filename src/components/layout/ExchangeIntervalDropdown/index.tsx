@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { Button, Dropdown, MenuProps, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { DownOutlined } from '@ant-design/icons'
@@ -12,6 +12,7 @@ enum DropdownOption {
 
 export default function ExchangeIntervalDropdown() {
   const { t, i18n } = useTranslation()
+  const dropdownTriggerRef = useRef<HTMLButtonElement>(null)
 
   const dropdownItems: MenuProps['items'] = useMemo(
     () => [
@@ -27,19 +28,25 @@ export default function ExchangeIntervalDropdown() {
     [i18n.resolvedLanguage]
   )
 
+  function handleSelect(key: DropdownOption) {
+    if (key === DropdownOption.CurrentWeek) {
+      currencyExchangeStore.setToCurrentWeek()
+    } else {
+      currencyExchangeStore.setToPreviousWeek()
+    }
+
+    dropdownTriggerRef.current?.focus()
+  }
+
   return (
     <Dropdown
       menu={{
         items: dropdownItems,
-        onClick: ({ key }) => {
-          key === DropdownOption.CurrentWeek
-            ? currencyExchangeStore.setToCurrentWeek()
-            : currencyExchangeStore.setToPreviousWeek()
-        },
+        onClick: ({ key }) => handleSelect(key as DropdownOption),
       }}
       trigger={['click']}
     >
-      <Button type="primary">
+      <Button type="primary" ref={dropdownTriggerRef}>
         <Space>
           {t('interval', { ns: 'common' })}
           <DownOutlined />
