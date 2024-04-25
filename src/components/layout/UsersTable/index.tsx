@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react'
-import { Table } from 'antd'
+import { Button, Table, TableProps } from 'antd'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
+import { EditOutlined } from '@ant-design/icons'
 
 import { Gender, GorestUser, Status } from 'src/types/models/User'
 import { Theme } from 'src/types/Theme'
@@ -12,7 +13,6 @@ import { userStore } from 'src/mobx/users'
 import EditUserModal from '../EditUserModal'
 
 import styles from './styles.module.scss'
-import FocusFirst from 'src/components/hoc/FocusFirst'
 
 function UsersTable() {
   const currentTheme = themeStore.theme
@@ -26,12 +26,18 @@ function UsersTable() {
     userStore.setPagination(page, pageSize)
   }
 
+  function handleEditClick(e: React.MouseEvent<HTMLElement>, user: GorestUser) {
+    e.stopPropagation()
+    setSelectedUserId(user.id)
+    setModalOpen(true)
+  }
+
   const classes = classNames(styles.usersTable, {
     [styles.usersTableLight]: currentTheme === Theme.Light,
     [styles.usersTableDark]: currentTheme === Theme.Dark,
   })
 
-  const columns = useMemo(
+  const columns: TableProps<GorestUser>['columns'] = useMemo(
     () => [
       {
         title: t('id', { ns: 'common' }),
@@ -58,6 +64,19 @@ function UsersTable() {
         render: (value: Status) => t(`status.${value}`),
         width: 150,
       },
+      {
+        title: '',
+        dataIndex: 'actions',
+        width: 75,
+        render: (_, record) => (
+          <Button
+            type="default"
+            icon={<EditOutlined />}
+            shape="default"
+            onClick={e => handleEditClick(e, record)}
+          />
+        ),
+      },
     ],
     [i18n.resolvedLanguage]
   )
@@ -65,23 +84,21 @@ function UsersTable() {
   return (
     <>
       {selectedUserId && (
-        <FocusFirst
-          startFrom=".ant-modal-content .ant-form"
-          key={selectedUserId}
-        >
-          <EditUserModal
-            userId={selectedUserId}
-            open={isModalOpen}
-            submitCallback={() => {
-              setModalOpen(false)
-              setSelectedUserId(null)
-            }}
-            onCancel={() => setModalOpen(false)}
-            key={selectedUserId}
-          />
-        </FocusFirst>
+        <EditUserModal
+          focusTriggerAfterClose
+          userId={selectedUserId}
+          open={isModalOpen}
+          submitCallback={() => {
+            setModalOpen(false)
+            setSelectedUserId(null)
+          }}
+          onCancel={() => {
+            setModalOpen(false)
+          }}
+        />
       )}
       <Table<GorestUser>
+        size="middle"
         className={classes}
         loading={isLoading}
         pagination={{
