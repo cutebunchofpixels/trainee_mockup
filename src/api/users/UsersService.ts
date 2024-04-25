@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 import { GorestUser } from 'src/types/models/User'
+import { GetUserDto } from 'src/types/models/User/dto/GetUserDto'
+import { GetUsersDto } from 'src/types/models/User/dto/GetUsersDto'
 import { toURLSearchParams } from 'src/utils/toURLSearchParams'
 
 export class UserService {
@@ -23,24 +25,28 @@ export class UserService {
       per_page: pageSize,
     })
 
-    const resp = await this.axiosInstance.get<GorestUser[]>('', {
+    const { data: response } = await this.axiosInstance.get<GetUsersDto>('', {
       params,
     })
 
     return {
-      totalPages: resp.headers['x-pagination-pages'],
-      users: resp.data,
+      totalPages: response.meta.pagination.pages,
+      users: response.data,
     }
   }
 
   static async getById(id: number) {
-    const resp = await this.axiosInstance.get(`/${id}`)
-    return resp.data
+    const { data: response } = await this.axiosInstance.get<GetUserDto>(
+      `/${id}`
+    )
+    return response.data
   }
 
   static async update(id: number, dto: Partial<GorestUser>) {
+    console.log(dto)
+
     this.axiosInstance.patch(`/${id}`, {
-      data: dto,
+      ...dto,
     })
   }
 }
